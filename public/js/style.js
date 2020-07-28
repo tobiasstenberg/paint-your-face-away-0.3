@@ -107,6 +107,9 @@ function showSpinner() {
     document.querySelector(".lds-spinner").style.display = "inline-block";
 }
 
+function showImgButton() {
+    document.querySelector(".inputWrapper").style.display = "block";
+}
 
 // change the save buttons
 

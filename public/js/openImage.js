@@ -10,88 +10,121 @@ var newFace;
 setTimeout(function(){
     var fileInput = document.querySelector('#fileInput');
     p5canvas = document.querySelector('#myP5canvas1');
-}, 1000)
+    console.log("timeout p5canv id'ed");
+    showImgButton();
+}, 3000)
 
-fileInput.onchange = function (e) {
-    onFileChange(e, fileInput.files);
-};
-
-function onFileChange(e, files) {
-    console.log("onFileChange...");
-    console.log("fileInput.files: ", files);
-
-    var ctx0 = p5canvas.getContext("2d");
-    newFace = new Image();
+// https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
+window.addEventListener('load', function() {
     
-    newFace.onload = function() { 
+    document.querySelector('#fileInput').addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            var newFace = new Image();
+            newFace.src = URL.createObjectURL(this.files[0]); // set src to blob url
 
-        // addition shinji 27 july
-        if (newFace.width && newFace.height < 601) {
-            // ctx0.drawImage(newFace, 0, 0, newFace.width, newFace.height);
-            ctx0.drawImage(newFace, 0, 0, 600, 600);
-
-            // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
-            // var wrh = newFace.width / newFace.height;
-            // var newWidth = p5canvas.width;
-            // var newHeight = newWidth / wrh;
-            // if (newHeight > p5canvas.height) {
-            //             newHeight = p5canvas.height;
-            //     newWidth = newHeight * wrh;
-            //   }
-            // var xOffset = newWidth < p5canvas.width ? ((p5canvas.width - newWidth) / 2) : 0;
-            // var yOffset = newHeight < p5canvas.height ? ((p5canvas.height - newHeight) / 2) : 0;
-    
-            // ctx0.drawImage(newFace, xOffset, yOffset, newWidth, newHeight);
-
-  
-
-        } 
-        else {
-            // resizeCanvas(600, 600);
-            ctx0.drawImage(newFace, 0, 0, 600, 600);
+            var ctx0 = p5canvas.getContext("2d");
             
-            ////////// cropping and centreing an image
-            // https://stackoverflow.com/questions/39794009/crop-the-exact-center-of-a-canvas-image-source
-            // ctx0.drawImage(newFace, 
-            //     (newFace.width - 600) / 2,   // sx, 200 pixels to the left from center
-            //     (newFace.height - 600) / 2,  // sy, 175 pixels above center
-            //     newFace.width, newFace.height, 0, 0, 600, 600);  // sw, sh, dx, dy, dw, dh
-        }
+            newFace.onload = function() { 
+        
+                // addition shinji 27 july
+                if (newFace.width < 900 && newFace.height < 900) {
 
-        // face = loadImage(newFace);
-    };
+                    canvasScale = 1;
+                    // ctx0.drawImage(newFace, 0, 0, 600, 600);
+                    // ctx0.drawImage(newFace, 0, 0, newFace.width, newFace.height);
 
-    newFace.src = './img/' + files[0].name;
-    console.log(newFace.src);
-    // face.src = newFace.src;
-    // console.log("face is" + face.src);
-    
-    faceURL = newFace.src;
-    window.faceURL = faceURL;
-    reloading();
-    resetSketch();
+                    // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
+                    // const fitImageToCanvas = (newFace,p5canvas) => {
+                    //     // const canvasContext = p5canvas.getContext("2d");
+                    //     const ratio = newFace.width / newFace.height;
+                    //     let newWidth = p5canvas.width;
+                    //     let newHeight = newWidth / ratio;
+                    //     if (newHeight < p5canvas.height) {
+                    //       newHeight = p5canvas.height;
+                    //       newWidth = newHeight * ratio;
+                    //     }
+                    //     const xOffset = newWidth > p5canvas.width ? (p5canvas.width - newWidth) / 2 : 0;
+                    //     const yOffset = newHeight > p5canvas.height ? (p5canvas.height - newHeight) / 2 : 0;
+                    //       ctx0.drawImage(newFace, xOffset, yOffset, newWidth, newHeight);
+                    //   };
 
-    // the following lines are never executed but the max width and height should be implemented above
-    var reader = new FileReader(files[0]);
-    reader.onload = function (event) {
-        console.log("reader.onLoad running...")
-        img = new Image();
-        img.onload = function () {
-            if (img.width < 2500 && img.height < 2500) {
-                canvasScale = 1;
-            } else {
-                canvasScale = Math.min(2500 / img.width, 2500 / img.height);
-            }
+        
+                    // // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
+                    // var wrh = newFace.width / newFace.height;
+                    // var newWidth = p5canvas.width;
+                    // var newHeight = newWidth / wrh;
+                    // if (newHeight > p5canvas.height) {
+                    //             newHeight = p5canvas.height;
+                    //     newWidth = newHeight * wrh;
+                    //   }
+                    // var xOffset = newWidth < p5canvas.width ? ((p5canvas.width - newWidth) / 2) : 0;
+                    // var yOffset = newHeight < p5canvas.height ? ((p5canvas.height - newHeight) / 2) : 0;
+            
+                    // ctx0.drawImage(newFace, xOffset, yOffset, newWidth, newHeight);
 
-            p5canvas.width = img.width * canvasScale;
-            p5canvas.height = img.height * canvasScale;
+                    // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
+                    var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
+                    var w = newFace.width * scale;
+                    var h = newFace.height * scale;
+                    var left = p5canvas.width / 2 - w / 2;
+                    var top = p5canvas.height / 2 - h / 2;
 
-            face = loadImage(img);
+                    ctx0.drawImage(newFace, left / 2, top / 2 , w / 2, h / 2);
+
+
+                } 
+                else {
+                    // resizeCanvas(600, 600);
+                    //
+                    // p5canvas.width = img.width * canvasScale;
+                    // p5canvas.height = img.height * canvasScale;
+                    //
+                    canvasScale = Math.min(900 / newFace.width, 900 / newFace.height);
+                    ctx0.drawImage(newFace, 0, 0, 600, 600);
+
+                    
+                    ////////// cropping and centreing an image
+                    // https://stackoverflow.com/questions/39794009/crop-the-exact-center-of-a-canvas-image-source
+                    // ctx0.drawImage(newFace, 
+                    //     (newFace.width - 600) / 2,   // sx, 200 pixels to the left from center
+                    //     (newFace.height - 600) / 2,  // sy, 175 pixels above center
+                    //     newFace.width, newFace.height, 0, 0, 600, 600);  // sw, sh, dx, dy, dw, dh
+                }
+        
+            };
+        
+            faceURL = newFace.src;
+            window.faceURL = faceURL;
+        
+            reloading();
             resetSketch();
 
-        };
-        img.src = event.target.result;
-    };
+        }
+    });
+  });
 
-}
+
+    // // // the following lines are never executed but the max width and height should be implemented above
+    // var reader = new FileReader(files[0]);
+    // reader.onload = function (event) {
+    //     console.log("reader.onLoad running...")
+    //     img = new Image();
+    //     img.onload = function () {
+    //         if (img.width < 2500 && img.height < 2500) {
+    //             canvasScale = 1;
+    //         } else {
+    //             canvasScale = Math.min(2500 / img.width, 2500 / img.height);
+    //         }
+
+    //         p5canvas.width = img.width * canvasScale;
+    //         p5canvas.height = img.height * canvasScale;
+
+    //         face = loadImage(img);
+    //         resetSketch();
+
+    //     };
+    //     img.src = event.target.result;
+    // };
+
+
 

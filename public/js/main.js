@@ -62,6 +62,7 @@ function setup() {
 
     // hide the spinner when the p5 canvas loaded / added shinji 28 july
     hideSpinner();
+    showImgButton();
 }
 
 

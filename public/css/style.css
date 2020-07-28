@@ -296,7 +296,7 @@ h3.txt_paint_tools {
   text-align: center;
   width: 130px;
 
-  /* display: none; */
+  display: none;
 }
 
 input[type="file"] {
