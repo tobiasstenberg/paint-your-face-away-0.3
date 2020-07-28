@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" content="height=device-height">
+
+<title>Untitled Portrait</title>
+
+
+<link rel="stylesheet" type="text/css" href="../css/default.css">
+
+<link rel="stylesheet" media="screen and (max-width: 580px)" href="../css/mobile.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+
+
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+</head> 
+
+
+
+<body onload="scrollCenter();">
+
+<p class="non_select" id="homeURL"> <a href="../../index.html"><span class="unselectURL">paintyourfaceaway.com</span></a> | 
+    <a href="../../info/index.html"><span class="unselectURL">info</span></a> | <a href="../index.html"><span class="selectURL">archive</span></a> </p>
+    
+ <script>
+     function scrollCenter() {
+     document.body.scrollLeft = (document.body.scrollWidth - document.body.clientWidth) / 2;
+     }
+</script>
+
+<!-- This is the container -->
+   
+<div class="artworkDiv" > 
+
+    <img class="artImg non_select" style="z-index:0" src="img.jpg">  
+    
+</div>
+
+<!-- <div class="stamp">
+   <p class="stamp-text" style="z-index:1"> <b> 01-08-2019 :</b> the date on which this face was opted out. </p>
+</div> -->
+
+
+<!-- <a id="CC" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+    <img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
+</a> -->
+
+<button id="shareButton" onclick="copyLink()">SHARE <i class='fas fa-share-square'></i></button>
+
+<div class="URL_link">
+    <a class="" href="https://www.instagram.com/p/B8EyvVsF8Js/" target="_blank" >
+        <i class='fas'>&#xf35d;</i> https://www.instagram.com/p/B8EyvVsF8Js/</a>
+    </br>
+    <a class="" href="https://shinjitoya.com/untitled.profiles/000/" target="_blank" >
+        <i class='fas'>&#xf35d;</i> https://shinjitoya.com/untitled.profiles/000/</a>
+</div>
+
+<script>
+// https://stackoverflow.com/questions/49618618/copy-current-url-to-clipboard
+function copyLink() {
+    var dummy = document.createElement('input'),
+    text = window.location.href;
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+    alert('URL copied to the clipboard. Now you can paste the link to this page.');
+}
+</script>
+
+</body>
+
+</html>
+
+

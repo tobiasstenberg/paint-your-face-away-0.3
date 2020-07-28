@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" content="height=device-height">
+
+<title>Untitled Profiles</title>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" type="text/css" href="css/default.css">
+
+<link rel="stylesheet" media="screen and (max-width: 580px)" href="css/mobile.css">
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery.js"></script>
+
+
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<script>
+                            
+    function fadeOut(){ $(".stamp").fadeOut(1500); }
+    
+</script>
+
+
+</head> 
+
+
+
+<body style="background-color: rgb(116, 103, 82);" onload="
+timeout();
+scrollCenter();
+ ">
+
+ <script>
+     function scrollCenter() {
+     document.body.scrollLeft = (document.body.scrollWidth - document.body.clientWidth) / 2;
+     }
+
+    function timeout() {
+    setTimeout(fadeOut, 2000);
+}
+
+</script>
+
+<!-- This is the container -->
+   
+<div class="artworkDiv" > 
+
+    <img class="artImg" style="z-index:0" src="img.jpg">  
+    
+</div>
+
+<div class="stamp">
+   <p class="stamp-text" style="z-index:1"> 
+    Archived: <b> 10-04-2020 </b>
+    <!-- <?php echo file_get_contents("date.txt");?> -->
+</p>
+</div>
+
+
+<div class="link-div">
+<a href="https://shinjitoya.com/paint-your-face-away/" target="_blank">
+<p class="link"><i> Paint Your Face Away </i></p>
+</a>
+</div>
+
+
+</body>
+
+</html>

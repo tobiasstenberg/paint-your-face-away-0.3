@@ -1,0 +1,122 @@
+* {
+	box-sizing: border-box;
+  }
+
+html, body {
+	margin: 0px;
+	padding: 0;
+	background: #e2e2e2;
+
+}
+
+.non_select {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  }
+
+p, h1, h2, h3, h4, h5, h6, body {
+	font-family: 'Oxygen', sans-serif;
+	color: rgb(46, 46, 46);
+  }
+  
+  /* //////////// - interface - ////////////// */
+  
+  /* --- divs left / right --- */
+  #homeURL{
+	font-size: 95%;
+	position: fixed;
+	top: 20px; left: 20px;
+	margin: 0;
+	z-index: 100;
+	background-color: rgb(226, 226, 226);
+  }
+  
+  span.selectURL {
+	/* background-color: #4d4d4d;
+	color: rgb(226, 226, 226); */
+	text-decoration-line: underline;
+	text-decoration-color: blue;
+	text-decoration-style: solid;
+  }
+  
+  span.unselectURL:hover {
+	cursor: pointer;
+	text-decoration: underline overline;
+  }
+  
+  
+  span.textLink {
+	color: rgb(19, 19, 187);
+	cursor: pointer;
+  }
+  
+  
+  
+  /* //////////////// below css for archive page only /////////////// */
+  
+  
+  #homeURL a {
+	color: rgb(46, 46, 46);
+	text-decoration-line: none;
+  }
+
+  /* ////////////// viewer below */
+
+img.artImg {
+    top: 0px; left: 50%; transform: translate(-50%, -0%); 
+    
+	position: absolute;
+	padding: 20px;
+
+	width:auto; 
+	height:100%;
+
+    /* bottom: 20px; */
+    }
+
+#shareButton {
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+	margin: 20px;
+}
+
+#CC {
+	right: 100px;
+	bottom: 0px;
+	position: absolute;
+	margin: 20px;
+}
+
+.URL_link {
+	position: absolute;
+	margin: 20px;
+	bottom: 0px;
+	left: 0px;
+}
+
+.URL_link a {
+	position: relative;
+	font-size: 75%;
+	color: rgb(114, 114, 114);
+	background-color: rgb(226, 226, 226);
+}
+
+/* .stamp {
+	position: fixed;
+    top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
+
+	text-align: center;
+}
+
+p.stamp-text {
+	  background-color: #fff;
+	  padding: 7px;
+	  opacity: 0.95;
+	  font-size: 120%;
+} */

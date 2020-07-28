@@ -1,0 +1,14 @@
+
+img.artImg {
+    top: 50%; left: 2%; transform: translate(-0%, -50%); 
+    
+	width:96%; 
+	height:auto; 
+    }
+
+p.stamp-text {
+	  background-color: #fff;
+	  padding: 7px;
+	  opacity: 0.95;
+	  font-size: 90%;
+}

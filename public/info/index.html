@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- <script src="./js/libs/p5_10_2/p5_10_2.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="../css/style_archive.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Info</title>
+
+    <style>
+        #info_window {
+          position: absolute;
+          top: 100px; 
+          /* top: 50%; */
+          left: 50%;
+          width: 50%; 
+          height: 500px;
+          -webkit-transform: translate(-50%, -0%);
+          -ms-transform: translate(-50%, -0%);
+          transform: translate(-50%, -0%);
+          padding: 40px;
+          font-size: 120%;
+
+          /* border: 1px solid rgb(209, 209, 209); */
+          border-radius: 8px;
+          overflow: auto;
+        }
+
+          /* width */
+          ::-webkit-scrollbar {
+          width: 3px;
+          }
+
+          /* Track */
+          ::-webkit-scrollbar-track {
+          background: transparent; 
+          }
+          
+          /* Handle */
+          ::-webkit-scrollbar-thumb {
+          background: rgb(209, 209, 209);
+          }
+
+          /* Handle on hover */
+          ::-webkit-scrollbar-thumb:hover {
+          background: #555; 
+          }
+
+    </style>
+
+  </head>
+
+<body>
+    <p class="non_select" id="homeURL"> <a href="../index.html"><span class="unselectURL">paintyourfaceaway.com</span></a> | 
+      <span onclick="" class="selectURL">info</span> | <a href="../archive/index.html"> <span class="unselectURL">archive</span> </p> </a>
+
+    <div id="info_window">
+        
+        <h3>About</h3> 
+
+        <p>
+          Paint Your Face Away is an art project addressing the issues of privacy and surveillance concerning the data economy of faces online in association with the technology of facial recognition. 
+          <br><br>
+          The project develops and makes accessible to the public a browser-based application of an online face painter that creates portrait pictures that can resist the technology and operation of face scraping that powers some facial recognition systems.
+        </p>
+
+        <br>
+
+        <h4 id="web_scraping_faces">
+          -> Web-scraping of faces
+        </h4>
+
+        <p>
+          Do you have pictures of your face on some websites or social media platforms? If so chances are your faces could have been “scraped” (algorithmically gathered)* and used to train facial recognition systems to identify you, possibly without your consent. This kind of practice has been already done socially to build real facial recognition systems. 
+          <a href="https://www.google.com/search?q=face%20scraping%20facial%20recognition" target="_blank">
+            See the relevant newsfeeds.
+          </a> 
+          <br><br>
+          Paint your face away started in summer 2019 rather speculatively in order to respond to the technological possibility of automatically collecting a vast number of faces to build a dataset to train facial recognition systems. This was before the above application has become widely known to the public. Technologies for scraping faces have been around for a while. A decade-old project 
+          
+          <a href="http://vis-www.cs.umass.edu/lfw/" target="_blank">
+            Labelled Faces in the Wild
+          </a> 
+          , was conducted using a face detection system to gather facial images on the web. In more recent cases, there have been some semi-open source tools available that collect facial images on social media such as Instagram and Facebook which skilled developers could use to build functioning face scrapers. A face scraper could be built by combining face detection, object recognition (to look for the categories of images that may contain faces), and the hashtag sorting of relevant categories (such as #selfie, #portrait, #face) in order to make the process more efficient for gathering a large number of faces. 
+
+          <a href="https://www.google.com/search?q=3%20billlion%20faces%20scraped" target="_blank">
+            The biggest known database created by web scraping to date has 3 billion faces. 
+          </a> 
+        </p>
+
+        <br>
+
+        <a id="how_to_paint"><h3>How to paint</h3></a> 
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Namrutrum dignissim mi, vitae malesuada neque suscipit vel. Cras turpis ex, facilisis id erat quis, gravida placerat augue. Etiam tincidunt, libero at mollis mattis, erat elit ornare urna, vitae accumsan nibh augue idneque. Nullam eget consectetur turpis. Sed nec hendrerit.         </p>
+
+        <br><br>
+
+        <a id="disclaimer"><h3>Disclaimer</h3></a> 
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Namrutrum dignissim mi, vitae malesuada neque suscipit vel. Cras turpis ex, facilisis id erat quis, gravida placerat augue. Etiam tincidunt, libero at mollis mattis, erat elit ornare urna, vitae accumsan nibh augue idneque. Nullam eget consectetur turpis. Sed nec hendrerit.         </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Namrutrum dignissim mi, vitae malesuada neque suscipit vel. Cras turpis ex, facilisis id erat quis, gravida placerat augue. Etiam tincidunt, libero at mollis mattis, erat elit ornare urna, vitae accumsan nibh augue idneque. Nullam eget consectetur turpis. Sed nec hendrerit.         </p>
+
+        <br><br>
+
+        <a id="how_to_share"><h3>How to share</h3></a>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Namrutrum dignissim mi, vitae malesuada neque suscipit vel. Cras turpis ex, facilisis id erat quis, gravida placerat augue. Etiam tincidunt, libero at mollis mattis, erat elit ornare urna, vitae accumsan nibh augue idneque. Nullam eget consectetur turpis. Sed nec hendrerit.         </p>
+
+        <br><br>
+
+        <h3>Credits</h3>
+
+        <p>crediting...</p>
+
+        <a href="#how_to_share">jump</a>
+
+    </div>
+
+</body>
+</html>

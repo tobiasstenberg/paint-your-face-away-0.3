@@ -1,0 +1,53 @@
+
+
+<html>
+
+<button onclick="shuffle()">button</button>
+
+<p id="text" >text</p>
+
+</html>
+
+
+<script>
+
+    var lastIndex = 1;
+
+    function shuffle() {
+        let randNum = Math.floor(Math.random() * 10) + 1;
+        document.querySelector('#text').innerHTML = "random " + lastIndex + " " + randNum;
+
+        if (randNum === lastIndex) {
+            console.log ("once more");
+            shuffle();
+        }
+        else {
+            console.log ("success");
+        }
+
+        lastIndex = randNum;
+}
+
+// ---
+
+// var inc = 0;
+
+// function shuffle() {
+//   while (inc <= 10) {
+//  console.log(Math.floor(Math.random()*6+1));
+//  inc++;
+// }
+// };
+
+// ---
+
+// https://stackoverflow.com/questions/28655966/call-random-function-javascript-but-not-twice-the-same-function
+
+// window.setInterval(function() {
+//     var rand;
+//     while ((rand = Math.floor(Math.random() * arr.length)) === lastIndex) ;
+//     arr[(lastIndex = rand)]();
+//     document.querySelector('#text').innerHTML = "random " + lastIndex + rand;
+// }, 5000);
+
+</script>

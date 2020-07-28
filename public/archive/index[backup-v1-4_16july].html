@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- <script src="./js/libs/p5_10_2/p5_10_2.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="../css/style_archive.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+    <p class="non_select" id="homeURL"> <a href="../index.html"><span class="unselectURL">paintyourfaceaway.com</span></a> | 
+      <span onclick="" class="unselectURL">info</span> | <span class="selectURL">archive</span> </p>
+
+<!-- <div id="wrapper_div"> -->
+
+    <!-- left side div  -->
+    <!-- <div class="archive_left_container_div"> 
+here is the left div       ----
+    </div> -->
+
+<!-- ////////////////////// grid -->
+
+<!-- Photo Grid -->
+<div class="row"> 
+
+  <div class="column">
+      <div onmouseenter="setIndex(0)" class="image_container">
+        <a class="link" href="javascript:;">
+          <img src="0/img.jpg" style="width:100%">
+          <div class="after"><p></p></div>
+        </a>
+      </div>
+
+      <div onmouseenter="setIndex(1)" class="image_container">
+        <a class="link" href="javascript:;">
+          <img src="1/img.jpg" style="width:100%">
+          <div class="after"><p></p></div>
+        </a>
+      </div>
+      <div onmouseenter="setIndex(2)" class="image_container">
+        <img src="2/img.jpg" style="width:100%">
+        <div class="after"><p></p></div>
+      </div>
+      <div onmouseenter="setIndex(3)"class="image_container">
+        <img src="3/img.jpg" style="width:100%">
+        <div class="after"><p></p></div>
+      </div>
+      <div onmouseenter="setIndex(4)"class="image_container">
+        <img src="4/img.jpg" style="width:100%">
+        <div class="after"><p></p></div>
+      </div>
+      <div onmouseenter="setIndex(14)"class="image_container">
+        <img src="14/img.jpg" style="width:100%">
+        <div class="after"><p></p></div>
+      </div>
+    
+    <div class="image_container">
+      <img src="images/portrait5.jpg" style="width:100%">
+      <div class="after"><p></p></div>
+    </div>
+    <div class="image_container">
+      <img src="images/portrait5.jpg" style="width:100%">
+      <div class="after"><p></p></div>
+    </div>
+    <div class="image_container">
+      <img src="images/portrait5.jpg" style="width:100%">
+      <div class="after"><p></p></div>
+    </div>
+    <div class="image_container">
+      <img src="images/portrait5.jpg" style="width:100%">
+      <div class="after"><p></p></div>
+    </div>
+    <div class="image_container">
+      <img src="images/portrait5.jpg" style="width:100%">
+      <div class="after"><p></p></div>
+    </div>
+    <div class="image_container">
+      <img src="images/portrait5.jpg" style="width:100%">
+      <div class="after"><p></p></div>
+    </div>
+    <div class="image_container">
+      <img src="images/portrait5.jpg" style="width:100%">
+      <div class="after"><p></p></div>
+    </div>
+
+    <div class="image_container">
+        <img src="images/portrait2.jpg" style="width:100%">
+        <div class="after"><p></p></div>
+      </div>
+      <div class="image_container">
+        <img src="images/portrait2.jpg" style="width:100%">
+        <div class="after"><p></p></div>
+      </div>
+      <div class="image_container">
+        <img src="images/portrait2.jpg" style="width:100%">
+        <div class="after"><p></p></div>
+      </div>
+      <div class="image_container">
+        <img src="images/portrait2.jpg" style="width:100%">
+        <div class="after"><p></p></div>
+      </div>
+      <div class="image_container">
+        <img src="images/portrait2.jpg" style="width:100%">
+        <div class="after"><p></p></div>
+      </div>
+    </div>
+
+  </div>  
+
+
+<!-- ///////////////////////////// -->
+
+    <!-- right side div -->
+    <div class="archive_right_container_div">
+      <a class="hashtags" href="https://www.instagram.com/explore/tags/paintyourfaceaway/" target="_blank">
+        <p>#paintyourfaceaway | IG</p></a>
+      <a class="hashtags" href="https://www.facebook.com/hashtag/paintyourfaceaway" target="_blank">
+        <p>#paintyourfaceaway | FB</p></a>
+      <a class="hashtags" href="https://twitter.com/search?q=%23paintyourfaceaway&src=typed_query" target="_blank">
+        <p>#paintyourfaceaway | TW</p></a>
+
+    </div>
+  <!-- wrapper div disabled </div> -->
+
+<button onclick="createVariables()">button</button>
+
+<!-- //////////iframe//////// -->
+
+<!-- close the iframe with a button -->
+<button id="close_button" onclick="closeIframeViewer()">CLOSE</button>
+
+<!-- iframe that loads the archive index -->
+<iframe id="viewer_frame" src="" name="iframe_a" height="100%" width="100%" title="Iframe"></iframe>
+
+<script>
+  let storeIframeURL;
+  let indexLoc;
+  // var timer;
+
+  // // set the iframe destination number to 0
+  // function setIndex0() {
+  //   indexLoc = 0;
+  // }
+
+  // changing the URL index of each thumbnail when the mouse hovers
+  function setIndex(index) {
+    indexLoc = index;
+  }
+
+  // change the URL of the iframe dist
+  function changeIframeURL() {
+    storeIframeURL = indexLoc + "/index.html";
+    console.log (indexLoc);
+    document.querySelector('#viewer_frame').src = storeIframeURL;
+    console.log (storeIframeURL);
+    // open the iframe after an instant
+    // timer = setTimeout(openIframeViewer, 70);
+  }
+  
+  // add event listners to each img container to change the url / onclick functions to open the iframe
+  var allContainers = document.getElementsByClassName("image_container");
+  var i;
+
+  for (i = 0; i < allContainers.length; i++) {
+    // window["thumb"+i] = new Object();
+
+    allContainers[i].addEventListener("click", openIframeViewer);
+    allContainers[i].addEventListener("mouseenter", changeIframeURL);
+    // console.log (i);
+  }
+
+  function updateIndex() {
+    indexLoc = i;
+    console.log (indexLoc);
+  }
+
+  // this opens the iframe viewer
+  function openIframeViewer() {
+    // document.querySelector('#viewer_frame').style.display = 'block';
+    $('#viewer_frame').fadeIn(200); {
+      document.querySelector('#close_button').style.display = 'block';
+      document.querySelector('body').style.overflow = 'hidden';
+    }
+  }
+
+  // this closes the iframe viewer
+  function closeIframeViewer() {
+    // document.querySelector('#viewer_frame').style.display = 'none';
+    $('#viewer_frame').fadeOut(200); {
+      document.querySelector('#close_button').style.display = 'none';
+      document.querySelector('body').style.overflow = 'visible';
+    }
+  }    
+
+function createVariables() {  
+  // var linking0 = document.querySelector("#link0");
+  // linking0.href = "0/";
+
+  // // https://stackoverflow.com/questions/6645067/javascript-dynamically-creating-variables-for-loops
+  // for (var i = 1; i < 11; i++) { // Creating 10 objects
+  //   window["Object"+i] = new Object();
+  //   console.log(i); 
+  //   console.log("Object"+i); // is not undefined
+  // }
+}
+
+var linking = document.getElementsByClassName("link");
+var il;
+
+// disable the event listner to open the iframe when the window is smaller
+function mediaQ(x) {
+  if (x.matches) { // If media query matches
+    for (i = 0; i < allContainers.length; i++) {
+
+      allContainers[i].removeEventListener("click", openIframeViewer);
+      allContainers[i].removeEventListener("mouseenter", changeIframeURL);
+
+      console.log ("remove"+i);
+    }
+
+    for (il = 0; il < linking.length; il++) {
+      linking[il].href = il + "/";
+    }
+
+  } else {
+    for (i = 0; i < allContainers.length; i++) {
+
+      allContainers[i].addEventListener("click", openIframeViewer);
+      allContainers[i].addEventListener("mouseenter", changeIframeURL);
+      console.log ("added"+i);
+    }
+  }
+}
+
+var x = window.matchMedia("(max-width: 700px)")
+mediaQ(x) // Call listener function at run time
+x.addListener(mediaQ) // Attach listener function on state changes
+
+</script>
+
+<!-- this empty script prevents the css bug on chrome to ease in onload -->
+<script> </script>
+
+</body>
+</html>

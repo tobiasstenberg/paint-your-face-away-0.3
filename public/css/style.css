@@ -1,0 +1,533 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  /* background: rgb(210, 210, 210); */
+  /* updated 8 jul shinji */
+  background: #e2e2e2;
+  /* color:#CCCCCC;  */
+}
+
+/* below: disable the text selection - shinji 7july */
+/* src https://stackoverflow.com/questions/16805684/javascript-disable-text-select */
+.non_select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* body {
+  prevent the over scrolling on mobiles FF 
+  https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior
+  overscroll-behavior: contain;
+} */
+
+
+/* added shinji 7 july */
+p, h1, h2, h3, h4, h5, h6, body {
+  /* font-family: 'PT Sans', sans-serif; */
+  /* font-family: 'Source Code Pro', monospace; */
+  font-family: 'Oxygen', sans-serif;
+  /* font-weight:700; */
+  /* font-family: 'Work Sans', sans-serif; */
+  /* font-family: 'Anonymous Pro', monospace; */
+  /* font-family: 'Roboto', sans-serif; */
+  /* font-family: 'Encode Sans', sans-serif; */
+  /* font-family: 'Encode Sans Semi Expanded', sans-serif; */
+
+  color: rgb(46, 46, 46);
+}
+
+/* //////////// - interface - ////////////// */
+
+/* --- divs left / right --- */
+#homeURL{
+  font-size: 95%;
+  position: fixed;
+  top: 20px; left: 20px;
+  margin: 0;
+  z-index: 100;
+  background-color: rgb(226, 226, 226);
+}
+
+span.selectURL {
+  /* background-color: #4d4d4d;
+  color: rgb(226, 226, 226); */
+  text-decoration-line: underline;
+  text-decoration-color: blue;
+  text-decoration-style: solid;
+}
+
+span.unselectURL:hover {
+  cursor: pointer;
+  text-decoration: underline overline;
+}
+
+button {
+  font-family: 'Oxygen', sans-serif;
+  font-weight:700;
+  color: rgb(46, 46, 46);
+}
+
+#left_container_div__panel {
+  margin: 0px 0px 0px 20px;  
+  width: 227px;
+  height: 100%;
+  position: absolute;
+}
+
+/* right div */
+
+#right_container_div__panel {
+  margin: 0px 20px 0px 0px;  
+  right: 0px;
+  width: 227px;
+  height: 100%;
+  position: absolute;
+  /* display: none; */
+
+}
+
+/* added after 4 july shinji */
+.message {
+  /* font-family: 'PT Sans', sans-serif; */
+  font-family: 'Oxygen', sans-serif;
+  /* font-family: 'Work Sans', sans-serif; */
+
+  font-size: 120%;
+  color: #242b38;
+}
+
+
+#messageWin {
+  position: absolute;
+  right: 0px;
+  bottom: 20px;
+  top: 20px;
+  width: 170px; 
+  /* height: 100%; */
+  overflow: auto;
+  padding: 20px;
+  /* border: 2px solid rgb(187, 187, 187); */
+  border: 2px solid #434343;
+  border-radius: 8px;
+  /* background-color: white; */
+  background-color: rgba(226, 226, 226, 0.8);
+  z-index: 1;
+
+  /* top: 50%; */
+  /* left: 50%;  */
+  /* transform: translate(-0%, -50%); */
+}
+
+span.textLink {
+  color: rgb(19, 19, 187);
+  cursor: pointer;
+}
+
+
+/* blinking from here: https://stackoverflow.com/revisions/16344389/7 */
+/* #blink_message {
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  
+  -moz-animation-name: blinker;
+  -moz-animation-duration: 1s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+} */
+
+/* blurring */
+/* reference  https://www.w3schools.com/howto/howto_css_blurred_background.asp*/
+.blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.nonBlur {
+  filter: blur(0px) !important;
+  -webkit-filter: blur(0px) !important;
+}
+
+
+
+#div_info {
+  background: #e2e2e2;
+  background-color: rgba(226,226,226,0.9);
+  z-index: 20;
+  position: fixed;
+  width: 100%; height: 100%;
+  top: 0px; left: 0px; right: 0px;
+  display: none;
+}
+
+#div_info .text {
+  /* font-family: 'PT Sans', sans-serif; */
+  font-family: 'Oxygen', sans-serif;
+  /* font-family: 'Work Sans', sans-serif; */
+  font-size: 110%;
+  color: #242b38;
+  padding: 150px 200px;
+}
+
+.div_panel {
+  /* changed shinji 7 july */
+  /* margin-top: 100px; */
+  /* text-align: center; */  
+  /* width: 200px; */
+  position: absolute;
+  margin-bottom: 20px;
+  /* bottom: 20px;  */
+  /* left: 0px; */
+  z-index: 1;
+
+  top: 50%;
+  left: 0%; 
+  transform: translate(-0%, -50%);
+}
+
+h3.txt_paint_tools {
+  font-weight: 600;
+  font-size: 140%;
+}
+
+/* shinji disabled */
+/* #buttonA {
+  z-index: 20;
+  display: inline-block;
+} */
+
+/* shinji disabled 7 july */
+/* 
+#compiled {
+  width: 600px; height: 600px;
+  position: relative ;
+  top: 10px;   
+
+}  */
+
+/* shinji disabled 7 july */
+/* #alpha_vid {
+  position: fixed;
+  top: 10px;
+  left: 50%; 
+  transform: translate(-50%, -0%);
+  z-index: 10;
+} */
+
+/* landmark canvas */
+#land_canv {
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  z-index: 15;
+}
+
+/* unwrapped this element in html and made absolute */
+#c2 {
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: none;
+}
+
+/* put into one low */
+#vid_div, #c1 {
+  display: none;
+}
+
+#myP5canvas1 {
+  position: absolute ;
+  width: 600px; height: 600px;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+/* shinji disabled 11 jul */
+/* #shuffleNo {
+  position: absolute;
+  top: 15px;
+  left: 0px;
+} */
+
+#paintType {
+  position: absolute;
+  top: 45px;
+  left: 0px;
+}
+
+/* shinji updated 11 jul */
+.inputWrapper {
+  position: absolute;
+  bottom: 0px;
+  /* top: 0px; */
+  text-align: center;
+  width: 130px;
+
+  /* display: none; */
+}
+
+input[type="file"] {
+  /* hidden for now shinji 7 july */
+  display: none;
+  position: absolute;
+  z-index: -1;
+  font-size: 14px;
+  color: #b8b8b8;
+
+}
+
+label {
+  border: 2px solid red;
+}
+
+#inputButton {
+  display: inline-block;
+  padding: 10px 0px;
+  /* colour changed */
+  background-color: #f0f0f0;
+  /* background-color: #8abeb7; */
+}
+
+#inputButton:hover {
+  background-color: #6ebbb1;
+}
+
+#reset {
+  /* changed shinji 11 */
+  /* background-color: #cf8088; */
+  background-color: hsla(0, 0%, 89%, 0.9);
+}
+
+#reset:hover {
+  background-color: #d89097;
+}
+
+/* added shinji */
+/* #button_info {
+  background-color: #3a3a3a;
+  color: white;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+} */
+
+/* below the previous button */
+.button0 {
+  margin-left: 0;
+  margin-right: 0;
+  /* border: 1px solid #506070; */
+  /* --- border added shinji */
+  border: 1px solid #4d4d4d;
+
+  padding: 10px 10px;
+  width: 140px;
+  cursor: pointer;
+  /* colour changed shinji */
+  /* background-color: #f0f0f0; */
+  background-color: #f2f2f2;
+  font-size: 14px;
+  /* color: #242b38; */
+  color: #4a4a4a;
+}
+
+.button {
+  border: 2px solid #909090;
+  cursor: pointer;
+  background-color: #fcfcfc;
+  color: #282828;
+  text-align: center;
+
+  font-family: 'Oxygen', sans-serif;
+  font-weight:700;
+  color: rgb(46, 46, 46);
+}
+
+/* added shinji */
+
+.button_paint_square {
+  width: 44px; height: 40px;
+  /* line-height: 40px; */
+  /* add this to vertically centre the text of a div */
+  /* https://www.w3schools.com/css/css_align.asp */
+  margin-right: 20px; 
+  display: inline-block;
+  font-size: 120%;
+
+  /* padding-bottom: 3px; */
+}
+
+.button_paint_square p {
+  margin: 0;
+}
+
+.button_paint_square:hover {
+  background-color: #afafaf;
+}
+
+.button_paint_square img {
+  width: 100%;
+  height: 100%;
+}
+
+.button_paint_long {
+  width: 172px; height: 44px;
+  margin-top: 30px;
+  font-size: 110%;
+}
+
+.button_paint_rect {
+  width: 76px; height: 40px;
+  margin-right: 20px; 
+  display: inline-block;
+  font-size: 110%;
+}
+
+/* new class added shinji */
+.active1, .active2, .selected {
+  border: 3px solid #fbf906;
+  border-style: ridge;
+}
+
+/* .button.toggled, .button.toggled:hover {
+  colour changed shinji
+  background-color: #b3b3b3;
+
+  border: 0.9px solid #fbf906;
+} */
+
+/* colour changed shinji 12 */
+.button:hover {
+  background-color: #afafaf;
+}
+
+
+
+/* ////// css for the spinner */
+
+.lds-spinner {
+  /* color: official; */
+  /* display: inline-block; */
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+
+  width: 80px;
+  height: 80px;
+  z-index: 50;
+}
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: #fff;
+}
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+
+
+/* //////////////// below css for archive page only /////////////// */
+
+
+#homeURL a {
+  color: rgb(46, 46, 46);
+  text-decoration-line: none;
+}
