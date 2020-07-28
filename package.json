@@ -1,0 +1,25 @@
+{
+  "name": "paint-your-face-away-online",
+  "version": "1.0.0",
+  "description": "server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Eitoy@github.com/Eitoy/paint-your-face-away-online.git"
+  },
+  "keywords": [
+    "pyfa"
+  ],
+  "author": "shinji toya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eitoy/paint-your-face-away-online/issues"
+  },
+  "homepage": "https://github.com/Eitoy/paint-your-face-away-online#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
