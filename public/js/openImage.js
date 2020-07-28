@@ -10,7 +10,7 @@ var newFace;
 setTimeout(function(){
     var fileInput = document.querySelector('#fileInput');
     p5canvas = document.querySelector('#myP5canvas1');
-}, 2500)
+}, 1000)
 
 fileInput.onchange = function (e) {
     onFileChange(e, fileInput.files);
