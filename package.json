@@ -20,8 +20,7 @@
   },
   "homepage": "https://github.com/Eitoy/paint-your-face-away-0.3#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "http-server": "^0.12.3"
+    "express": "^4.17.1"
   },
   "devDependencies": {},
   "engines": {
