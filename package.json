@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://Eitoy@github.com/Eitoy/paint-your-face-away-online.git"
+    "url": "git+https://Eitoy@github.com/Eitoy/paint-your-face-away-0.3.git"
   },
   "keywords": [
     "pyfa"
@@ -16,10 +16,14 @@
   "author": "shinji toya",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Eitoy/paint-your-face-away-online/issues"
+    "url": " https://github.com/Eitoy/paint-your-face-away-0.3/issues"
   },
-  "homepage": "https://github.com/Eitoy/paint-your-face-away-online#readme",
+  "homepage": "https://github.com/Eitoy/paint-your-face-away-0.3#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "v12.16.1"
   }
 }
