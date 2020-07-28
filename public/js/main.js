@@ -23,7 +23,7 @@ let brushType = 0;    // current type of brush
 function preload () {
     // load in all the images
 
-    face = loadImage("img/face.JPG");
+    face = loadImage("img/face.jpg");
     // paint1 = loadImage("img/paint1.png");
     // paint2 = loadImage("img/Paint-Img2-102.png");
 
