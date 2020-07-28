@@ -49,21 +49,26 @@ function modelReady() {
 
 function runDetection() {
     context.clearRect(0, 0, width, height);
-
+    
     faceapi.detectSingle(sketch, gotResults)
 }
  
 
 function gotResults(err, result) {
+    hideSpinner();
+
     if (err) {
         console.log(err)
-        return
+        console.log("not detected")
+
+        stopTimeout();        
+        timeoutToSave();
+        
+        return 
     }
 
     // console.log(result)
     detections = result;
-
-    // context.drawImage(img, 0,0, width, height);
 
     if (detections) {
         console.log(detections)

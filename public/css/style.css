@@ -206,7 +206,7 @@ span.textLink {
   margin-bottom: 20px;
   /* bottom: 20px;  */
   /* left: 0px; */
-  z-index: 1;
+  z-index: 20;
 
   top: 50%;
   left: 0%; 
@@ -303,7 +303,8 @@ input[type="file"] {
   /* hidden for now shinji 7 july */
   display: none;
   position: absolute;
-  z-index: -1;
+  /* z-index: -1; */
+  z-index: 20;
   font-size: 14px;
   color: #b8b8b8;
 
@@ -394,7 +395,7 @@ label {
 }
 
 .button_paint_square:hover {
-  background-color: #afafaf;
+  background-color: #b0b0b0;
 }
 
 .button_paint_square img {
@@ -433,14 +434,21 @@ label {
   background-color: #afafaf;
 }
 
+#save_button {
+  /* border: 2px solid #909090; */
+  /* background-color: #0f0ce7; */
+  background-color: #cccccc;
+  color: #ffffff;
+  opacity: 0.2;
+}
 
 
 /* ////// css for the spinner */
 
 .lds-spinner {
   /* color: official; */
-  /* display: inline-block; */
-  display: none;
+  display: inline-block;
+  /* display: none; */
   position: absolute;
   top: 50%;
   left: 50%; 

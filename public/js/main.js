@@ -35,7 +35,6 @@ function preload () {
 function setup() {
     sketch = createCanvas(600, 600);
     sketch.id('myP5canvas1');
-    
 
     // --- updated shinji 6 july --  the below button moved to the main html
     // // create the shuffle button
@@ -61,6 +60,8 @@ function setup() {
     // INITIAL RESET OF SKETCH
     resetSketch();
 
+    // hide the spinner when the p5 canvas loaded / added shinji 28 july
+    hideSpinner();
 }
 
 
@@ -251,6 +252,7 @@ function updateChangedBrush() {
     clearInterval(updating);
 
   }
+
 
 
 

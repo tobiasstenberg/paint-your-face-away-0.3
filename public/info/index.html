@@ -20,14 +20,17 @@
           /* top: 50%; */
           left: 50%;
           width: 50%; 
-          height: 500px;
+          /* height: 500px; */
+          height: 70%;
+          max-height: 780px;
           -webkit-transform: translate(-50%, -0%);
           -ms-transform: translate(-50%, -0%);
           transform: translate(-50%, -0%);
           padding: 40px;
-          font-size: 120%;
+          font-size: 110%;
 
-          /* border: 1px solid rgb(209, 209, 209); */
+          border: 1px solid rgb(209, 209, 209);
+          /* border: 2px solid #434343; */
           border-radius: 8px;
           overflow: auto;
         }
@@ -62,7 +65,7 @@
 
     <div id="info_window">
         
-        <h3>About</h3> 
+        <h3><b>Conceptual README  </b>   </h3> 
 
         <p>
           Paint Your Face Away is an art project addressing the issues of privacy and surveillance concerning the data economy of faces online in association with the technology of facial recognition. 
@@ -77,13 +80,15 @@
         </h4>
 
         <p>
-          Do you have pictures of your face on some websites or social media platforms? If so chances are your faces could have been “scraped” (algorithmically gathered)* and used to train facial recognition systems to identify you, possibly without your consent. This kind of practice has been already done socially to build real facial recognition systems. 
+          Do you have pictures of your face on some websites or social media platforms? If so, chances are your faces could have been “scraped” (algorithmically gathered)* and used to train facial recognition systems to identify you, possibly without your consent. This kind of practice has been already done socially to build real facial recognition systems. 
           <a href="https://www.google.com/search?q=face%20scraping%20facial%20recognition" target="_blank">
-            See the relevant newsfeeds.
+            See relevant newsfeeds.
           </a> 
+
           <br><br>
-          Paint your face away started in summer 2019 rather speculatively in order to respond to the technological possibility of automatically collecting a vast number of faces to build a dataset to train facial recognition systems. This was before the above application has become widely known to the public. Technologies for scraping faces have been around for a while. A decade-old project 
-          
+          Paint your face away started in mid-2019 before the above application has become widely known to the public. Its initiation was rather speculative and in response to the technological possibility of automatically collecting a vast number of faces to build a dataset to train facial recognition systems. 
+          <br><br>
+          Technologies for scraping faces have been around for a while. 
           <a href="http://vis-www.cs.umass.edu/lfw/" target="_blank">
             Labelled Faces in the Wild
           </a> 
@@ -96,11 +101,60 @@
 
         <br>
 
-        <a id="how_to_paint"><h3>How to paint</h3></a> 
+        <a id="how_to_paint">
+          <h3>-> How the painter works</h3>
+        </a> 
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Namrutrum dignissim mi, vitae malesuada neque suscipit vel. Cras turpis ex, facilisis id erat quis, gravida placerat augue. Etiam tincidunt, libero at mollis mattis, erat elit ornare urna, vitae accumsan nibh augue idneque. Nullam eget consectetur turpis. Sed nec hendrerit.         </p>
+        <p>
+          You are invited to use this tool to paint a picture of your face until the site’s face detection system cannot detect a face in the image any longer. The finished portraits could potentially provide the following effects depending on how you paint them:
+
+          <ol>
+            <li><b>Face detection obfuscation</b> 
+              (though the detection proofing tested only with <a>this model</a> used and not necessarily working with other models).
+            </li>
+
+            <li><b>Quasi-anonymisation</b> 
+              (if the face and ears are thoroughly painted out).
+            </li>
+
+            <li><b>Potential misclassification</b> 
+              of facial recognition systems and/or object classification systems (an experimental feature).
+            </li>
+          </ol> 
+        </p>
+
+        <p>
+          Also, please see <a href="#disclaimer">Disclaimer</a>.
+        </p>
+
+        <p>
+          The painter allows you to decide either your facial identity is opaquely painted out by layering the paint, or slightly more “translucent”. Meaning your facial features may not become completely painted out but the process could enmesh your biometric data with the useless noise of paint so that it could resist the data harvesting of faces potentially. 
+        </p>
 
         <br><br>
+
+        <a id="the_idea_behind">
+          <h3>-> Why is the tool designed this way?</h3>
+        </a> 
+
+        <p>
+          The painter is both informed and inspired by the technology and concept of the adversarial attacks that are a technical term that relates to Machine Learning.  It investigates various data manipulation methods to hack algorithmic categorisation of AI systems
+          <a href="https://youtu.be/Nq_LU8s7WaQ" target="_blank">[1]</a>.
+        </p>
+
+        <p>
+          The painter uses some methods of the adversarial attacks and explores the juxtaposing potential of paint as something irrelevant for the biometric data economy of faces.
+        </p>
+
+        <p>
+          Furthermore, the finished portraits can be circulated to help spread the word about the issues of face scraping and the availability of this painter. The more biometrically ruined images we provide, the more contaminated the online harvesting ground of faces could become potentially. 
+          
+          Though when you share your portraits, be sure to paint them thoroughly so that your portrait is not identifiable.
+          
+        </p>
+
+        <br><br>
+
 
         <a id="disclaimer"><h3>Disclaimer</h3></a> 
 
@@ -118,8 +172,6 @@
         <h3>Credits</h3>
 
         <p>crediting...</p>
-
-        <a href="#how_to_share">jump</a>
 
     </div>
 

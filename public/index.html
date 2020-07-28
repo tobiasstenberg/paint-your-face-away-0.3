@@ -60,9 +60,8 @@
         <!-- the content is loaded from outside this html via js - shinji -->
         <p id="msgTxt1" class="message non_select" > </p>
         
-        <!-- ------below for the hash jump test - shinji -->
-        <!-- <a href="#jump">jump</a></br></br></br></br></br></br></br></br></br></br></br></br>
-        <p id="jump" class="message non_select" > </br></br> ja</br></br>osi</br></br>djfo</br></br>isjadf</br></br>ijaio</br></br>sdj</br></br>f;iasjdf;      </p> -->
+        <button class="button_paint_long button tempSelect " id="save_button" onclick="">Save
+
       </div>
     </div>
 
@@ -90,12 +89,12 @@
          <!-- <button class="button button_paint_square btn_brush_type active1" id="brushType1" onclick="switchBrushType(0)">1
           <button class="button button_paint_square btn_brush_type" id="brushType2" onclick="switchBrushType(1)">2 -->
             <div class="button button_paint_square btn_brush_type active1" id="brushType1" onclick="switchBrushType(0)" 
-            style="width: 36px; height: 34px;"><img src="img/button1.gif" id="btn_b_Type1"> <p></p></div>
+            style="width: 36px; height: 32.72px;"><img src="img/button1.gif" id="btn_b_Type1"> <p></p></div>
             <div class="button button_paint_square btn_brush_type" id="brushType2" onclick="switchBrushType(1)"
-            style="width: 36px; height: 34px;"><img src="img/button2.gif" id="btn_b_Type2" > <p></p></div>
+            style="width: 36px; height: 32.72px;"><img src="img/button2.gif" id="btn_b_Type2" > <p></p></div>
             <!-- brush 3added shinji 26 july -->
             <div class="button button_paint_square btn_brush_type" id="" onclick="switchBrushType(2)"
-            style="width: 36px; height: 34px;"><img src="img/button3.gif" id="" > </div>  
+            style="width: 36px; height: 32.72px;"><img src="img/button3.gif" id="" > </div>  
 
         </div>
 
@@ -127,9 +126,6 @@
         <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch(), initialiseVid()">Reset
         <!-- <button class="button_paint_long button tempSelect" id="" onclick="reloading()">Reload -->
           
-
-        <button class="button_paint_long button tempSelect" id="" onclick="savingCanvas()">Save
-
         </div>
     </div>
 
@@ -152,11 +148,11 @@
 </style>
 
    <div id="face_buttons">
-      <button onclick="runDetection()" >
+      <button class="button_paint_long button tempSelect" onclick="showSpinner(), runDetection()" >
         detect</button>
-      <button onclick="faceRedraw()" >
+      <button class="button_paint_long button tempSelect" onclick="showSpinner(), faceRedraw()" >
         auto-detect</button>
-      <button onclick="clearFaceRedraw()" >
+      <button class="button_paint_long button tempSelect" onclick="clearFaceRedraw()" >
         clear detection</button>
     </div>
     

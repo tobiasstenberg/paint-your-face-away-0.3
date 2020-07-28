@@ -95,3 +95,43 @@ function closeInfoDiv() {
 
 document.getElementById('btn_b_Type1').setAttribute('draggable', false);
 document.getElementById('btn_b_Type2').setAttribute('draggable', false);
+
+
+/////////////// added 28 july
+
+function hideSpinner() {
+    document.querySelector(".lds-spinner").style.display = "none";
+}
+
+function showSpinner() {
+    document.querySelector(".lds-spinner").style.display = "inline-block";
+}
+
+
+// change the save buttons
+
+function enableSave() {
+    document.querySelector("#save_button").style.background = "#0f0ce7";
+    document.querySelector("#save_button").style.opacity = 1;
+    document.querySelector("#save_button").addEventListener("click", savingCanvas);
+    console.log("enabled");
+}
+
+function disableSave() {
+    document.querySelector("#save_button").style.background = "#b0b0b0";
+    document.querySelector("#save_button").style.opacity = 0.2;
+    document.querySelector("#save_button").removeEventListener("click", savingCanvas);
+    console.log("disabled");
+}
+
+let timing;
+
+function timeoutToSave() {
+    enableSave();
+    timing = setTimeout(disableSave, 5000);
+    console.log("timed");
+}
+
+function stopTimeout() {
+    clearTimeout(timing);
+}
