@@ -80,7 +80,15 @@ window.addEventListener('load', function() {
                     // p5canvas.height = img.height * canvasScale;
                     //
                     canvasScale = Math.min(900 / newFace.width, 900 / newFace.height);
-                    ctx0.drawImage(newFace, 0, 0, 600, 600);
+                    // ctx0.drawImage(newFace, 0, 0, 600, 600);
+
+                    var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
+                    var w = newFace.width * scale;
+                    var h = newFace.height * scale;
+                    var left = p5canvas.width / 2 - w / 2;
+                    var top = p5canvas.height / 2 - h / 2;
+
+                    ctx0.drawImage(newFace, left, top , w, h);
 
                     
                     ////////// cropping and centreing an image
