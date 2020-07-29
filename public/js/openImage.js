@@ -34,8 +34,9 @@ window.addEventListener('load', function() {
             var newFace = new Image();
             newFace.src = URL.createObjectURL(this.files[0]); // set src to blob url
 
-            showImgButton();
             var ctx0 = p5canvas.getContext("2d");
+            // shinji show image upload button here so that the ctx0 won't be empty
+            showImgButton();
 
             newFace.onload = function() { 
         
@@ -67,6 +68,7 @@ window.addEventListener('load', function() {
                     var left = p5canvas.width / 2 - w / 2;
                     var top = p5canvas.height / 2 - h / 2;
 
+                    ctx0.clearRect(0, 0, width, height);
                     ctx0.drawImage(newFace, left, top , w, h);
 
                     // resizeLoadedImage();
@@ -88,6 +90,7 @@ window.addEventListener('load', function() {
                     var left = p5canvas.width / 2 - w / 2;
                     var top = p5canvas.height / 2 - h / 2;
 
+                    ctx0.clearRect(0, 0, width, height);
                     ctx0.drawImage(newFace, left, top , w, h);
 
                     
@@ -104,6 +107,7 @@ window.addEventListener('load', function() {
             faceURL = newFace.src;
             window.faceURL = faceURL;
 
+            // create a globa var for newFace
             window.newFace = newFace;
             window.ctx0 = ctx0;
         
@@ -123,6 +127,8 @@ window.addEventListener('load', function() {
         var h = newFace.height * scale;
         var left = p5canvas.width / 2 - w / 2;
         var top = p5canvas.height / 2 - h / 2;
+
+        ctx0.clearRect(0, 0, width, height);
 
         ctx0.drawImage(newFace, left, top , w, h);
   }

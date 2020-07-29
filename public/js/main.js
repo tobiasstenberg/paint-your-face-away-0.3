@@ -201,6 +201,7 @@ function drawMaskedPaint() {
 
 ///////////////////////
 // function for creating graphics elements and using masks on the elems
+// update shinji separeted the initialisation of the paint below 29 july
 function reInitPaint() {
     // create a graphics element for each brush
     // since they are different graphic elems, the code must be somewhat redundant, they need separate function calls
@@ -232,7 +233,6 @@ function resetSketch() {
 
 function resetSketch2() {
     reInitPaint();
-    
     resizeLoadedImage();
 }
 
@@ -243,8 +243,6 @@ function reloading() {
     console.log(faceURL);
     face = loadImage(faceURL);
 }
-
-
 
 
 // ///// recreate the shuffle update function here w/ setinterval
