@@ -6,13 +6,25 @@
 var p5canvas;
 var newFace;
 
-// this function needs to be an async callback!
+// // this function needs to be an async callback!
+// setTimeout(function(){
+//     var fileInput = document.querySelector('#fileInput');
+//     p5canvas = document.querySelector('#myP5canvas1');
+//     console.log("timeout p5canv id'ed");
+//     showImgButton();
+// }, 2500)
+
 setTimeout(function(){
+    console.log("timeout p5canv id'ed");
+    idingCanvas();
+}, 10000)
+
+function idingCanvas() {
     var fileInput = document.querySelector('#fileInput');
     p5canvas = document.querySelector('#myP5canvas1');
-    console.log("timeout p5canv id'ed");
+    console.log("p5canv id'ed");
     showImgButton();
-}, 3000)
+}
 
 // https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
 window.addEventListener('load', function() {
@@ -22,6 +34,7 @@ window.addEventListener('load', function() {
             var newFace = new Image();
             newFace.src = URL.createObjectURL(this.files[0]); // set src to blob url
 
+            showImgButton();
             var ctx0 = p5canvas.getContext("2d");
             
             newFace.onload = function() { 
@@ -66,10 +79,10 @@ window.addEventListener('load', function() {
                     var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
                     var w = newFace.width * scale;
                     var h = newFace.height * scale;
-                    var left = p5canvas.width / 2 - w / 2;
-                    var top = p5canvas.height / 2 - h / 2;
+                    var left = p5canvas.width - w;
+                    var top = p5canvas.height - h;
 
-                    ctx0.drawImage(newFace, left / 2, top / 2 , w / 2, h / 2);
+                    ctx0.drawImage(newFace, left, top , w, h);
 
 
                 } 
