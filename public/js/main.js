@@ -201,7 +201,7 @@ function drawMaskedPaint() {
 
 ///////////////////////
 // function for creating graphics elements and using masks on the elems
-function resetSketch() {
+function reInitPaint() {
     // create a graphics element for each brush
     // since they are different graphic elems, the code must be somewhat redundant, they need separate function calls
     mask1 = createGraphics(width, height);
@@ -221,11 +221,19 @@ function resetSketch() {
     mask3.imageMode(CENTER);
     maskedPaint3 = paint3.get();
     maskedPaint3.mask(mask3.get());
+}
+
+function resetSketch() {
+    reInitPaint();
 
     // draw the face on the "original" sketch canvas, which places it below the 2 mask canvases
     image(face, 0, 0, width, height);
+}
 
-
+function resetSketch2() {
+    reInitPaint();
+    
+    resizeLoadedImage();
 }
 
 // // updated by shinji 27 jul reloading a face with url
