@@ -81,13 +81,13 @@ tempDrawOnOff = 1;
 function disableDraw() {
     drawingOnOff = 0;
     // document.querySelector('#myP5canvas1').style.display = "none";
-    console.log("disabling the drawing");
+    // console.log("disabling the drawing");
 }
 
 function enableDraw() {
     drawingOnOff = 1;
     // document.querySelector('#myP5canvas1').style.display = "block";
-    console.log("enabling the drawing");
+    // console.log("enabling the drawing");
 }
 
 function tempDisableDraw() {

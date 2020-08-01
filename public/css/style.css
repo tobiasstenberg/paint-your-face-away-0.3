@@ -80,14 +80,42 @@ button {
 
 /* right div */
 
-#right_container_div__panel {
+/* shinji v0.4 right div disabled */
+/* #right_container_div__panel {
   margin: 0px 20px 0px 0px;  
   right: 0px;
   width: 227px;
   height: 100%;
   position: absolute;
-  /* display: none; */
 
+} */
+
+/* shinji v0.4 changed */
+#messageWin {
+  position: absolute;
+    right: 20px;
+  /* bottom: 20px; */
+  margin-bottom: 20px;
+  /* top: 20px; */
+    width: 180px; 
+  /* height: 100%; */
+    /* below changed shinji v0.4 30july */
+    height: auto; 
+  overflow: auto;
+  padding: 20px;
+  /* border: 2px solid rgb(187, 187, 187); */
+  border: 2px solid #434343;
+  border-radius: 8px;
+  /* background-color: white; */
+  background-color: rgba(226, 226, 226, 0.8);
+  z-index: 1;
+
+  top: 50%;
+  /* left: 50%;  */
+  transform: translate(-0%, -50%);
+
+  /* shinji v0.5 */
+  display: none;
 }
 
 /* added after 4 july shinji */
@@ -100,26 +128,21 @@ button {
   color: #242b38;
 }
 
+/* shinji v0.4 changed  */
+#save_button {
+  /* border: 2px solid #909090; */
+  /* background-color: #0f0ce7; */
+  background-color: #cccccc;
+  color: #ffffff;
+  opacity: 0.1;
 
-#messageWin {
   position: absolute;
-  right: 0px;
-  bottom: 20px;
-  top: 20px;
-  width: 170px; 
-  /* height: 100%; */
-  overflow: auto;
-  padding: 20px;
-  /* border: 2px solid rgb(187, 187, 187); */
-  border: 2px solid #434343;
-  border-radius: 8px;
-  /* background-color: white; */
-  background-color: rgba(226, 226, 226, 0.8);
-  z-index: 1;
-
-  /* top: 50%; */
-  /* left: 50%;  */
-  /* transform: translate(-0%, -50%); */
+  bottom: 0px;
+  z-index: 2;
+  width: 100%;
+  margin: 0px;
+  margin-left: -20px;
+  font-size: 120%;
 }
 
 span.textLink {
@@ -248,6 +271,9 @@ h3.txt_paint_tools {
   top: 50%;
   left: 50%; 
   transform: translate(-50%, -50%);
+  /* v0.4 dimensions added */
+  width: 600px; height: 600px;
+
   z-index: 15;
 }
 
@@ -268,11 +294,15 @@ h3.txt_paint_tools {
 
 #myP5canvas1 {
   position: absolute ;
-  width: 600px; height: 600px;
+  /* v0.4 shinji disabled as it doesn't work: the resize works through js? */
+  /* width: 800px; height: 800px; */
   top: 50%;
   left: 50%; 
   transform: translate(-50%, -50%);
   z-index: 0;
+
+  /* border added v0.4 shinji 30jul  */
+  border: 2px solid #4343431c;
 }
 
 /* shinji disabled 11 jul */
@@ -291,12 +321,17 @@ h3.txt_paint_tools {
 /* shinji updated 11 jul */
 .inputWrapper {
   position: absolute;
-  bottom: 0px;
+  /* bottom: 0px; */
   /* top: 0px; */
   text-align: center;
-  width: 130px;
+  width: auto ;
 
-  display: none;
+  display: block;
+  z-index: 20;
+
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
 }
 
 input[type="file"] {
@@ -304,7 +339,6 @@ input[type="file"] {
   display: none;
   position: absolute;
   /* z-index: -1; */
-  z-index: 20;
   font-size: 14px;
   color: #b8b8b8;
 
@@ -416,6 +450,12 @@ label {
   font-size: 110%;
 }
 
+.button_paint_face {
+  width: auto; height: 40px;
+  display: inline-block;
+  font-size: 110%;
+}
+
 /* new class added shinji */
 .active1, .active2, .selected {
   border: 3px solid #fbf906;
@@ -434,14 +474,15 @@ label {
   background-color: #afafaf;
 }
 
-#save_button {
-  /* border: 2px solid #909090; */
-  /* background-color: #0f0ce7; */
-  background-color: #cccccc;
-  color: #ffffff;
-  opacity: 0.1;
-}
 
+#face_buttons {
+  position: absolute; 
+  bottom: 0px; 
+  left: 50%; 
+  transform: translate(-50%, -0%);
+
+  border-radius: 8px;
+}
 
 /* ////// css for the spinner */
 
@@ -530,6 +571,27 @@ label {
   }
 }
 
+
+/*  below custom scroll bar from "info" shinji v0.4 */
+          /* width */
+          ::-webkit-scrollbar {
+            width: 3px;
+            }
+  
+            /* Track */
+            ::-webkit-scrollbar-track {
+            background: transparent; 
+            }
+            
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+            background: rgb(153, 153, 153);
+            }
+  
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+            }
 
 
 /* //////////////// below css for archive page only /////////////// */

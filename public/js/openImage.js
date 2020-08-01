@@ -6,6 +6,7 @@
 var p5canvas;
 var newFace;
 
+
 // // this function needs to be an async callback!
 // setTimeout(function(){
 //     var fileInput = document.querySelector('#fileInput');
@@ -14,10 +15,10 @@ var newFace;
 //     showImgButton();
 // }, 2500)
 
-setTimeout(function(){
-    console.log("timeout p5canv id'ed");
-    idingCanvas();
-}, 10000)
+// setTimeout(function(){
+//     console.log("timeout p5canv id'ed");
+//     idingCanvas();
+// }, 10000)
 
 function idingCanvas() {
     var fileInput = document.querySelector('#fileInput');
@@ -28,9 +29,11 @@ function idingCanvas() {
 
 // https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
 window.addEventListener('load', function() {
-    
+    //  v0.4 shinji 30jul 
+
     document.querySelector('#fileInput').addEventListener('change', function() {
         if (this.files && this.files[0]) {
+
             var newFace = new Image();
             newFace.src = URL.createObjectURL(this.files[0]); // set src to blob url
 
@@ -38,8 +41,19 @@ window.addEventListener('load', function() {
             // shinji show image upload button here so that the ctx0 won't be empty
             showImgButton();
 
+
+            // convert the newFace src here
+            faceURL = newFace.src;
+            // and make it global
+            window.faceURL = faceURL;
+            // create a globa var for newFace
+            window.newFace = newFace;
+
             newFace.onload = function() { 
         
+                // v0.4 shinji 30 jul 
+                unborder = p5canvas.style.border = "0px";
+
                 // addition shinji 27 july
                 if (newFace.width < 1200 && newFace.height < 1200) {
 
@@ -61,17 +75,18 @@ window.addEventListener('load', function() {
             
                     // ctx0.drawImage(newFace, xOffset, yOffset, newWidth, newHeight);
 
-                    // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
-                    var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
-                    var w = newFace.width * scale;
-                    var h = newFace.height * scale;
-                    var left = p5canvas.width / 2 - w / 2;
-                    var top = p5canvas.height / 2 - h / 2;
+                    // // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
+                    // var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
+                    // var w = newFace.width * scale;
+                    // var h = newFace.height * scale;
+                    // var left = p5canvas.width / 2 - w / 2;
+                    // var top = p5canvas.height / 2 - h / 2;
 
-                    ctx0.clearRect(0, 0, width, height);
-                    ctx0.drawImage(newFace, left, top , w, h);
 
-                    // resizeLoadedImage();
+                    // ctx0.clearRect(0, 0, width, height);
+                    // ctx0.drawImage(newFace, left, top , w, h);
+
+                    resizeLoadedImage();
 
 
                 } 
@@ -84,15 +99,7 @@ window.addEventListener('load', function() {
                     canvasScale = Math.min(900 / newFace.width, 900 / newFace.height);
                     // ctx0.drawImage(newFace, 0, 0, 600, 600);
 
-                    var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
-                    var w = newFace.width * scale;
-                    var h = newFace.height * scale;
-                    var left = p5canvas.width / 2 - w / 2;
-                    var top = p5canvas.height / 2 - h / 2;
-
-                    ctx0.clearRect(0, 0, width, height);
-                    ctx0.drawImage(newFace, left, top , w, h);
-
+                    resizeLoadedImage();
                     
                     ////////// cropping and centreing an image
                     // https://stackoverflow.com/questions/39794009/crop-the-exact-center-of-a-canvas-image-source
@@ -103,17 +110,30 @@ window.addEventListener('load', function() {
                 }
         
             };
-        
-            faceURL = newFace.src;
-            window.faceURL = faceURL;
 
-            // create a globa var for newFace
-            window.newFace = newFace;
+            // reflect the change to the global ?
             window.ctx0 = ctx0;
         
             reloading();
+
             // resetSketch();
             resetSketch2();
+
+            // moved from the index html
+            enableDraw();
+
+            document.querySelector("#webcam_button").style.display = "none";
+            document.querySelector(".inputWrapper").style.display = "none";
+            showSpinner();
+
+
+            setTimeout(function(){ 
+                timeBlinker(); 
+                document.querySelector("#messageWin").style.display = "block";
+                timeoutDetect();
+                hideSpinner();
+            }, 1000);
+
 
         }
     });
@@ -121,7 +141,11 @@ window.addEventListener('load', function() {
 
 
   function resizeLoadedImage() {
-        // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
+        // face = loadImage(faceURL);   
+        // face = newFace; 
+
+        
+        // // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
         var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
         var w = newFace.width * scale;
         var h = newFace.height * scale;
@@ -129,9 +153,29 @@ window.addEventListener('load', function() {
         var top = p5canvas.height / 2 - h / 2;
 
         ctx0.clearRect(0, 0, width, height);
+        ctx0.drawImage(newFace, left / dpr, top / dpr, w / dpr, h / dpr);
 
-        ctx0.drawImage(newFace, left, top , w, h);
+        // ctx0.resize(width, height);
+        // image(face, left, top , w, h);
   }
+
+// // -------- below backup prev ver
+// function resizeLoadedImage() {
+//     // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
+//     var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
+//     var w = newFace.width * scale;
+//     var h = newFace.height * scale;
+//     var left = p5canvas.width / 2 - w / 2;
+//     var top = p5canvas.height / 2 - h / 2;
+
+//     ctx0.clearRect(0, 0, width, height);
+
+//     // ctx0.drawImage(newFace, left, top , w, h);
+
+//     // ctx0.resize(width, height);
+//     image(face, left, top , w, h);
+// }
+
 
     // // // the following lines are never executed but the max width and height should be implemented above
     // var reader = new FileReader(files[0]);

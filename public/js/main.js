@@ -23,7 +23,9 @@ let brushType = 0;    // current type of brush
 function preload () {
     // load in all the images
 
-    face = loadImage("img/face.jpg");
+    // face = loadImage("img/face.jpg");
+    face = loadImage("");
+
     // paint1 = loadImage("img/paint1.png");
     // paint2 = loadImage("img/Paint-Img2-102.png");
 
@@ -35,6 +37,8 @@ function preload () {
 function setup() {
     sketch = createCanvas(600, 600);
     sketch.id('myP5canvas1');
+
+    // pixelDensity(2);
 
     // --- updated shinji 6 july --  the below button moved to the main html
     // // create the shuffle button
@@ -56,6 +60,8 @@ function setup() {
     // new size added
     brushSize = select('#brushLrg');
     brushSize.mousePressed(switchLrgBrush);
+
+    initPaint();
 
     // INITIAL RESET OF SKETCH
     resetSketch();
@@ -202,7 +208,7 @@ function drawMaskedPaint() {
 ///////////////////////
 // function for creating graphics elements and using masks on the elems
 // update shinji separeted the initialisation of the paint below 29 july
-function reInitPaint() {
+function initPaint() {
     // create a graphics element for each brush
     // since they are different graphic elems, the code must be somewhat redundant, they need separate function calls
     mask1 = createGraphics(width, height);
@@ -224,9 +230,18 @@ function reInitPaint() {
     maskedPaint3.mask(mask3.get());
 }
 
+// shinji reinitialising paint v0.5
+function reInitPaint() {
+
+    mask1.remove();
+    mask2.remove();
+    mask3.remove();
+
+    initPaint();
+}
+
 function resetSketch() {
     reInitPaint();
-
     // draw the face on the "original" sketch canvas, which places it below the 2 mask canvases
     image(face, 0, 0, width, height);
 }
@@ -239,11 +254,9 @@ function resetSketch2() {
 // // updated by shinji 27 jul reloading a face with url
 function reloading() {
     // added shinji 27jul update the face img if the url is changed
-    
     console.log(faceURL);
     face = loadImage(faceURL);
 }
-
 
 // ///// recreate the shuffle update function here w/ setinterval
 let updating;

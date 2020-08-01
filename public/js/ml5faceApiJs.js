@@ -1,9 +1,20 @@
+// // high dpi adjustment
+// // https://www.html5rocks.com/en/tutorials/canvas/hidpi/
+// // Get the device pixel ratio, falling back to 1.
+// var dpr = window.devicePixelRatio || 1;
+// // // Get the size of the canvas in CSS pixels.
+// // var rect = canvas.getBoundingClientRect();
+
+
+
 let faceapi;
 // let img;
 let detections;
-let width = 600;
-let height = 600;
+let width = 600  ;
+let height = 600 ;
 let canvas, context;
+
+
 
 // by default all options are set to true
 const detection_options = {
@@ -33,7 +44,7 @@ async function make(){
     context = canvas.getContext('2d');
 
     faceapi = await ml5.faceApi(detection_options, modelReady)
-    context.clearRect(0, 0, width, height);
+    // context.clearRect(0, 0, width * dpr, height * dpr);
     
 }
 // call app.map.init() once the DOM is loaded
@@ -48,7 +59,7 @@ function modelReady() {
 }
 
 function runDetection() {
-    context.clearRect(0, 0, width, height);
+    context.clearRect(0, 0, width * dpr, height * dpr);
     
     faceapi.detectSingle(sketch, gotResults)
 }
@@ -77,15 +88,6 @@ function gotResults(err, result) {
     } 
 }
 
-function drawBox(detections){
-    const alignedRect = detections.alignedRect;
-    const {_x, _y, _width, _height} = alignedRect._box;
-    // canvas.fillStyle = 'none';
-    context.strokeStyle = "rgb(255, 128, 128)";
-    context.lineWidth = 2;
-    context.rect(_x, _y, _width, _height);
-    context.stroke();
-}
 
 function drawLandmarks(detections){
     // mouth
@@ -99,10 +101,10 @@ function drawLandmarks(detections){
     })
     context.closePath();
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3;
+    context.lineWidth = 3 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2;
+    context.lineWidth = 2 * dpr;
     context.stroke();
 
     // nose
@@ -115,10 +117,10 @@ function drawLandmarks(detections){
         }
     })
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3;
+    context.lineWidth = 3 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2;
+    context.lineWidth = 2 * dpr;
     context.stroke();
 
     // // left eye
@@ -132,10 +134,10 @@ function drawLandmarks(detections){
     })
     context.closePath();
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3;
+    context.lineWidth = 3 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2;
+    context.lineWidth = 2 * dpr;
     context.stroke();
 
     // // right eye
@@ -150,10 +152,10 @@ function drawLandmarks(detections){
     
     context.closePath();
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3;
+    context.lineWidth = 3 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2;
+    context.lineWidth = 2 * dpr;
     context.stroke();
 
     // // right eyebrow
@@ -166,10 +168,10 @@ function drawLandmarks(detections){
         }
     })
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3;
+    context.lineWidth = 3 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2;
+    context.lineWidth = 2 * dpr;
     context.stroke();
     context.closePath();
 
@@ -184,20 +186,59 @@ function drawLandmarks(detections){
         }
     })
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3;
+    context.lineWidth = 3 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2;
+    context.lineWidth = 2 * dpr;
     context.stroke();
 
     // context.closePath();
 }
 
+function drawBox(detections){
+    // shinji v0.4 29july add this begin path to clear the duplicated left eyebrow 
+    context.beginPath();
+
+    const alignedRect = detections.alignedRect;
+    const {_x, _y, _width, _height} = alignedRect._box;
+    // canvas.fillStyle = 'none';
+    context.strokeStyle = "rgb(255, 128, 128)";
+    context.lineWidth = 2 * dpr;
+    context.rect(_x, _y, _width, _height );
+    context.stroke();
+
+}
+
+
+
 // Helper Functions
 function createCanvasFace(w, h){
+    
     const canvas = document.createElement("canvas"); 
-    canvas.width  = w;
-    canvas.height = h;
+
+    // ////////
+    // https://stackoverflow.com/questions/35820750/understanding-html-retina-canvas-support
+    // Returns: 1 on 'normal' screens, 2 on retina displays
+    var pixelRatio = (function () {
+        // var ctx = document.createElement("canvas").getContext("2d"),
+            dpr = window.devicePixelRatio || 1,
+            bsr = canvas.webkitBackingStorePixelRatio ||
+                canvas.mozBackingStorePixelRatio ||
+                canvas.msBackingStorePixelRatio ||
+                canvas.oBackingStorePixelRatio ||
+                canvas.backingStorePixelRatio || 1;
+
+                console.log("dpr " + dpr);
+
+        // return dpr / bsr;
+        return dpr / bsr ;
+    })();
+    ///////////
+
+
+    // dpr adjustment
+    canvas.width = w * pixelRatio ;
+    canvas.height  = h * pixelRatio;
     document.body.appendChild(canvas);
 
     // below line added to give an id to the canv
@@ -206,6 +247,10 @@ function createCanvasFace(w, h){
     return canvas;
   }
 
+
+
+
+
 let autoDetect;
 
 function faceRedraw() {
@@ -213,10 +258,22 @@ function faceRedraw() {
     }
 
 function clearFaceRedraw() {
-    context.clearRect(0, 0, width, height);
+    context.clearRect(0, 0, width * dpr, height * dpr);
 
     clearInterval(autoDetect);
     }
+
+function timeoutDetect() {
+    clearTimeout();
+    runDetection();
+
+    setTimeout(function(){ 
+        context.clearRect(0, 0, width * dpr, height * dpr);
+    }, 5000);
+
+    }
+
+
 
 // //////////// alternative face api
 // https://www.youtube.com/watch?v=CVClHLwv-4I&t=1s
@@ -231,21 +288,4 @@ function clearFaceRedraw() {
 //     context.clearRect(0, 0, width, height);
 
 //     clearInterval(autoDetect);
-//     }
-
-
-// alternative below
-
-// function faceRedraw() {
-//     autoDetect = setTimeout(function runDetection(){ 
-//         setTimeout(runDetection, 300);
-//         // updatingPaint();
-//         console.log("bang");
-//     }, 5000);
-
-//     }
-
-// function clearFaceRedraw() {
-//     context.clearRect(0, 0, width, height);
-//     clearTimeout(autoDetect);
 //     }
