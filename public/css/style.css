@@ -90,7 +90,7 @@ button {
 
 } */
 
-/* shinji v0.4 changed */
+/* shinji v0.6 changed */
 #messageWin {
   position: absolute;
     right: 20px;
@@ -98,9 +98,10 @@ button {
   margin-bottom: 20px;
   /* top: 20px; */
     width: 180px; 
-  /* height: 100%; */
-    /* below changed shinji v0.4 30july */
+    /* below changed shinji v0.6  */
     height: auto; 
+    max-height: 700px;
+    /* height: 560px; */
   overflow: auto;
   padding: 20px;
   /* border: 2px solid rgb(187, 187, 187); */
@@ -234,6 +235,8 @@ span.textLink {
   top: 50%;
   left: 0%; 
   transform: translate(-0%, -50%);
+  /* shinji v0.6 */
+  display: none;
 }
 
 h3.txt_paint_tools {
@@ -326,7 +329,8 @@ h3.txt_paint_tools {
   text-align: center;
   width: auto ;
 
-  display: block;
+  /* shinji v0.6 */
+  display: none;
   z-index: 20;
 
   top: 50%;

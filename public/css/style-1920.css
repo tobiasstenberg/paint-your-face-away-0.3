@@ -1,0 +1,10 @@
+/* shinji v0.6 added */
+
+#messageWin {
+      width: 250px; 
+    /* height: 100%; */
+      /* below changed shinji v0.4 30july */
+      /* height: auto;  */
+      max-height: 800px;
+  
+  }

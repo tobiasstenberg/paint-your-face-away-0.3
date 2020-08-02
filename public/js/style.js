@@ -107,8 +107,23 @@ function showSpinner() {
     document.querySelector(".lds-spinner").style.display = "inline-block";
 }
 
+// shinji added v0.6
 function showImgButton() {
     document.querySelector(".inputWrapper").style.display = "block";
+    document.querySelector("#webcam_button").style.display = "block";
+}
+
+function hideImgButton() {
+    document.querySelector(".inputWrapper").style.display = "none";
+    document.querySelector("#webcam_button").style.display = "none";
+}
+
+function showPaintPanel() {
+    document.querySelector(".div_panel").style.display = "block";
+}
+
+function hidePaintPanel() {
+    document.querySelector(".div_panel").style.display = "none";
 }
 
 // change the save buttons

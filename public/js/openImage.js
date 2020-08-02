@@ -24,7 +24,7 @@ function idingCanvas() {
     var fileInput = document.querySelector('#fileInput');
     p5canvas = document.querySelector('#myP5canvas1');
     console.log("p5canv id'ed");
-    showImgButton();
+    // showImgButton();
 }
 
 // https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
@@ -39,7 +39,7 @@ window.addEventListener('load', function() {
 
             var ctx0 = p5canvas.getContext("2d");
             // shinji show image upload button here so that the ctx0 won't be empty
-            showImgButton();
+            // showImgButton();
 
 
             // convert the newFace src here
@@ -122,12 +122,13 @@ window.addEventListener('load', function() {
             // moved from the index html
             enableDraw();
 
-            document.querySelector("#webcam_button").style.display = "none";
-            document.querySelector(".inputWrapper").style.display = "none";
+            hideImgButton();
+            
             showSpinner();
 
 
             setTimeout(function(){ 
+                showPaintPanel();
                 timeBlinker(); 
                 document.querySelector("#messageWin").style.display = "block";
                 timeoutDetect();

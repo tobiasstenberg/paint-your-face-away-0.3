@@ -75,6 +75,8 @@ function gotResults(err, result) {
         stopTimeout();        
         timeoutToSave();
         
+        document.querySelector("#msgTxt1").style.display = "none"
+        
         return 
     }
 

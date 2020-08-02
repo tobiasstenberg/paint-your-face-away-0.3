@@ -24,7 +24,8 @@ function preload () {
     // load in all the images
 
     // face = loadImage("img/face.jpg");
-    face = loadImage("");
+    // shinji v0.6 disabled
+    // face = loadImage("");
 
     // paint1 = loadImage("img/paint1.png");
     // paint2 = loadImage("img/Paint-Img2-102.png");
@@ -70,6 +71,9 @@ function setup() {
     hideSpinner();
 
     idingCanvas();
+
+    // shinji v0.6
+    showImgButton();
 }
 
 
@@ -243,7 +247,8 @@ function reInitPaint() {
 function resetSketch() {
     reInitPaint();
     // draw the face on the "original" sketch canvas, which places it below the 2 mask canvases
-    image(face, 0, 0, width, height);
+    // shinji disable below v0.6
+    // image(face, 0, 0, width, height);
 }
 
 function resetSketch2() {
