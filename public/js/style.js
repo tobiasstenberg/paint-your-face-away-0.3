@@ -96,7 +96,7 @@ function hideAllNaviMsg() {
   for (i = 0; i < allNaviMsg.length; i++) {
 
     allNaviMsg[i].style.display = 'none';
-    console.log (i);
+    // console.log (i);
   }
 }
 
@@ -194,9 +194,20 @@ function fadeOutStamp1(){ $("#stamp").fadeOut(2000); }
 function fadeOutStamp2(){ $("#stamp2").fadeOut(3000); }
 
 
+// function timeoutToFadeStamp1() {
+//     document.querySelector('#stamp').style.display = 'block';
+//     setTimeout(fadeOutStamp1, 2500);
+// }
+
+// timeout alternative to the method above for the fade stamp1 
+var timingoutFadeStamp1;
+
 function timeoutToFadeStamp1() {
+    clearTimeout(timingoutFadeStamp1);
     document.querySelector('#stamp').style.display = 'block';
-    setTimeout(fadeOutStamp1, 2500);
+    timingoutFadeStamp1 = setTimeout(function(){ 
+        fadeOutStamp1();
+    }, 2500);
 }
 
 // v0.6

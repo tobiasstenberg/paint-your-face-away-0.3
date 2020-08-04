@@ -13,6 +13,8 @@ let detections;
 let width = 600  ;
 let height = 600 ;
 let canvas, context;
+// v0.6
+let detection;
 
 
 
@@ -127,7 +129,7 @@ function gotResults(err, result) {
 
     // if the detection goes off after the second time
     if (err) {
-        // console.log(err)
+        console.log(err)
         console.log("not detected")
 
         stopTimeout(); 
