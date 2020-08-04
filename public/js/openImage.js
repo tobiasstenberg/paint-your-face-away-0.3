@@ -126,15 +126,22 @@ window.addEventListener('load', function() {
             
             showSpinner();
 
-
             setTimeout(function(){ 
                 showPaintPanel();
-                timeBlinker(); 
-                document.querySelector("#messageWin").style.display = "block";
-                timeoutDetect();
+                // v0.6 moved the  showDetectButtons();
+
+
+                // timeoutDetect();
+                // swapped for the initial detection
+                // v0.6
+                timeoutInitDetect();
+
                 hideSpinner();
+
             }, 1000);
 
+            // v0.6 activate paint blob
+            timeoutToEnableBlob();
 
         }
     });

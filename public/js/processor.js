@@ -40,7 +40,7 @@ let processor = {
           frame.data[i * 4 + 3] = 0;
       }
       this.ctx2.putImageData(frame, 0, 0);
-      return;
+      return frame;
     }
 
   };

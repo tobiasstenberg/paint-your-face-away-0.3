@@ -15,21 +15,18 @@ function changeGlobalComposite(operation) { p5.instance.drawingContext.globalCom
 function switchSmlBrush() { 
     brushSize = 600 / 40; 
     // brushSize = 15; 
-    // document.querySelector('#brushMed').classList.toggle('toggled');
-    // document.querySelector('#brushSml').classList.toggle('toggled');
+
 }
 
 function switchMedBrush() { 
     brushSize = 38; 
-    // document.querySelector('#brushMed').classList.toggle('toggled');
-    // document.querySelector('#brushSml').classList.toggle('toggled');
+
 }
 
 // shinji new size added
 function switchLrgBrush() { 
     brushSize = 64; 
-    // document.querySelector('#brushMed').classList.toggle('toggled');
-    // document.querySelector('#brushSml').classList.toggle('toggled');
+
 }
 
 function switchBrushSize(size) { 
@@ -92,12 +89,12 @@ function enableDraw() {
 
 function tempDisableDraw() {
     tempDrawOnOff = 0;
-    console.log("tempDrawOnOff = 0");
+    // console.log("tempDrawOnOff = 0");
 }
 
 function tempEnableDraw() {
     tempDrawOnOff = 1;
-    console.log("tempDrawOnOff = 1");
+    // console.log("tempDrawOnOff = 1");
 }
 
 

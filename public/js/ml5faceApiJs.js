@@ -58,24 +58,84 @@ function modelReady() {
     // faceapi.detectSingle(sketch, gotResults)
 }
 
+// v0.6
+/////////////////// for initial detection ///////////////////////
+function runInitDetection() {
+    // context.clearRect(0, 0, width * dpr, height * dpr);
+    faceapi.detectSingle(sketch, gotInitResults)
+}
+
+// v0.6
+// the detection for the initial one
+function gotInitResults(err, result) {
+
+    // initial not detected
+    if (err) {
+        console.log(err)
+        console.log("not detected")
+
+        // stopTimeout();        
+        // timeoutToSave();
+        
+        selectNaviMsg3();
+        selectPopMessage2();
+        showPopDiv();
+        
+        return 
+    }
+
+    // console.log(result)
+    detections = result;
+
+    // v0.6
+    // first time face detected
+    if (detections) {
+        console.log(detections)
+        drawBox(detections)
+        drawLandmarks(detections)
+
+        selectNaviMsg1();
+        showDetectButtons();
+    } 
+}
+// <- v0.6
+// timeout detection just for the initial detection
+    // v0.6
+    let timingOutInitDetect;
+
+    function timeoutInitDetect() {
+        clearTimeout(timingOutInitDetect);
+        runInitDetection();
+    
+        timingOutInitDetect = setTimeout(function(){ 
+            context.clearRect(0, 0, width * dpr, height * dpr);
+            }, 15000);
+    
+        }
+///////
+
+/////////////////// for the usual detection ///////////////////////
 function runDetection() {
     context.clearRect(0, 0, width * dpr, height * dpr);
     
     faceapi.detectSingle(sketch, gotResults)
 }
- 
 
+////////
 function gotResults(err, result) {
     hideSpinner();
 
+    // if the detection goes off after the second time
     if (err) {
         console.log(err)
         console.log("not detected")
 
-        stopTimeout();        
+        stopTimeout(); 
+        timeoutToFadeStamp1();
         timeoutToSave();
-        
-        document.querySelector("#msgTxt1").style.display = "none"
+
+        // added v0.6
+        selectNaviMsg2();
         
         return 
     }
@@ -90,7 +150,75 @@ function gotResults(err, result) {
     } 
 }
 
+// v0.6
+let timingOutDetect;
 
+function timeoutDetect() {
+    clearTimeout(timingOutDetect);
+    runDetection();
+
+    timingOutDetect = setTimeout(function(){ 
+        context.clearRect(0, 0, width * dpr, height * dpr);
+        }, 10000);
+
+    }
+
+
+// v0.6
+/////////////////// for the blobs + detection ///////////////////////
+// the detection - for blobs - connected to paintBlobs.js
+
+function gotResultsBlobs(err, result) {
+    hideSpinner();
+
+    // if the detection goes off 
+    if (err) {
+        // console.log(err)
+        console.log("not detected")
+
+        stopTimeout(); 
+        timeoutToFadeStamp2();
+        timeoutToSave();
+
+        selectNaviMsg2();
+        
+        return 
+    }
+
+    // console.log(result)
+    detections = result;
+
+    if (detections) {
+        console.log(detections)
+        // timeout drawing just for blobs
+        // v0.6
+        throwPaint();
+        drawBox(detections)
+        drawLandmarks(detections)
+    } 
+}
+
+// v0.6 detection for blob
+function runDetectionBlob() {
+    context.clearRect(0, 0, width * dpr, height * dpr);
+    faceapi.detectSingle(sketch, gotResultsBlobs)
+}
+
+let timingOutLandmarksClearBlob;
+
+function timeoutLandmarksClearBlob() {
+    clearTimeout(timingOutLandmarksClearBlob);
+
+    timingOutLandmarksClearBlob = setTimeout(function(){ 
+        context.clearRect(0, 0, width * dpr, height * dpr);
+        }, 3000);
+
+}
+
+///////
+
+
+// landmark drawing
 function drawLandmarks(detections){
     // mouth
     context.beginPath();
@@ -209,6 +337,12 @@ function drawBox(detections){
     context.rect(_x, _y, _width, _height );
     context.stroke();
 
+    // v0.6 take the face dimentions and make them global
+    window.detectX = _x;
+    window.detectY = _y;
+    window.detectWidth = _width;
+    window.detectHeight = _height;
+    console.log(detectX, detectY, _width, _height);
 }
 
 
@@ -218,29 +352,36 @@ function createCanvasFace(w, h){
     
     const canvas = document.createElement("canvas"); 
 
-    // ////////
-    // https://stackoverflow.com/questions/35820750/understanding-html-retina-canvas-support
-    // Returns: 1 on 'normal' screens, 2 on retina displays
-    var pixelRatio = (function () {
-        // var ctx = document.createElement("canvas").getContext("2d"),
-            dpr = window.devicePixelRatio || 1,
-            bsr = canvas.webkitBackingStorePixelRatio ||
-                canvas.mozBackingStorePixelRatio ||
-                canvas.msBackingStorePixelRatio ||
-                canvas.oBackingStorePixelRatio ||
-                canvas.backingStorePixelRatio || 1;
+    // v0.6 disabled as it's moved to style js
+    // // ////////
+    // // https://stackoverflow.com/questions/35820750/understanding-html-retina-canvas-support
+    // // Returns: 1 on 'normal' screens, 2 on retina displays
+    // var pixelRatio = (function () {
+    //     // var ctx = document.createElement("canvas").getContext("2d"),
+    //         dpr = window.devicePixelRatio || 1,
+    //         bsr = canvas.webkitBackingStorePixelRatio ||
+    //             canvas.mozBackingStorePixelRatio ||
+    //             canvas.msBackingStorePixelRatio ||
+    //             canvas.oBackingStorePixelRatio ||
+    //             canvas.backingStorePixelRatio || 1;
 
-                console.log("dpr " + dpr);
+    //             console.log("dpr " + dpr);
 
-        // return dpr / bsr;
-        return dpr / bsr ;
-    })();
-    ///////////
+    //     // return dpr / bsr;
+    //     return dpr / bsr ;
+    // })();
+    // ///////////
 
+    // // v0.6
+    // // add eventlistner for the temp disable draw
+    canvas.addEventListener("mouseenter", tempEnableDraw);
+    canvas.addEventListener("mouseleave", tempDisableDraw);
+    
 
     // dpr adjustment
-    canvas.width = w * pixelRatio ;
-    canvas.height  = h * pixelRatio;
+    // v0.6 dpr changed from the pixelratio
+    canvas.width = w * dpr ;
+    canvas.height  = h * dpr;
     document.body.appendChild(canvas);
 
     // below line added to give an id to the canv
@@ -265,15 +406,6 @@ function clearFaceRedraw() {
     clearInterval(autoDetect);
     }
 
-function timeoutDetect() {
-    clearTimeout();
-    runDetection();
-
-    setTimeout(function(){ 
-        context.clearRect(0, 0, width * dpr, height * dpr);
-    }, 5000);
-
-    }
 
 
 

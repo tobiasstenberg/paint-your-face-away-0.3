@@ -18,7 +18,10 @@ let maskedPaint3;     // variable to hold the masked paint
 let maskBrush;        // the 'brush' we'll draw on the mask with (a black circle)
 let sketch;           // the sketch, which is an html canvas elem
 let brushType = 0;    // current type of brush 
- 
+
+// v0.6 see paintBlobs js
+let blob; 
+
 
 function preload () {
     // load in all the images
@@ -33,12 +36,15 @@ function preload () {
     // // brush 3 added shinji 26 july
     paint3 = loadImage("img/paint3/paint3_29.png");
     maskBrush = loadImage("img/brush_sq_r.png");
+    // v0.6
+    blob = loadImage('img/blobs/blob3.png');
 }
 
 function setup() {
     sketch = createCanvas(600, 600);
     sketch.id('myP5canvas1');
 
+    sketch.parent('compiled');
     // pixelDensity(2);
 
     // --- updated shinji 6 july --  the below button moved to the main html
@@ -97,6 +103,7 @@ function updatingPaint() {
 ///////////////////////
 // the main loop
 function draw() {
+
     // -- below disabled and moved elsewhere as it seems to take much power
 // // draw the masked paint image over the top of the face...
 // image(maskedPaint1, 0, 0, width, height); 
@@ -149,6 +156,7 @@ function draw() {
                     // mask3 + brush added 26 july shinji
                     case 2:
                         drawBrush2();
+                        // v0.6
                         break;
                     default:
                         drawBrush0();
@@ -159,6 +167,8 @@ function draw() {
 
 }
 
+
+
 function blurCnv() {
     // blur function added; an element w/ "myP5canvas1" cannot be placed in the html otherwise the blur wont work.
     document.querySelector('#myP5canvas1').classList.add('blur'); 
@@ -167,6 +177,23 @@ function blurCnv() {
 function removeBlurCnv() {
     document.querySelector('#myP5canvas1').classList.remove('blur'); 
 }
+
+// v0.6 add blur all
+function blurAll() {
+    // blur function added; an element w/ "myP5canvas1" cannot be placed in the html otherwise the blur wont work.
+    document.querySelector('#myP5canvas1').classList.add('blur'); 
+    document.querySelector('#face_buttons').classList.add('blur'); 
+    document.querySelector('#left_container_div__panel').classList.add('blur'); 
+    document.querySelector('#messageWin').classList.add('blur'); 
+}
+
+function removeBlurAll() {
+    document.querySelector('#myP5canvas1').classList.remove('blur'); 
+    document.querySelector('#face_buttons').classList.remove('blur'); 
+    document.querySelector('#left_container_div__panel').classList.remove('blur'); 
+    document.querySelector('#messageWin').classList.remove('blur'); 
+}
+// <- v0.6
 
 ///////////////////////
 function drawBrush0() {
@@ -254,6 +281,8 @@ function resetSketch() {
 function resetSketch2() {
     reInitPaint();
     resizeLoadedImage();
+    // v0.6 update
+    disableSave();
 }
 
 // // updated by shinji 27 jul reloading a face with url
@@ -282,18 +311,4 @@ function updateChangedBrush() {
 
 
 
-//   function updateChangedBrush() {
-//     clearTimeout();
-
-//     setTimeout(function updatingPaint(){ 
-//         setTimeout(updatingPaint, 200);
-//         // updatingPaint();
-//         console.log("time");
-//     }, 5000);
-
-//     clearTimeout();
-
-//   }
-
-// addition ends
 

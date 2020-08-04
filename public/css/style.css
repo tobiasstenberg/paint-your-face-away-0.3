@@ -5,6 +5,7 @@ html, body {
   /* updated 8 jul shinji */
   background: #e2e2e2;
   /* color:#CCCCCC;  */
+/* v0.6 omitted the comentouts */
 }
 
 /* below: disable the text selection - shinji 7july */
@@ -27,15 +28,10 @@ html, body {
 
 /* added shinji 7 july */
 p, h1, h2, h3, h4, h5, h6, body {
-  /* font-family: 'PT Sans', sans-serif; */
   /* font-family: 'Source Code Pro', monospace; */
   font-family: 'Oxygen', sans-serif;
   /* font-weight:700; */
-  /* font-family: 'Work Sans', sans-serif; */
-  /* font-family: 'Anonymous Pro', monospace; */
-  /* font-family: 'Roboto', sans-serif; */
-  /* font-family: 'Encode Sans', sans-serif; */
-  /* font-family: 'Encode Sans Semi Expanded', sans-serif; */
+
 
   color: rgb(46, 46, 46);
 }
@@ -93,14 +89,15 @@ button {
 /* shinji v0.6 changed */
 #messageWin {
   position: absolute;
-    right: 20px;
+    /* right: 20px; */
+    right: 3%;
   /* bottom: 20px; */
   margin-bottom: 20px;
   /* top: 20px; */
     width: 180px; 
     /* below changed shinji v0.6  */
     height: auto; 
-    max-height: 700px;
+    max-height: 650px;
     /* height: 560px; */
   overflow: auto;
   padding: 20px;
@@ -113,10 +110,12 @@ button {
 
   top: 50%;
   /* left: 50%;  */
-  transform: translate(-0%, -50%);
+  transform: translate(3%, -50%);
 
   /* shinji v0.5 */
   display: none;
+  /* shnji v0.6 */
+  z-index: 20;
 }
 
 /* added after 4 july shinji */
@@ -129,21 +128,31 @@ button {
   color: #242b38;
 }
 
+/* v0.6 shinji */
+.navi_msg, .pop_msg, #div_blob_buttons {
+  display: none;
+}
+
 /* shinji v0.4 changed  */
 #save_button {
   /* border: 2px solid #909090; */
   /* background-color: #0f0ce7; */
   background-color: #cccccc;
   color: #ffffff;
-  opacity: 0.1;
+  opacity: 0.0;
 
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   z-index: 2;
   width: 100%;
   margin: 0px;
   margin-left: -20px;
-  font-size: 120%;
+  font-size: 130%;
+  /* v0.6 */
+  
+  line-height: 43px;
+  border: 0px solid rgba(144, 144, 144, 0.75);
+  border-radius: 0px 0px 6px 6px;
 }
 
 span.textLink {
@@ -200,41 +209,83 @@ span.textLink {
   -webkit-filter: blur(0px) !important;
 }
 
+/* v0.6 */
+#pop_window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px; 
+  /* height: 500px; */
+  height: auto;
 
+  max-height: 780px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  font-size: 110%;
 
+  /* border: 1px solid rgb(209, 209, 209); */
+  border-radius: 8px;
+  overflow: auto;
+
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 120;
+  display: none;
+}
+/* v0.6 */
+#pop_window .text {
+  font-family: 'Oxygen', sans-serif;
+  font-size: 110%;
+  text-align: center;
+  color: #242b38;
+}
+/* v0.6 */
 #div_info {
-  background: #e2e2e2;
-  background-color: rgba(226,226,226,0.9);
-  z-index: 20;
+  background-color: rgba(226, 226, 226, 0.6);
+  z-index: 110;
   position: fixed;
   width: 100%; height: 100%;
-  top: 0px; left: 0px; right: 0px;
+  top: 0px; left: 0px; 
   display: none;
 }
 
-#div_info .text {
-  /* font-family: 'PT Sans', sans-serif; */
-  font-family: 'Oxygen', sans-serif;
-  /* font-family: 'Work Sans', sans-serif; */
-  font-size: 110%;
-  color: #242b38;
-  padding: 150px 200px;
+/* v0.6 */
+/* stamp messages */
+#stamp, #stamp2 {
+	position: fixed;
+  top: 50%; left: 50%; 
+  transform: translate(-50%, -50%); 
+
+  text-align: center;
+  z-index: 50;
+
+  display: none;
+}
+/* v0.6 */
+p.stamp-text {
+    /* background-color: rgba(226, 226, 226, 0.1); */
+    background-color: #0f0ce7;
+    border: 1px solid rgba(59, 59, 59, 0.884);
+    color: #e4e4e4;
+	  padding: 2px 4px;
+	  font-size: 100%;
 }
 
+/* div for the painting panel */
 .div_panel {
   /* changed shinji 7 july */
-  /* margin-top: 100px; */
   /* text-align: center; */  
   /* width: 200px; */
-  position: absolute;
+    /* v0.6 below */
+  position: fixed;
   margin-bottom: 20px;
   /* bottom: 20px;  */
-  /* left: 0px; */
   z-index: 20;
 
   top: 50%;
-  left: 0%; 
-  transform: translate(-0%, -50%);
+  left: 3%; 
+  transform: translate(-3%, -50%);
   /* shinji v0.6 */
   display: none;
 }
@@ -242,22 +293,22 @@ span.textLink {
 h3.txt_paint_tools {
   font-weight: 600;
   font-size: 140%;
+  margin-bottom: 10px;
 }
 
-/* shinji disabled */
-/* #buttonA {
-  z-index: 20;
-  display: inline-block;
-} */
-
 /* shinji disabled 7 july */
-/* 
+
 #compiled {
   width: 600px; height: 600px;
-  position: relative ;
-  top: 10px;   
+  position: absolute ;
 
-}  */
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+
+  /* top: 10px;    */
+
+} 
 
 /* shinji disabled 7 july */
 /* #alpha_vid {
@@ -299,21 +350,12 @@ h3.txt_paint_tools {
   position: absolute ;
   /* v0.4 shinji disabled as it doesn't work: the resize works through js? */
   /* width: 800px; height: 800px; */
-  top: 50%;
-  left: 50%; 
-  transform: translate(-50%, -50%);
+
   z-index: 0;
 
   /* border added v0.4 shinji 30jul  */
   border: 2px solid #4343431c;
 }
-
-/* shinji disabled 11 jul */
-/* #shuffleNo {
-  position: absolute;
-  top: 15px;
-  left: 0px;
-} */
 
 #paintType {
   position: absolute;
@@ -321,15 +363,15 @@ h3.txt_paint_tools {
   left: 0px;
 }
 
-/* shinji updated 11 jul */
+/* shinji updated v0.6 */
 .inputWrapper {
   position: absolute;
   /* bottom: 0px; */
   /* top: 0px; */
   text-align: center;
   width: auto ;
+  max-width: 600px;
 
-  /* shinji v0.6 */
   display: none;
   z-index: 20;
 
@@ -361,7 +403,20 @@ label {
 }
 
 #inputButton:hover {
-  background-color: #6ebbb1;
+  background-color: #383838;
+  color: #e6e6e6;
+}
+
+/* v0.6 */
+#inputWrapper p {
+  font-size: 120%;
+}
+
+/* v0.6 */
+#webcam_button {
+  display: inline-block;
+  line-height: 40px;
+
 }
 
 #reset {
@@ -371,7 +426,8 @@ label {
 }
 
 #reset:hover {
-  background-color: #d89097;
+  /* background-color: #d8a6a8; */
+  background-color: #cf8185;
 }
 
 /* added shinji */
@@ -384,29 +440,15 @@ label {
 } */
 
 /* below the previous button */
-.button0 {
-  margin-left: 0;
-  margin-right: 0;
-  /* border: 1px solid #506070; */
-  /* --- border added shinji */
-  border: 1px solid #4d4d4d;
-
-  padding: 10px 10px;
-  width: 140px;
-  cursor: pointer;
-  /* colour changed shinji */
-  /* background-color: #f0f0f0; */
-  background-color: #f2f2f2;
-  font-size: 14px;
-  /* color: #242b38; */
-  color: #4a4a4a;
-}
+/* .button0 {
+} */
+/* deleted v0.6 */
 
 .button {
   border: 2px solid #909090;
   cursor: pointer;
   background-color: #fcfcfc;
-  color: #282828;
+  /* color: rgb(40, 40, 40); */
   text-align: center;
 
   font-family: 'Oxygen', sans-serif;
@@ -441,12 +483,6 @@ label {
   height: 100%;
 }
 
-.button_paint_long {
-  width: 172px; height: 44px;
-  margin-top: 30px;
-  font-size: 110%;
-}
-
 .button_paint_rect {
   width: 76px; height: 40px;
   margin-right: 20px; 
@@ -454,16 +490,88 @@ label {
   font-size: 110%;
 }
 
-.button_paint_face {
-  width: auto; height: 40px;
-  display: inline-block;
+.button_paint_long {
+  width: 172px; height: 44px;
+  margin-top: 20px;
+  display: block;
+  font-size: 110%;
+}
+/* 0.6 */
+.button_paint_long_blob {
+  width: 168px; height: 40px;
+  margin-top: 0px;
+  line-height: 0.3;
+  display: block;
+  font-size: 110%;
+}
+
+/* v0.6 */
+.button_paint_long_blob h3.txt_paint_tools {
+  margin-bottom: 0px;
+}
+
+/* 0.6 */
+.button_paint_long_top {
+  width: 172px; height: 44px;
+  margin-top: 0px;
+  line-height: 0.5;
+  display: block;
   font-size: 110%;
 }
 
 /* new class added shinji */
 .active1, .active2, .selected {
-  border: 3px solid #fbf906;
+  border: 2px solid #fbf906;
   border-style: ridge;
+}
+
+/* /////////below the div/buttons for the detection ////////////// */
+/* buttons for the detection */
+.button_paint_face {
+  width: 170px; height: 34px;
+
+  font-size: 110%;
+
+  /* v0.6 shinji */
+  border-radius: 8px;
+  padding: 0px 10px;
+
+  background-color: #464646;
+}
+
+/* v0.6 */
+.button_paint_face p {
+  line-height: 15px;
+  padding: 10px;
+  margin: auto;
+  color: rgb(250, 250, 250);
+
+}
+
+/* v0.6 */
+/* below: the div for the detection buttons */
+#face_buttons {
+  position: absolute; 
+  width: 680px;
+  bottom: 0px; 
+  left: 50%; 
+  transform: translate(-50%, -0%);
+
+  border-radius: 8px;
+
+  /* v0.6 below */
+  border: 1px solid rgba(144, 144, 144, 0.75);
+
+  padding: 10px 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  display: none;
+  /* this div has to be above the canvas to be able to disable the draw */
+  z-index: 20;
 }
 
 /* .button.toggled, .button.toggled:hover {
@@ -479,16 +587,9 @@ label {
 }
 
 
-#face_buttons {
-  position: absolute; 
-  bottom: 0px; 
-  left: 50%; 
-  transform: translate(-50%, -0%);
-
-  border-radius: 8px;
-}
 
 /* ////// css for the spinner */
+/* ////////////////////////////////////////////////////// */
 
 .lds-spinner {
   /* color: official; */
@@ -574,6 +675,7 @@ label {
     opacity: 0.1;
   }
 }
+/* ////////////////////////////////////////////////////// */
 
 
 /*  below custom scroll bar from "info" shinji v0.4 */
@@ -597,8 +699,9 @@ label {
             background: #555; 
             }
 
-
+/* ///////////////////////////////////////////////////////////////// */
 /* //////////////// below css for archive page only /////////////// */
+/* //////////////////////////////////////////////////////////////// */
 
 
 #homeURL a {

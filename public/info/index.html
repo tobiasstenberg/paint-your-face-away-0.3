@@ -14,13 +14,36 @@
     <title>Info</title>
 
     <style>
+
+        /* v0.6 */
         #info_window {
           position: absolute;
+          top: 100px;
+          margin-top: 50px; 
+          height: auto;
+          width: 700px; 
+          padding: 40px 40px;
+          margin-bottom: 400px;
+
+
+          left: 50%;
+          -webkit-transform: translate(-50%, -0%);
+          -ms-transform: translate(-50%, -0%);
+          transform: translate(-50%, -0%);
+          font-size: 110%;
+
+          border: 1px solid rgb(209, 209, 209);
+          border-radius: 8px;
+          overflow: auto;
+        }
+        /* <- v0.6 */
+
+        /* prev ver */
+          /* #info_window {
+          position: absolute;
           top: 100px; 
-          /* top: 50%; */
           left: 50%;
           width: 50%; 
-          /* height: 500px; */
           height: 70%;
           max-height: 780px;
           -webkit-transform: translate(-50%, -0%);
@@ -30,10 +53,9 @@
           font-size: 110%;
 
           border: 1px solid rgb(209, 209, 209);
-          /* border: 2px solid #434343; */
           border-radius: 8px;
           overflow: auto;
-        }
+        } */
 
           /* width */
           ::-webkit-scrollbar {
@@ -73,10 +95,10 @@
           The project develops and makes accessible to the public a browser-based application of an online face painter that creates portrait pictures that can resist the technology and operation of face scraping that powers some facial recognition systems.
         </p>
 
-        <br>
 
         <h4 id="web_scraping_faces">
-          -> Web-scraping of faces
+          <br><br>
+          Web-scraping of faces
         </h4>
 
         <p>
@@ -99,10 +121,12 @@
           </a> 
         </p>
 
-        <br>
 
         <a id="how_to_paint">
-          <h3>-> How the painter works</h3>
+          <br><br>
+          <h3>
+            How the painter works
+          </h3>
         </a> 
 
         <p>
@@ -131,9 +155,8 @@
           The painter allows you to decide either your facial identity is opaquely painted out by layering the paint, or slightly more “translucent”. Meaning your facial features may not become completely painted out but the process could enmesh your biometric data with the useless noise of paint so that it could resist the data harvesting of faces potentially. 
         </p>
 
-        <br><br>
-
         <a id="the_idea_behind">
+          <br><br>
           <h3>-> Why is the tool designed this way?</h3>
         </a> 
 
@@ -153,23 +176,47 @@
           
         </p>
 
-        <br><br>
 
 
-        <a id="disclaimer"><h3>Disclaimer</h3></a> 
+        <a id="disclaimer"><h3>
+          <br><br>
+          Disclaimer
+        </h3></a> 
+        <p>
+          This is primarily an art project, and the testing capacity of the functionalities are limited by means of research resources and scientific expertise compared to laboratory-run scientific research. 
+          <br><br>
+          The painting tool does not always guarantee perfect anonymisation (for the tools of anonymisation using face-blur please see Anonymous Camera, Signal, and Image Scrubber). 
+          <br><br>
+          The face detection proofing does not necessarily work on other systems.    
+          <br><br>
+          Some cases of misclassification against facial recognition and object classification systems have been observed with some painted faces (
+          <a href="https://www.instagram.com/intheeyesofcv/" target="_blank">
+            ex1
+          </a>  
+          |
+          <a href="https://shinjitoya.com/research-experiments-adversarial-examples-based-on-painted-faces/" target="_blank">
+            ex2
+          </a>  
+          |
+          <a href="https://shinjitoya.com/research-experiments-adversarial-examples-based-on-painted-faces-2/" target="_blank">
+            ex3
+          </a>  
+          ), but these are experimental features and the effects are not laboratory proven.
+        
+          <br><br>
 
+        </p>
+
+
+        <!-- <a id="how_to_share"><h3>How to share</h3></a>
+          <br><br>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Namrutrum dignissim mi, vitae malesuada neque suscipit vel. Cras turpis ex, facilisis id erat quis, gravida placerat augue. Etiam tincidunt, libero at mollis mattis, erat elit ornare urna, vitae accumsan nibh augue idneque. Nullam eget consectetur turpis. Sed nec hendrerit.         </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Namrutrum dignissim mi, vitae malesuada neque suscipit vel. Cras turpis ex, facilisis id erat quis, gravida placerat augue. Etiam tincidunt, libero at mollis mattis, erat elit ornare urna, vitae accumsan nibh augue idneque. Nullam eget consectetur turpis. Sed nec hendrerit.         </p>
 
-        <br><br>
+        <br><br> -->
 
-        <a id="how_to_share"><h3>How to share</h3></a>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Namrutrum dignissim mi, vitae malesuada neque suscipit vel. Cras turpis ex, facilisis id erat quis, gravida placerat augue. Etiam tincidunt, libero at mollis mattis, erat elit ornare urna, vitae accumsan nibh augue idneque. Nullam eget consectetur turpis. Sed nec hendrerit.         </p>
-
-        <br><br>
-
-        <h3>Credits</h3>
+        <h3>
+          Credits
+        </h3>
 
         <p>crediting...</p>
 

@@ -5,15 +5,20 @@
     <script src="./js/libs/p5_10_2/p5_10_2.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script> -->
-    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js" type="text/javascript"></script>
+    
+    <!-- v0.6 -->
+    <!-- <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js" type="text/javascript"></script> -->
     <!-- <script src="https://raw.githubusercontent.com/ml5js/ml5-library/development/src/FaceApi/index.js" type="text/javascript"></script> -->
     <!-- <script src="js/libs/ml5@0.5.0/faceapisrc/index.js" type="text/javascript"></script> -->
+        <script src="js/libs/ml5@0.5.0/ml5.min.js" type="text/javascript"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" content="height=device-height">
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" content="height=device-height"> -->
 
 
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 
+    <!-- <link rel="stylesheet" media="screen and (max-width: 767px)" href="./css/style-mobile.css">  -->
     <link rel="stylesheet" media="screen and (min-width: 1440px) and (max-width: 1921px)" href="./css/style-1920.css"> 
 
     <!-- fonts added shinji 7 july -->
@@ -28,12 +33,12 @@
 
   </head>
   <!-- on load the program will as default switch to a medium brush size of 38 -->
-  <body class="" onload="intialRandomVid(), shufflePaint1(), shufflePaint2(), switchBrushType(0), switchBrushSize(), switchMedBrush(), loadTxt_1(), disableDraw()">
+  <body class="" onload="intialRandomVid(), shufflePaint1(), shufflePaint2(), switchBrushType(0), switchBrushSize(), switchMedBrush(), loadTxt_1(), loadTxt_2(), hideAllNaviMsg(), disableDraw()">
 
     <!-- --- addition 4 jul shinji -->
     <!-- <center> -->
       <!-- <div id="compiled" onmouseout="tempDisableDraw()" onmouseover="tempEnableDraw()"> -->
-      <!-- <div id="compiled" > -->
+      <div id="compiled" class="non_select">
 
         <div id="vid_div">
           <!-- <video id="video" src="media/fluid8a re-GS crp_1.mp4" controls loop playsinline > -->
@@ -52,7 +57,7 @@
 
         <!-- <canvas id="myP5canvas1"></canvas> -->
 
-      <!-- </div> -->
+      </div>
     <!-- </center> -->
 
 
@@ -63,6 +68,9 @@
       <div id="messageWin">
         <!-- the content is loaded from outside this html via js - shinji -->
         <p id="msgTxt1" class="message non_select" > </p>
+
+
+        <hr>
 
         <p class="message non_select" >
           <a href="info/#how_to_paint" target="_blank"> 
@@ -75,10 +83,10 @@
               <span class="textLink">About face scraping.</span> 
           </a>
           
-          <hr>
+          </br></br>
         </p>
         
-        <button class="button_paint_long button tempSelect " id="save_button" onclick="">Save
+        <div class="button_paint_long button tempSelect " id="save_button" onclick="">SAVE</div>
 
       </div>
     <!-- </div> -->
@@ -122,30 +130,33 @@
           <button class="button button_paint_square btn_brush_size active2" id="brushMed">M
           <button class="button button_paint_square btn_brush_size" id="brushLrg">L
         </div>
-
-        <!-- <button class="button_paint_long button tempSelect" id="" onclick="shufflePaint1(), shufflePaint2(), updateChangedBrush()">Pallets Shuffling</button> -->
           
         <!-- <button class="" id="buttonDisableDraw" onclick="disableDraw()" type="button">Disable draw -->
         <!-- <button class="" id="buttonEnableDraw" onclick="enableDraw()" type="button">Enable draw -->
-        </br></br>
+        </br>
 
-        <div class="wrapper_paint_buttons">
+        <!-- v0.6  -->
+        <div class="wrapper_paint_buttons" id="div_blob_buttons">
           <h3 class="txt_paint_tools">Paint Blobs</h3>
-            <!-- <button class="button" id="" onclick="playVideo()" type="button">▶️ ⏯⏸ -->
-            <!-- <button class="button" id="buttonA" onclick="enableAutoplay()" type="button">Digital Blobs -->
-            <button class="button_paint_rect button tempSelect" id="vidPauseButton" onclick="toggleVideoPause()" type="button">Play
-            <button class="button_paint_rect button tempSelect" id="vidHideButton" onclick="toggleVideoHide()" type="button">On
-            
-            <!-- <button class="button toggled" onclick="change()">🔀</button> -->
+          <!-- <h3 class="txt_paint_tools">Paint Blobs</h3> -->
+            <button style="display: none;" class="button_paint_rect button tempSelect" id="vidPauseButton" onclick="toggleVideoPause()" type="button">Play </button>
+            <button style="display: none;" class="button_paint_rect button tempSelect" id="vidHideButton" onclick="toggleVideoHide()" type="button">On</button>
+              <!-- v0.6 new function -->
+              <div class="button_paint_long_blob button tempSelect" onclick="runDetectionBlob(), timeoutLandmarksClearBlob()"><p>Apply to your face</p> </div> 
+            <!-- <button class="button_paint_long button tempSelect" onclick="shuffleBlob()">🔀</button> -->
 
+            <!-- v0.6 disabled -->
             <!-- <button class="button_paint_long button tempSelect" onclick="change()">🔀</button> -->
-        </div>
+
+
+      </div>
 
         <!-- <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch()">Reset -->
-
-        <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint2(), initialiseVid()">Reset
+        </br>
+        <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint2(), initialiseVid()">Reset</button>
         <!-- <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint1(), shufflePaint2(), initialiseVid(), updateChangedBrush()">Reset -->
         <!-- <button class="button_paint_long button tempSelect" id="" onclick="reloading()">Reload -->
+          
           
         </div>
     </div>
@@ -153,36 +164,93 @@
       <!-- <button class="button" id="button_info" onclick="showInfoDiv()" >Info </button> -->
     <!-- the edit ends here -->
 
-
+<!-- v0.6  -->
     <div class="inputWrapper">
-      <label id="inputButton" class="button" for="fileInput">Upload an Image</label>
+      <h2>
+        <i>
+          Paint Your Face Away
+        </i>
+      </h2>
+
+      <br>
+
+      <p>
+        <b>
+        Upload a portrait, selfie or profile with your face to start painting on it.
+        </b>
+        <br>
+        (The original image of your face will not be kept on the server after you finish painting.)
+        <br>
+      </p>
+      
+      <label id="inputButton" class="button" for="fileInput">Upload an Image*</label>
       <input class="button" id="fileInput" type="file" value="Open Image">
 
-      <button id="webcam_button" class="button button_paint_long" onclick="">Use a Webcam </button>
+      <p>
+        ↓ 
+        <br>
+        *The image will not be stored on the server as it stays on your browser.
+
+      </p>
+
+      <center>
+        <div id="webcam_button" class="button button_paint_long" onclick="">Use a Webcam </div>
+      </center>
+
+      <hr>
+      
+      <p>
+        **The site uses face detection algorithms but does not deploy the facial recognition functions for identification purposes or emotional analysis. The facial geometrics of the faces in the images uploaded will not be stored on our site.
+      </p>
+
     </div>
 
+    <br>
 
 
 
 
-   <div id="face_buttons">
-      <button class="button_paint_face button tempSelect" onclick="showSpinner(), timeoutDetect()" >
-        detect</button>
-      <button class="button_paint_face button tempSelect" onclick="showSpinner(), faceRedraw()" >
-        auto-detect</button>
-      <button class="button_paint_face button tempSelect" onclick="clearFaceRedraw()" >
-        clear detection</button>
+<!-- v0.6 -->
+   <div id="face_buttons" class="non_select">
+      <div class="button_paint_face button tempSelect" onclick="showSpinner(), timeoutDetect()" >
+        <p>Detect a face</p> </div>
+      <div class="button_paint_face button tempSelect" onclick="showSpinner(), faceRedraw()" >
+        <p>Auto-detect</p> </div>
+      <div class="button_paint_face button tempSelect" onclick="clearFaceRedraw()" >
+        <p>Clear detection</p> </div>
     </div>
     
 
-    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<!-- v0.6 no face mini pop msg -->
+<div id="stamp">
+  <p class="stamp-text" > 
+   No face found
+   <!-- <br>(face-api.js) -->
+  </p>
+</div>
 
-    <div id="div_info"> 
-      <p class="text" onclick="closeInfoDiv()">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet laoreet ante. Vestibulum eget odio pulvinar neque placerat maximus rhoncus nec dolor. Etiam diam nisi, tristique ac tellus non, blandit suscipit quam. Nulla facilisi. Praesent tempor mattis ullamcorper. Aliquam vel leo varius, rhoncus sem nec, commodo est. Cras accumsan, neque quis suscipit mattis, arcu magna consequat elit, eget ultricies ligula risus vel sem.
-        <br><br>
-        Aliquam nec libero in neque aliquet bibendum quis id leo. Aenean imperdiet purus lorem, eget posuere neque ultrices ut. Proin ut imperdiet arcu, vitae molestie elit. Aenean sit amet elit risus. Aenean nunc justo, congue vitae pharetra vitae, placerat vel dui. Cras arcu arcu, tristique vel ex quis, bibendum lobortis arcu. Proin volutpat nulla eget leo viverra tincidunt. Vivamus felis nibh, auctor vitae porta cursus, efficitur sit amet libero. Aenean in magna aliquet ex vestibulum auctor sed ac enim.</p>
-    </div>
+<!-- v0.6 mini pop msg2 for the paint blobs -->
+<div id="stamp2">
+  <p class="stamp-text" > 
+   Found no face to apply
+   <!-- <br>(face-api.js) -->
+  </p>
+</div>
+
+    <!-- <button onclick="showPopDiv()">show</button> -->
+
+    <div class="lds-spinner non_select"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+    <div id="div_info" onclick="closePopDiv()">     </div>
+
+    <div id="pop_window">
+        <p id="msgTxt2" class="text" >
+          
+        </p>
+      </div>
+
+      <!-- v0.6 -->
+<button onclick="enableBlob()">show</button>
 
 
     <!-- loading of all program scripts -->
@@ -192,7 +260,12 @@
     <script src="./js/processor.js"></script>
     <script src="./js/openImage.js"></script>
     <script src="./js/style.js"></script>
+
+      <!-- v0.6 new function -->
+    <script src="./js/paintBlobs.js"></script>
+
     <script src="./js/ml5faceApiJs.js"></script>
+
 
     <!-- jquery v1.9.1 for fade in/out -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
