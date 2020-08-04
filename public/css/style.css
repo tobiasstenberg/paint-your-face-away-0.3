@@ -36,6 +36,11 @@ p, h1, h2, h3, h4, h5, h6, body {
   color: rgb(46, 46, 46);
 }
 
+/* v0.6 */
+a {
+    color: rgb(19, 19, 187);
+}
+
 /* //////////// - interface - ////////////// */
 
 /* --- divs left / right --- */
@@ -99,7 +104,6 @@ button {
     height: auto; 
     max-height: 650px;
     /* height: 560px; */
-  overflow: auto;
   padding: 20px;
   /* border: 2px solid rgb(187, 187, 187); */
   border: 2px solid #434343;
@@ -115,6 +119,7 @@ button {
   /* shinji v0.5 */
   display: none;
   /* shnji v0.6 */
+  overflow: hidden;
   z-index: 20;
 }
 
@@ -394,12 +399,12 @@ label {
   border: 2px solid red;
 }
 
+/* changed v0.6 */
 #inputButton {
   display: inline-block;
-  padding: 10px 0px;
-  /* colour changed */
-  background-color: #f0f0f0;
-  /* background-color: #8abeb7; */
+  width: 172px;
+  height: 44px;
+  line-height: 2.7;
 }
 
 #inputButton:hover {

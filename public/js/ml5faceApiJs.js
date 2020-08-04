@@ -71,7 +71,7 @@ function gotInitResults(err, result) {
 
     // initial not detected
     if (err) {
-        console.log(err)
+        // console.log(err);
         console.log("not detected")
 
         // stopTimeout();        
@@ -127,7 +127,7 @@ function gotResults(err, result) {
 
     // if the detection goes off after the second time
     if (err) {
-        console.log(err)
+        // console.log(err)
         console.log("not detected")
 
         stopTimeout(); 
