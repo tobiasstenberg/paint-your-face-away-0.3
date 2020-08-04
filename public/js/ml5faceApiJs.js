@@ -200,6 +200,7 @@ function gotResultsBlobs(err, result) {
 
 // v0.6 detection for blob
 function runDetectionBlob() {
+    showSpinner();
     context.clearRect(0, 0, width * dpr, height * dpr);
     faceapi.detectSingle(sketch, gotResultsBlobs)
 }

@@ -93,7 +93,8 @@ button {
 
 /* shinji v0.6 changed */
 #messageWin {
-  position: absolute;
+  /* v0.6 */
+  position: fixed;
     /* right: 20px; */
     right: 3%;
   /* bottom: 20px; */
@@ -167,7 +168,8 @@ span.textLink {
 
 
 /* blinking from here: https://stackoverflow.com/revisions/16344389/7 */
-/* #blink_message {
+/* v0.6 */
+.blink_message {
   -webkit-animation-name: blinker;
   -webkit-animation-duration: 1s;
   -webkit-animation-timing-function: linear;
@@ -200,7 +202,7 @@ span.textLink {
   0% { opacity: 1.0; }
   50% { opacity: 0.0; }
   100% { opacity: 1.0; }
-} */
+}
 
 /* blurring */
 /* reference  https://www.w3schools.com/howto/howto_css_blurred_background.asp*/
@@ -422,6 +424,16 @@ label {
   display: inline-block;
   line-height: 40px;
 
+}
+
+/* the input for reuploading the image v0.6 */
+#inputButton2 {
+  display: inline-block;
+  width: 168px;
+  height: 40px;
+  line-height: 2.4;
+  margin-top: 40px;
+  background-color: transparent ;
 }
 
 #reset {

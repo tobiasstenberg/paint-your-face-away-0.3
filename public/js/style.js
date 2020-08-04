@@ -29,26 +29,47 @@
 
 // blinking texts
 // http://jsfiddle.net/umz8t/458/
-// v0.6 class changed
-function blinker() {
-    $('#msgTxt1_1').fadeOut(500);
-    $('#msgTxt1_1').fadeIn(500);
-}
+// v0.6 disabled the jquery solution below
+// function blinker() {
+//     $('#msgTxt1_1').fadeOut(500);
+//     $('#msgTxt1_1').fadeIn(500);
+// }
 
-var blinking = setInterval(blinker, 1000);
+// var blinking = setInterval(blinker, 1000);
 
-// v0.6 blinker shorter span
+// // v0.6 blinker shorter span
+// function timeBlinker() {
+//     setTimeout(function(){ 
+//         clearInterval(blinking);
+//      }, 3000);
+// }
+
+// // v0.6 added
+// function clearBlinker() {
+//     clearInterval(blinking);
+// }
+
+// v0.6
+// CSS solution
+var blinking;
+
 function timeBlinker() {
-    setTimeout(function(){ 
-        clearInterval(blinking);
-     }, 3000);
+    addBlinkerCSStxt1();
+
+    blinking = setTimeout(function(){ 
+        removeBlinkerCSStxt1();
+        clearTimeout(blinking);
+    }, 5000);
 }
 
-// v0.6 added
-function clearBlinker() {
-    clearInterval(blinking);
+// v0.6 css blinker
+function addBlinkerCSStxt1() {
+    document.querySelector("#msgTxt1_1").classList.add("blink_message");
 }
 
+function removeBlinkerCSStxt1() {
+    document.querySelector("#msgTxt1_1").classList.remove("blink_message");
+}
 
 ////////////////////////////////
 
@@ -90,16 +111,18 @@ function selectNaviMsg1() {
 
 }
 
+// v0.6
 function selectNaviMsg2() {
-    clearBlinker();
+    removeBlinkerCSStxt1();
     hideAllNaviMsg();
     document.querySelector("#msgTxt1_2").style.display = "block";
     // document.querySelector("#messageWin").style.display = "block";
 
 }
 
+// v0.6
 function selectNaviMsg3() {
-    clearBlinker();
+    removeBlinkerCSStxt1();
     hideAllNaviMsg();
     document.querySelector('#msgTxt1_3_no_detect').style.display = 'block';
     document.querySelector("#messageWin").style.display = "block";
@@ -283,18 +306,30 @@ function reloadThePage() {
 // https://stackoverflow.com/questions/35820750/understanding-html-retina-canvas-support
 // Returns: 1 on 'normal' screens, 2 on retina displays
 var pixelRatio = (function () {
-    // var ctx = document.createElement("canvas").getContext("2d"),
         dpr = window.devicePixelRatio || 1,
-        // bsr = canvas.webkitBackingStorePixelRatio ||
-        //     canvas.mozBackingStorePixelRatio ||
-        //     canvas.msBackingStorePixelRatio ||
-        //     canvas.oBackingStorePixelRatio ||
-        //     canvas.backingStorePixelRatio || 1;
 
             console.log("dpr " + dpr);
-
-    // return dpr / bsr;
     return dpr ;
 })();
 ///////////
 console.log("pixel ratio" +pixelRatio);
+
+// // ////////
+// // https://stackoverflow.com/questions/35820750/understanding-html-retina-canvas-support
+// // Returns: 1 on 'normal' screens, 2 on retina displays
+// var pixelRatio = (function () {
+//     // var ctx = document.createElement("canvas").getContext("2d"),
+//         dpr = window.devicePixelRatio || 1,
+//         // bsr = canvas.webkitBackingStorePixelRatio ||
+//         //     canvas.mozBackingStorePixelRatio ||
+//         //     canvas.msBackingStorePixelRatio ||
+//         //     canvas.oBackingStorePixelRatio ||
+//         //     canvas.backingStorePixelRatio || 1;
+
+//             console.log("dpr " + dpr);
+
+//     // return dpr / bsr;
+//     return dpr ;
+// })();
+// ///////////
+// console.log("pixel ratio" +pixelRatio);
