@@ -84,6 +84,8 @@ window.addEventListener('load', function() {
 
             // resetSketch();
             resetSketch2();
+            // v0.6 update
+            disableSave();
 
             // moved from the index html
             enableDraw();

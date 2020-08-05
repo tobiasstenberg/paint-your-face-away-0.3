@@ -153,7 +153,7 @@
 
         <!-- <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch()">Reset -->
         </br>
-        <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint2(), initialiseVid()">Reset</button>
+        <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), disableSave(), shufflePaint2(), initialiseVid()">Reset</button>
         <!-- <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint1(), shufflePaint2(), initialiseVid(), updateChangedBrush()">Reset -->
         <!-- <button class="button_paint_long button tempSelect" id="" onclick="reloading()">Reload -->
           
@@ -182,7 +182,7 @@
         Upload a portrait, selfie or profile with your face to start painting on it.
         </b>
         <br>
-        (The original image of your face will not be kept on the server after you finish painting.)
+        (The original image of your face will not be kept on the server of this site after you finish painting.)
         <br>
       </p>
       
@@ -192,12 +192,12 @@
       <p style="margin-top: 0px;">
         ↓ 
         <br>
-        *The image will not be stored on the server as it stays on your browser.
+        *The image will not be stored on the server of this site as it stays on your browser.
 
       </p>
 
       <center>
-        <div id="webcam_button" class="button button_paint_long" onclick="">Use a Webcam </div>
+        <div id="webcam_button" class="button button_paint_long" onclick="" >Use a Webcam </div>
       </center>
 
       <hr>
@@ -243,6 +243,8 @@
     <div class="lds-spinner non_select"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
     <div id="div_info" onclick="closePopDiv()">     </div>
+    <div id="div_info_no_close" onclick="">     </div>
+
 
     <div id="pop_window">
         <p id="msgTxt2" class="text" >

@@ -164,10 +164,19 @@ function showPopDiv() {
     document.querySelector('#pop_window').style.display = 'block';
 }
 
+// v0.6 shinji name changed
+function showPopDivNoFaceMsg() {
+    blurAll();
+    disableDraw();
+    document.querySelector('#div_info_no_close').style.display = 'block';
+    document.querySelector('#pop_window').style.display = 'block';
+}
+
 function closePopDiv() {
     enableDraw();
     removeBlurAll();
     document.querySelector('#div_info').style.display = 'none';
+    document.querySelector('#div_info_no_close').style.display = 'none';
     document.querySelector('#pop_window').style.display = 'none';
 }
 
@@ -248,12 +257,10 @@ function showSpinner() {
 // shinji added v0.6
 function showImgButton() {
     document.querySelector(".inputWrapper").style.display = "block";
-    document.querySelector("#webcam_button").style.display = "block";
 }
 
 function hideImgButton() {
     document.querySelector(".inputWrapper").style.display = "none";
-    document.querySelector("#webcam_button").style.display = "none";
 }
 
 function showPaintPanel() {
@@ -277,7 +284,7 @@ function enableSave() {
     document.querySelector("#save_button").addEventListener("click", savingCanvas);
     document.querySelector("#save_button").addEventListener("click", selectPopMessage1);
     document.querySelector("#save_button").addEventListener("click", showPopDiv);
-    console.log("enabled");
+    console.log("save enabled");
 }
 
 function disableSave() {
@@ -288,7 +295,7 @@ function disableSave() {
     document.querySelector("#save_button").removeEventListener("click", selectPopMessage1);
     document.querySelector("#save_button").removeEventListener("click", showPopDiv);
     
-    console.log("disabled");
+    console.log("save disabled");
 }
 
 let timing;

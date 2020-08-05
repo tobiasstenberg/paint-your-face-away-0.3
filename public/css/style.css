@@ -421,7 +421,8 @@ label {
 
 /* v0.6 */
 #webcam_button {
-  display: inline-block;
+  /* display: inline-block; */
+  display: none;
   line-height: 40px;
 
 }

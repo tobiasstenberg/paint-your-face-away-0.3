@@ -281,8 +281,6 @@ function resetSketch() {
 function resetSketch2() {
     reInitPaint();
     resizeLoadedImage();
-    // v0.6 update
-    disableSave();
 }
 
 // // updated by shinji 27 jul reloading a face with url

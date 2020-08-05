@@ -27,6 +27,7 @@ const detection_options = {
     withTinyNet: true,
 
     MODEL_URLS: {
+        // Mobilenetv1Model: '/js/libs/ml5@0.5.0/ml5-data-and-models/face-api/models/faceapi/ssd_mobilenetv1_model-weights_manifest.json',
         Mobilenetv1Model: 'https://raw.githubusercontent.com/ml5js/ml5-data-and-models/face-api/models/faceapi/ssd_mobilenetv1_model-weights_manifest.json',
         FaceLandmarkModel: 'https://raw.githubusercontent.com/ml5js/ml5-data-and-models/face-api/models/faceapi/face_landmark_68_model-weights_manifest.json',
         FaceLandmark68TinyNet: 'https://raw.githubusercontent.com/ml5js/ml5-data-and-models/face-api/models/faceapi/face_landmark_68_tiny_model-weights_manifest.json',
@@ -81,7 +82,7 @@ function gotInitResults(err, result) {
         
         selectNaviMsg3();
         selectPopMessage2();
-        showPopDiv();
+        showPopDivNoFaceMsg();
         
         return 
     }
