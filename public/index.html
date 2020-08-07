@@ -2,6 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- v0.65 -->
+    <!-- <script defer src="face-api.min.js"></script>
+    <script defer src="script.js"></script> -->
+
     <script src="./js/libs/p5_10_2/p5_10_2.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script> -->
@@ -11,9 +17,10 @@
     <!-- <script src="https://raw.githubusercontent.com/ml5js/ml5-library/development/src/FaceApi/index.js" type="text/javascript"></script> -->
     <!-- <script src="js/libs/ml5@0.5.0/faceapisrc/index.js" type="text/javascript"></script> -->
     <script src="js/libs/ml5@0.5.0/ml5.min.js" type="text/javascript"></script>
+    
 
 
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" content="height=device-height"> -->
+
 
 
     <link rel="stylesheet" type="text/css" href="./css/style.css">
@@ -23,42 +30,21 @@
 
     <!-- fonts added shinji 7 july -->
     <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Code+Pro&display=swap" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet"> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Roboto&display=swap" rel="stylesheet"> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&family=Roboto:wght@500&family=Source+Code+Pro:wght@500;600&display=swap" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@500&family=Encode+Sans:wght@500&display=swap" rel="stylesheet"> -->
 
 
 
   </head>
   <!-- on load the program will as default switch to a medium brush size of 38 -->
-  <body class="" onload="intialRandomVid(), shufflePaint1(), shufflePaint2(), switchBrushType(0), switchBrushSize(), switchMedBrush(), loadTxt_1(), loadTxt_2(), hideAllNaviMsg(), disableDraw()">
+  <body class="" onload=" shufflePaint1(), shufflePaint2(), shufflePaint3(), switchBrushType(0), switchBrushSize(), switchMedBrush(), loadTxt_1(), loadTxt_2(), hideAllNaviMsg(), disableDraw(), addSavingFunctionToReset()">
 
-    <!-- --- addition 4 jul shinji -->
-    <!-- <center> -->
+    <!-- v0.65 disabled -->
+    <!-- <video id="videofeed" width="720" height="560" autoplay muted></video> -->
+
+
       <!-- <div id="compiled" onmouseout="tempDisableDraw()" onmouseover="tempEnableDraw()"> -->
       <div id="compiled" class="non_select">
-
-        <div id="vid_div">
-          <!-- <video id="video" src="media/fluid8a re-GS crp_1.mp4" controls loop playsinline > -->
-          <video id='video' controls loop playsinline>
-              <source id='mp4Source' src="" type="video/mp4" />
-          </video>
-          <!-- src changed 4 jul shinji -->
-        </div>
-    <!-- addition ends -->
-
-        <canvas id="c1" width="600" height="600"></canvas>
-    
-        <!-- <div id="alpha_vid"> -->
-          <canvas id="c2" width="600" height="600"></canvas>
-        <!-- </div> -->
-
-        <!-- <canvas id="myP5canvas1"></canvas> -->
-
       </div>
-    <!-- </center> -->
 
 
     <!-- ////////////////// non-canvas interface elements below ///////////////// -->
@@ -86,7 +72,10 @@
           </br></br>
         </p>
         
-        <div class="button_paint_long button tempSelect " id="save_button" onclick="">SAVE</div>
+        <!-- v0.65 disabled -->
+        <!-- <a href="#" id="downloader" onclick="savingCanvas()" download="yourportrait.png"> -->
+          <div class="button_paint_long button tempSelect " id="save_button" >SAVE</div>
+        <!-- </a> -->
 
       </div>
     <!-- </div> -->
@@ -95,9 +84,6 @@
       <!-- the content is loaded from outside this html via js - shinji -->
       <!-- <p id="msgTxt1" class="message non_select" > </p> -->
       
-      <!-- ------below for the hash jump test - shinji -->
-      <!-- <a href="#jump">jump</a></br></br></br></br></br></br></br></br></br></br></br></br>
-      <p id="jump" class="message non_select" > </br></br> ja</br></br>osi</br></br>djfo</br></br>isjadf</br></br>ijaio</br></br>sdj</br></br>f;iasjdf;      </p> -->
     <!-- </div> -->
 
     <!-- added shinji 11jul -->
@@ -138,24 +124,17 @@
         <!-- v0.6  -->
         <div class="wrapper_paint_buttons" id="div_blob_buttons">
           <h3 class="txt_paint_tools">Paint Blobs</h3>
-          <!-- <h3 class="txt_paint_tools">Paint Blobs</h3> -->
-            <button style="display: none;" class="button_paint_rect button tempSelect" id="vidPauseButton" onclick="toggleVideoPause()" type="button">Play </button>
-            <button style="display: none;" class="button_paint_rect button tempSelect" id="vidHideButton" onclick="toggleVideoHide()" type="button">On</button>
               <!-- v0.6 new function -->
               <div class="button_paint_long_blob button tempSelect" onclick="runDetectionBlob(), timeoutLandmarksClearBlob()"><p>Apply to your face</p> </div> 
-            <!-- <button class="button_paint_long button tempSelect" onclick="shuffleBlob()">🔀</button> -->
-
-            <!-- v0.6 disabled -->
-            <!-- <button class="button_paint_long button tempSelect" onclick="change()">🔀</button> -->
 
 
       </div>
 
         <!-- <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch()">Reset -->
         </br>
-        <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), disableSave(), shufflePaint2(), initialiseVid()">Reset</button>
-        <!-- <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint1(), shufflePaint2(), initialiseVid(), updateChangedBrush()">Reset -->
-        <!-- <button class="button_paint_long button tempSelect" id="" onclick="reloading()">Reload -->
+        <!-- v0.65 removed disableSave() -->
+        <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint2()">Reset</button>
+        <!-- <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint1(), shufflePaint2(), updateChangedBrush()">Reset -->
           
         <!-- v0.6 -->
         <label id="inputButton2" class="button" for="fileInput">Re-upload an Image</label>
@@ -164,8 +143,6 @@
         </div>
     </div>
 
-      <!-- <button class="button" id="button_info" onclick="showInfoDiv()" >Info </button> -->
-    <!-- the edit ends here -->
 
 <!-- v0.6  -->
     <div class="inputWrapper">
@@ -253,14 +230,14 @@
       </div>
 
       <!-- v0.6 -->
-<button style="bottom:0px; position:absolute;" onclick="enableBlob()">show</button>
+<button style="bottom:0px; position:absolute; z-index: 200;" onclick="enableBlob()">show</button>
+<!-- <button style="bottom:20px; position:absolute;" onclick="detect()" id="fapi_button">face-api</button> -->
 
 
     <!-- loading of all program scripts -->
     <script src="./js/main.js"></script>
     <script src="./js/methods.js"></script>
     <script src="./js/keybindings.js"></script>
-    <script src="./js/processor.js"></script>
     <script src="./js/openImage.js"></script>
     <script src="./js/style.js"></script>
 

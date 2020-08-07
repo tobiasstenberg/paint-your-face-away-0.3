@@ -10,11 +10,10 @@
 let faceapi;
 // let img;
 let detections;
-let width = 600  ;
-let height = 600 ;
+let landCanvWidth = allCanv_width;
+let landCanvHeight = allCanv_height;
 let canvas, context;
 // v0.6
-let detection;
 
 
 
@@ -43,7 +42,7 @@ async function make(){
     // img.width = width;
     // img.height = height;
 
-    canvas = createCanvasFace(width, height);
+    canvas = createCanvasFace(landCanvWidth, landCanvHeight);
     context = canvas.getContext('2d');
 
     faceapi = await ml5.faceApi(detection_options, modelReady)
@@ -60,6 +59,21 @@ function modelReady() {
     console.log('ready!')
     // faceapi.detectSingle(sketch, gotResults)
 }
+
+// 0.65 
+function enterNoDetectionMode() {
+    selectNaviMsg3();
+    selectPopMessage2();
+    showPopDivNoFaceMsg();
+
+    removeSavingFunctionToReset();
+}
+
+function enterDetectionMode() {
+    selectNaviMsg1();
+    showDetectButtons();
+}
+
 
 // v0.6
 /////////////////// for initial detection ///////////////////////
@@ -78,11 +92,10 @@ function gotInitResults(err, result) {
         console.log("not detected")
 
         // stopTimeout();        
-        // timeoutToSave();
+        // timeoutToSave()
         
-        selectNaviMsg3();
-        selectPopMessage2();
-        showPopDivNoFaceMsg();
+        // v0.65
+        enterNoDetectionMode();
         
         return 
     }
@@ -97,8 +110,9 @@ function gotInitResults(err, result) {
         drawBox(detections)
         drawLandmarks(detections)
 
-        selectNaviMsg1();
-        showDetectButtons();
+        // v0.65
+        enterDetectionMode();
+
     } 
 }
 // <- v0.6
@@ -356,34 +370,12 @@ function createCanvasFace(w, h){
     
     const canvas = document.createElement("canvas"); 
 
-    // v0.6 disabled as it's moved to style js
-    // // ////////
-    // // https://stackoverflow.com/questions/35820750/understanding-html-retina-canvas-support
-    // // Returns: 1 on 'normal' screens, 2 on retina displays
-    // var pixelRatio = (function () {
-    //     // var ctx = document.createElement("canvas").getContext("2d"),
-    //         dpr = window.devicePixelRatio || 1,
-    //         bsr = canvas.webkitBackingStorePixelRatio ||
-    //             canvas.mozBackingStorePixelRatio ||
-    //             canvas.msBackingStorePixelRatio ||
-    //             canvas.oBackingStorePixelRatio ||
-    //             canvas.backingStorePixelRatio || 1;
-
-    //             console.log("dpr " + dpr);
-
-    //     // return dpr / bsr;
-    //     return dpr / bsr ;
-    // })();
-    // ///////////
-
     // // v0.6
     // // add eventlistner for the temp disable draw
     canvas.addEventListener("mouseenter", tempEnableDraw);
     canvas.addEventListener("mouseleave", tempDisableDraw);
-    
 
-    // dpr adjustment
-    // v0.6 dpr changed from the pixelratio
+    // v0.65
     canvas.width = w * dpr ;
     canvas.height  = h * dpr;
     document.body.appendChild(canvas);

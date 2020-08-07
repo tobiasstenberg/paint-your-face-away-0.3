@@ -15,16 +15,13 @@ var newFace;
 //     showImgButton();
 // }, 2500)
 
-// setTimeout(function(){
-//     console.log("timeout p5canv id'ed");
-//     idingCanvas();
-// }, 10000)
 
 function idingCanvas() {
     var fileInput = document.querySelector('#fileInput');
     p5canvas = document.querySelector('#myP5canvas1');
     console.log("p5canv id'ed");
     // showImgButton();
+    window.p5canvas = p5canvas;
 }
 
 // https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
@@ -101,6 +98,7 @@ window.addEventListener('load', function() {
                 // timeoutDetect();
                 // swapped for the initial detection
                 // v0.6
+                // v0.65 temp disable below
                 timeoutInitDetect();
 
                 hideSpinner();
@@ -108,6 +106,7 @@ window.addEventListener('load', function() {
             }, 1000);
 
             // v0.6 activate paint blob
+            // v0.65 temp disable below
             timeoutToEnableBlob();
 
         }
@@ -118,7 +117,6 @@ window.addEventListener('load', function() {
   function resizeLoadedImage() {
         // face = loadImage(faceURL);   
         // face = newFace; 
-
         
         // // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
         var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
@@ -133,6 +131,18 @@ window.addEventListener('load', function() {
         // ctx0.resize(width, height);
         // image(face, left, top , w, h);
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // -------- below backup prev ver
 // function resizeLoadedImage() {

@@ -19,13 +19,16 @@ function switchSmlBrush() {
 }
 
 function switchMedBrush() { 
-    brushSize = 38; 
+    // brushSize = 38; 
+    brushSize = 600 / 15.7894; 
+
 
 }
 
 // shinji new size added
 function switchLrgBrush() { 
-    brushSize = 64; 
+    // brushSize = 64; 
+    brushSize = 600 / 9.375; 
 
 }
 
@@ -47,8 +50,6 @@ function switchBrushSize(size) {
 
 function switchBrushType(type) {
     brushType = type;
-    // document.querySelector('#brushType1').classList.toggle('toggled');
-    // document.querySelector('#brushType2').classList.toggle('toggled');
     
     // brushType needs to be incremented with 1 to convert the array number to regular number
     // document.querySelector('#paintType').innerHTML = "Brushtype: " + (brushType + 1);  
@@ -106,6 +107,46 @@ var lastIndexImg1;
 var sourceURLimg1;
 var lastIndexImg2;
 var sourceURLimg2;
+// v0.65
+var lastIndexImg3;
+var sourceURLimg3;
+
+
+// function change() {
+//     let randNum = Math.floor(Math.random() * 3) + 1;
+
+//     console.log (lastIndex + " " + randNum); 
+
+//     if (randNum === lastIndex) {
+//         // console.log ("once more");
+//         change();
+//     }
+//     else {
+//         // console.log ("success");
+
+//         // change the video if the random number is not duplicated
+//         switch(randNum) {
+//           case 1:
+//             sourceURL = "media/fluid1a img1 re-GS crp_1.mp4";
+//             changeVid();
+//           break;
+//           case 2:
+//             sourceURL = "media/fluid8a re-GS crp_1.mp4";
+//             changeVid();
+//           break;
+//           case 3:
+//             sourceURL = "media/fluid2a img2 re-GS crp.mp4";
+//             changeVid();
+//           break;
+//           default:
+//             sourceURL = "media/fluid2a img2 re-GS crp.mp4";
+//             changeVid();
+//         }
+//     }
+
+//     // rewrite the last index as the new random number
+//     lastIndex = randNum;
+// }
 
 // click to randomly change the image1 source
 function shufflePaint1() {
@@ -156,12 +197,25 @@ function shufflePaint2() {
         reloadPaint2();
     }
 
-    // console.log ("last index:" + lastIndexImg2);
-
     // rewrite the last index as the new random number
     lastIndexImg2 = randNumP2;
+}
 
-    // console.log (" / Random:" + randNumP2 + " / src:" + sourceURLimg2);
+// click to randomly change the image2 source
+function shufflePaint3() {
+    // execute the random number
+    let randNumP3 = Math.floor(Math.random() * 20) + 1;
+
+    if (randNumP3 === lastIndexImg3) {
+        shufflePaint2();
+    }
+    else {
+        sourceURLimg3 = "img/paint3/paint3_" + randNumP3 + ".png";
+        reloadPaint3();
+    }
+
+    // rewrite the last index as the new random number
+    lastIndexImg3 = randNumP3;
 }
 
 function reloadPaint1 () {
@@ -177,6 +231,15 @@ function reloadPaint2 () {
     paint2 = loadImage(sourceURLimg2);
 
     paint2Changed = 1;
+    // then this variable enables the auto-update of the draw 
+}
+
+// v0.65
+function reloadPaint3 () {
+    // reloading the paint 2 with the new src
+    paint3 = loadImage(sourceURLimg3);
+
+    paint3Changed = 1;
     // then this variable enables the auto-update of the draw 
 }
 
@@ -216,3 +279,8 @@ function savingCanvas() {
     saveCanvas(sketch, 'yourportrait', 'png');
 }
 
+// v0.65 alternative to above
+// function savingCanvas() {
+//     document.getElementById("downloader").download = "yourportrait.png";
+//     document.getElementById("downloader").href = document.getElementById("myP5canvas1").toDataURL("yourportrait/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+// }

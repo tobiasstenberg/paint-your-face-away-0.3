@@ -1,7 +1,6 @@
 // THE MAIN FILE WHICH HANDLES DRAWING, SETTING UP A P5JS CANVAS ETC.
 
 // update shinji this variable disabled as the button moved to the main html
-// let shuffleButton;    // the button used for shuffling
 let face;             // the face image
 // added shinji 27 july
 let faceURL;
@@ -21,40 +20,38 @@ let brushType = 0;    // current type of brush
 
 // v0.6 see paintBlobs js
 let blob; 
+// v0.65
+let allCanv_width = 600;
+let allCanv_height = 600;
+var p5canv_x;
+var p5canv_y;
+var p5canv_width = allCanv_width;
+var p5canv_height = allCanv_height;
 
 
 function preload () {
     // load in all the images
 
     // face = loadImage("img/face.jpg");
-    // shinji v0.6 disabled
     // face = loadImage("");
-
     // paint1 = loadImage("img/paint1.png");
     // paint2 = loadImage("img/Paint-Img2-102.png");
-
     // // brush 3 added shinji 26 july
-    paint3 = loadImage("img/paint3/paint3_29.png");
+    // v0.65
+    // paint3 = loadImage("img/paint3/Paint-Img3-44.png");
+    
     maskBrush = loadImage("img/brush_sq_r.png");
     // v0.6
     blob = loadImage('img/blobs/blob3.png');
 }
 
 function setup() {
-    sketch = createCanvas(600, 600);
+    sketch = createCanvas(p5canv_width, p5canv_height);
+    // centerP5Canvas();
+
     sketch.id('myP5canvas1');
 
     sketch.parent('compiled');
-    // pixelDensity(2);
-
-    // --- updated shinji 6 july --  the below button moved to the main html
-    // // create the shuffle button
-    // shuffleButton = createButton('Shuffle');
-    // shuffleButton.position(0, 0);
-    // shuffleButton.mousePressed(shufflePaint1);
-    // shuffleButton.class('button');
-    // // update ends here
-
 
     // why are we declaring a new brushSize here? 
     // seems like we can just declare it on line 17 as global declaration and assignment at the same time
@@ -86,19 +83,63 @@ function setup() {
 // addition 5 july shinji
 
 //  below switches for shuffling and changing the paint images with the draw loop below (disabled)
-// let paint1Changed = 0;
-// let paint2Changed = 0;
+let paint1Changed = 0;
+let paint2Changed = 0;
+// v0.65
+let paint3Changed = 0;
 
-function updatingPaint() {
-    drawMaskedPaint();        
-    maskedPaint1 = paint1.get();
-    maskedPaint1.mask(mask1.get());
-    maskedPaint2 = paint2.get();
-    maskedPaint2.mask(mask2.get());
-    // mask3 added 26 july shinji
-    maskedPaint3 = paint3.get();
-    maskedPaint3.mask(mask3.get());
+// v0.65 disabled below
+// function updatingPaint() {
+//     drawMaskedPaint();        
+//     maskedPaint1 = paint1.get();
+//     maskedPaint1.mask(mask1.get());
+//     maskedPaint2 = paint2.get();
+//     maskedPaint2.mask(mask2.get());
+//     // mask3 added 26 july shinji
+//     maskedPaint3 = paint3.get();
+//     maskedPaint3.mask(mask3.get());
+// }
+
+
+
+// function centerP5Canvas() {
+//   var p5canv_x = (windowWidth - p5canv_width) / 2;
+//   var p5canv_y = (windowHeight - p5canv_height) / 2;
+//   sketch.position(p5canv_x, p5canv_y);
+// }
+
+function resizeP5canvas() {
+    // resizeCanvas(allCanv_width, allCanv_height);
+    // resizeCanvas(windowHeight * 0.9, windowHeight * 0.9);
+    p5canvas.width = allCanv_width * dpr;
+    p5canvas.height = allCanv_height * dpr;
 }
+
+
+function setAllCanvasSize(){
+    allCanv_width = windowHeight * 0.9;
+    allCanv_height = windowHeight * 0.9;
+
+    console.log(allCanv_height);
+
+    return allCanv_height, allCanv_width; 
+}
+
+// this one resizing the face landmark canvas
+function resizeLandmarkCanvas() {
+    canvas.width = allCanv_width * dpr;
+    canvas.height = allCanv_height * dpr;
+}
+
+// p5 windoresized event
+function windowResized(){
+    // centerP5Canvas();
+    setAllCanvasSize();
+    resizeP5canvas();
+    resizeLandmarkCanvas();
+    
+  }
+
 
 ///////////////////////
 // the main loop
@@ -124,16 +165,32 @@ function draw() {
     //     }, 2500);
     // }
 
-    // if (paint2Changed === 1) {
+    // v0.65 below enabled again then made shorter
+    if (paint2Changed === 1) {
+        // draw the masked paint image over the top of the face...
+        drawMaskedPaint();        
+        // below lines moved from the drawBrush functions to enable the change of the brush image immediately 
+        // - rather than when the mouse is pressed.
+        maskedPaint2 = paint2.get();
+        maskedPaint2.mask(mask2.get());
+
+        setTimeout(function(){ 
+            paint2Changed = 0;
+            // console.log("changed");
+        }, 400);
+    }
+
+    // v0.65 added below but disabled
+    // if (paint3Changed === 1) {
     //     // draw the masked paint image over the top of the face...
     //     drawMaskedPaint();        
     //     // below lines moved from the drawBrush functions to enable the change of the brush image immediately 
     //     // - rather than when the mouse is pressed.
-    //     maskedPaint2 = paint2.get();
-    //     maskedPaint2.mask(mask2.get());
+    //     maskedPaint3 = paint3.get();
+    //     maskedPaint3.mask(mask3.get());
 
     //     setTimeout(function(){ 
-    //         paint2Changed = 0;
+    //         paint3Changed = 0;
     //         // console.log("changed");
     //     }, 2500);
     // }
@@ -167,33 +224,6 @@ function draw() {
 
 }
 
-
-
-function blurCnv() {
-    // blur function added; an element w/ "myP5canvas1" cannot be placed in the html otherwise the blur wont work.
-    document.querySelector('#myP5canvas1').classList.add('blur'); 
-}
-
-function removeBlurCnv() {
-    document.querySelector('#myP5canvas1').classList.remove('blur'); 
-}
-
-// v0.6 add blur all
-function blurAll() {
-    // blur function added; an element w/ "myP5canvas1" cannot be placed in the html otherwise the blur wont work.
-    document.querySelector('#myP5canvas1').classList.add('blur'); 
-    document.querySelector('#face_buttons').classList.add('blur'); 
-    document.querySelector('#left_container_div__panel').classList.add('blur'); 
-    document.querySelector('#messageWin').classList.add('blur'); 
-}
-
-function removeBlurAll() {
-    document.querySelector('#myP5canvas1').classList.remove('blur'); 
-    document.querySelector('#face_buttons').classList.remove('blur'); 
-    document.querySelector('#left_container_div__panel').classList.remove('blur'); 
-    document.querySelector('#messageWin').classList.remove('blur'); 
-}
-// <- v0.6
 
 ///////////////////////
 function drawBrush0() {
@@ -264,10 +294,6 @@ function initPaint() {
 // shinji reinitialising paint v0.5
 function reInitPaint() {
 
-    mask1.remove();
-    mask2.remove();
-    mask3.remove();
-
     initPaint();
 }
 
@@ -290,21 +316,22 @@ function reloading() {
     face = loadImage(faceURL);
 }
 
+// v0.65 disabled below
 // ///// recreate the shuffle update function here w/ setinterval
-let updating;
+// let updating;
 
-function updateChangedBrush() {
-    clearInterval(updating);
-    clearTimeout();
+// function updateChangedBrush() {
+//     clearInterval(updating);
+//     clearTimeout();
 
-    setTimeout(function(){ 
-        updating = setInterval(updatingPaint, 400);
-        // updatingPaint();
-    }, 1200);
+//     setTimeout(function(){ 
+//         updating = setInterval(updatingPaint, 400);
+//         // updatingPaint();
+//     }, 1200);
 
-    clearInterval(updating);
+//     clearInterval(updating);
 
-  }
+//   }
 
 
 

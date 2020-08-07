@@ -71,6 +71,34 @@ function removeBlinkerCSStxt1() {
     document.querySelector("#msgTxt1_1").classList.remove("blink_message");
 }
 
+
+// blur moved from v0.65 main js
+function blurCnv() {
+    // blur function added; an element w/ "myP5canvas1" cannot be placed in the html otherwise the blur wont work.
+    document.querySelector('#myP5canvas1').classList.add('blur'); 
+}
+
+function removeBlurCnv() {
+    document.querySelector('#myP5canvas1').classList.remove('blur'); 
+}
+
+// v0.6 add blur all
+function blurAll() {
+    // blur function added; an element w/ "myP5canvas1" cannot be placed in the html otherwise the blur wont work.
+    document.querySelector('#myP5canvas1').classList.add('blur'); 
+    document.querySelector('#face_buttons').classList.add('blur'); 
+    document.querySelector('#left_container_div__panel').classList.add('blur'); 
+    document.querySelector('#messageWin').classList.add('blur'); 
+}
+
+function removeBlurAll() {
+    document.querySelector('#myP5canvas1').classList.remove('blur'); 
+    document.querySelector('#face_buttons').classList.remove('blur'); 
+    document.querySelector('#left_container_div__panel').classList.remove('blur'); 
+    document.querySelector('#messageWin').classList.remove('blur'); 
+}
+// <- v0.6
+
 ////////////////////////////////
 
 // load a text/html into the main html
@@ -296,6 +324,15 @@ function disableSave() {
     document.querySelector("#save_button").removeEventListener("click", showPopDiv);
     
     console.log("save disabled");
+}
+
+// v0.65
+function addSavingFunctionToReset() {
+    document.querySelector("#reset").addEventListener("click", disableSave);
+}
+
+function removeSavingFunctionToReset() {
+    document.querySelector("#reset").removeEventListener("click", disableSave);
 }
 
 let timing;

@@ -8,16 +8,6 @@ const detection_options = {
     withDescriptors: false,
 }
 
-// function preload(){
-//     img = loadImage('assets/face.jpg')
-// }
-
-// function setup() {
-//     createCanvas(600, 600);
-
-//     faceapi = ml5.faceApi(detection_options, modelReady)
-//     textAlign(RIGHT);
-// }
 
 function modelReady() {
     console.log('ready!')
