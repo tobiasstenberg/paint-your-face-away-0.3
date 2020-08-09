@@ -192,13 +192,13 @@ function shufflePaint1() {
 // click to randomly change the image2 source
 function shufflePaint2() {
     // execute the random number
-    let randNumP2 = Math.floor(Math.random() * 13) + 1;
+    let randNumP2 = Math.floor(Math.random() * 197) + 1;
 
     if (randNumP2 === lastIndexImg2) {
         shufflePaint2();
     }
     else {
-        sourceURLimg2 = "img/paint2_" + randNumP2 + ".png";
+        sourceURLimg2 = "img/paint2/paint2_" + randNumP2 + ".png";
         reloadPaint2();
     }
 
