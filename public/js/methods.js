@@ -13,22 +13,27 @@ function changeGlobalComposite(operation) { p5.instance.drawingContext.globalCom
 
 // shinji the size calc changed
 function switchSmlBrush() { 
-    brushSize = 600 / 40; 
+    // v0.7
+    brushSize = allCanv_width / 40; 
+    // brushSize = 600 / 40; 
     // brushSize = 15; 
 
 }
 
 function switchMedBrush() { 
     // brushSize = 38; 
-    brushSize = 600 / 15.7894; 
-
+    // brushSize = 600 / 15.7894; 
+    // v0.7
+    brushSize = allCanv_width / 15.7894; 
 
 }
 
 // shinji new size added
 function switchLrgBrush() { 
     // brushSize = 64; 
-    brushSize = 600 / 9.375; 
+    // brushSize = 600 / 9.375;
+    // v0.7
+    brushSize = allCanv_width / 9.375; 
 
 }
 
@@ -274,7 +279,7 @@ for (var i = 0; i < TempSelectButton.length; i++) {
 
 // ////////////// 
 
-// update 27 july shinji
+// // update 27 july shinji
 function savingCanvas() {
     saveCanvas(sketch, 'yourportrait', 'png');
 }
@@ -283,4 +288,19 @@ function savingCanvas() {
 // function savingCanvas() {
 //     document.getElementById("downloader").download = "yourportrait.png";
 //     document.getElementById("downloader").href = document.getElementById("myP5canvas1").toDataURL("yourportrait/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+// }
+
+// v0.7?
+// function savingCanvas() {
+//     document.getElementById("myP5canvas1").toBlob(
+//         function (blob) {
+//             var link = document.createElement('a');
+
+//             link.download = 'yourportrait.png';
+//             link.href = URL.createObjectURL(blob);
+//             link.click();
+//         },
+//         'image/png',
+//         0.8
+//     );
 // }

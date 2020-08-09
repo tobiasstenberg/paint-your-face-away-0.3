@@ -20,13 +20,15 @@ let brushType = 0;    // current type of brush
 
 // v0.6 see paintBlobs js
 let blob; 
-// v0.65
-let allCanv_width = 600;
-let allCanv_height = 600;
+// v0.7
+let allCanv_width = 750;
+let allCanv_height = 750;
 var p5canv_x;
 var p5canv_y;
 var p5canv_width = allCanv_width;
 var p5canv_height = allCanv_height;
+var winWidth = window.matchMedia("(max-width: 767px)")
+
 
 
 function preload () {
@@ -75,8 +77,25 @@ function setup() {
 
     idingCanvas();
 
+    // v0.7
+    if (winWidth.matches) { 
+        // If the window below 768px query matches
+        // enter mobile
+        console.log("mob");
+        p5canvas.style.width  = (window.innerWidth * 0.9)  + "px";
+        p5canvas.style.height = (window.innerWidth * 0.9)  + "px";
+    } else {
+        // enter non mobile
+        console.log("non mob");
+        p5canvas.style.width  = (window.innerHeight * 0.9)  + "px";
+        p5canvas.style.height = (window.innerHeight * 0.9)  + "px";
+    }
+      
     // shinji v0.6
     showImgButton();
+
+
+
 }
 
 
@@ -99,46 +118,6 @@ let paint3Changed = 0;
 //     maskedPaint3 = paint3.get();
 //     maskedPaint3.mask(mask3.get());
 // }
-
-
-
-// function centerP5Canvas() {
-//   var p5canv_x = (windowWidth - p5canv_width) / 2;
-//   var p5canv_y = (windowHeight - p5canv_height) / 2;
-//   sketch.position(p5canv_x, p5canv_y);
-// }
-
-function resizeP5canvas() {
-    // resizeCanvas(allCanv_width, allCanv_height);
-    // resizeCanvas(windowHeight * 0.9, windowHeight * 0.9);
-    p5canvas.width = allCanv_width * dpr;
-    p5canvas.height = allCanv_height * dpr;
-}
-
-
-function setAllCanvasSize(){
-    allCanv_width = windowHeight * 0.9;
-    allCanv_height = windowHeight * 0.9;
-
-    console.log(allCanv_height);
-
-    return allCanv_height, allCanv_width; 
-}
-
-// this one resizing the face landmark canvas
-function resizeLandmarkCanvas() {
-    canvas.width = allCanv_width * dpr;
-    canvas.height = allCanv_height * dpr;
-}
-
-// p5 windoresized event
-function windowResized(){
-    // centerP5Canvas();
-    setAllCanvasSize();
-    resizeP5canvas();
-    resizeLandmarkCanvas();
-    
-  }
 
 
 ///////////////////////
@@ -316,24 +295,137 @@ function reloading() {
     face = loadImage(faceURL);
 }
 
-// v0.65 disabled below
-// ///// recreate the shuffle update function here w/ setinterval
-// let updating;
-
-// function updateChangedBrush() {
-//     clearInterval(updating);
-//     clearTimeout();
-
-//     setTimeout(function(){ 
-//         updating = setInterval(updatingPaint, 400);
-//         // updatingPaint();
-//     }, 1200);
-
-//     clearInterval(updating);
-
-//   }
 
 
 
+
+
+//////////////////////////////////////////////
+// below resizing
+
+// function centerP5Canvas() {
+//   var p5canv_x = (windowWidth - p5canv_width) / 2;
+//   var p5canv_y = (windowHeight - p5canv_height) / 2;
+//   sketch.position(p5canv_x, p5canv_y);
+// }
+
+
+function setAllCanvasSize(){
+    // allCanv_width = window.innerHeight * 0.9;
+    // allCanv_height = window.innerHeight * 0.9;
+    // resizeCanvas(windowHeight * 0.9, windowHeight * 0.9);
+    allCanv_width = 670;
+    allCanv_height = 670;
+
+    console.log(allCanv_height);
+
+    return allCanv_height, allCanv_width; 
+}
+
+// v0.7
+function resizeP5canvas() {
+    // resizeCanvas(allCanv_width, allCanv_height);
+    // resizeCanvas(windowHeight * 0.9, windowHeight * 0.9);
+    p5canvas.width = allCanv_width * dpr;
+    p5canvas.height = allCanv_height * dpr;
+}
+function resizeStyleP5canvas() {
+    // p5canvas.style.width  = allCanv_width  + "px";
+    // p5canvas.style.height = allCanv_height  + "px";
+    p5canvas.style.width  = (window.innerHeight * 0.9)  + "px";
+    p5canvas.style.height = (window.innerHeight * 0.9)  + "px";
+}
+function resizeStyleP5canvasMob() {
+    p5canvas.style.width  = (window.innerWidth * 0.9)  + "px";
+    p5canvas.style.height = (window.innerWidth * 0.9)  + "px";
+}
+
+
+// v0.7
+// this one resizing the face landmark canvas
+function resizeLandmarkCanvas() {
+    canvas.width = allCanv_width * dpr;
+    canvas.height = allCanv_height * dpr;
+}
+// this one resizing the face landmark canvas
+function resizeStyleLandmarkCanvas() {
+    // canvas.style.width  = allCanv_width  + "px";
+    // canvas.style.height = allCanv_height  + "px";
+    canvas.style.width  = (window.innerHeight * 0.9)  + "px";
+    canvas.style.height = (window.innerHeight * 0.9)  + "px";
+}
+function resizeStyleLandmarkCanvasMob() {
+    canvas.style.width  = (window.innerWidth * 0.9)  + "px";
+    canvas.style.height = (window.innerWidth * 0.9)  + "px";
+}
+
+
+
+
+// // p5 windoresized event
+// function windowResized(){
+//     // centerP5Canvas();
+//     // changing the canvas size var and copy to the sizes of the p5 canv and the landmark canvas
+//     // setAllCanvasSize();
+//     // resizeP5canvas();
+//     // resizeLandmarkCanvas();
+
+//     /////////
+
+//     if (winWidth.matches) { // If media query matches
+//         //   setAllCanvasSize();
+//         //   resizeP5canvas();
+//         //   resizeLandmarkCanvas();
+//         resizeStyleLandmarkCanvasMob();
+//         resizeStyleP5canvasMob();
+//     } else {
+//         resizeStyleP5canvas();
+//         resizeStyleLandmarkCanvas();
+
+//     }
+    
+
+// }
+
+
+
+
+/////////////////////////////////////////////////////
+// media query below
+
+function mediaQ(winWidth) {
+    if (winWidth.matches) { // If media query matches
+        // enter mobile
+        console.log("mob");
+        resizeStyleLandmarkCanvasMob();
+        resizeStyleP5canvasMob();
+    } else {
+        // enter non mobile
+        console.log("non mob");
+        resizeStyleP5canvas();
+        resizeStyleLandmarkCanvas();
+    }
+  }
+  
+//   v0.7 moved to head
+  // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_matchmedia2
+//   var winWidth = window.matchMedia("(max-width: 767px)")
+//   mediaQ(winWidth) // Call listener function at run time
+//   winWidth.addListener(mediaQ) // Attach listener function on state changes
+  
+
+// // // initial function to get the the windowsize and resize the canvases
+// function getWindowSizeForCanvasSize(winWidth) {
+//     if (winWidth.matches) {
+//         // if window is small get the width as the canvas size
+//         allCanv_width = window.innerWidth * 0.9;
+//         allCanv_height = window.innerWidth * 0.9;
+//     } else {
+//         // if not use the window hight
+//         allCanv_width = window.innerHeight * 0.9;
+//         allCanv_height = window.innerHeight * 0.9;
+//     }
+
+// }
 
 

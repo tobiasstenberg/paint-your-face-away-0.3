@@ -10,11 +10,16 @@
 let faceapi;
 // let img;
 let detections;
-let landCanvWidth = allCanv_width;
-let landCanvHeight = allCanv_height;
+let landCanvWidth = allCanv_width ;
+let landCanvHeight = allCanv_height ;
 let canvas, context;
-// v0.6
-
+// v0.7
+// let landLineWidth1 = 3;
+// let landLineWidth2 = 2;
+// let boxLineWidth = 2 ;
+let landLineWidth1 = (allCanv_width + allCanv_height / 2) / 300;
+let landLineWidth2 = (allCanv_width + allCanv_height / 2) / 400;
+let boxLineWidth = (allCanv_width + allCanv_height / 2) / 400;
 
 
 // by default all options are set to true
@@ -35,7 +40,6 @@ const detection_options = {
 }
 
 
-
 async function make(){
     // img = new Image();
     // img.src = 'img/face.jpg';
@@ -53,7 +57,6 @@ async function make(){
 window.addEventListener('DOMContentLoaded', function() {
     make();
   });
-
 
 function modelReady() {
     console.log('ready!')
@@ -97,6 +100,8 @@ function gotInitResults(err, result) {
         // v0.65
         enterNoDetectionMode();
         
+        // v0.7 hidespinner() moved from openimage.js
+        hideSpinner();
         return 
     }
 
@@ -113,7 +118,10 @@ function gotInitResults(err, result) {
         // v0.65
         enterDetectionMode();
 
+        // v0.7 hidespinner() moved from openimage.js
+        hideSpinner();
     } 
+
 }
 // <- v0.6
 // timeout detection just for the initial detection
@@ -140,11 +148,10 @@ function runDetection() {
 
 ////////
 function gotResults(err, result) {
-    hideSpinner();
 
     // if the detection goes off after the second time
     if (err) {
-        console.log(err)
+        // console.log(err)
         console.log("not detected")
 
         stopTimeout(); 
@@ -154,6 +161,9 @@ function gotResults(err, result) {
         // added v0.6
         selectNaviMsg2();
         
+        // v0.7 hidespinner() moved from the top of the function
+        hideSpinner();
+
         return 
     }
 
@@ -164,7 +174,12 @@ function gotResults(err, result) {
         console.log(detections)
         drawBox(detections)
         drawLandmarks(detections)
+
+        // v0.7 hidespinner() moved from the top of the function
+        hideSpinner();
+        console.log(result)
     } 
+
 }
 
 // v0.6
@@ -186,7 +201,6 @@ function timeoutDetect() {
 // the detection - for blobs - connected to paintBlobs.js
 
 function gotResultsBlobs(err, result) {
-    hideSpinner();
 
     // if the detection goes off 
     if (err) {
@@ -199,6 +213,9 @@ function gotResultsBlobs(err, result) {
 
         selectNaviMsg2();
         
+        // v0.7 hidespinner() moved from the top of the function
+        hideSpinner();
+
         return 
     }
 
@@ -212,7 +229,12 @@ function gotResultsBlobs(err, result) {
         throwPaint();
         drawBox(detections)
         drawLandmarks(detections)
+
+        // v0.7 hidespinner() moved from the top of the function
+        hideSpinner();
     } 
+
+
 }
 
 // v0.6 detection for blob
@@ -249,10 +271,10 @@ function drawLandmarks(detections){
     })
     context.closePath();
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3 * dpr;
+    context.lineWidth = landLineWidth1 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2 * dpr;
+    context.lineWidth = landLineWidth2 * dpr;
     context.stroke();
 
     // nose
@@ -265,10 +287,10 @@ function drawLandmarks(detections){
         }
     })
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3 * dpr;
+    context.lineWidth = landLineWidth1 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2 * dpr;
+    context.lineWidth = landLineWidth2 * dpr;
     context.stroke();
 
     // // left eye
@@ -282,10 +304,10 @@ function drawLandmarks(detections){
     })
     context.closePath();
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3 * dpr;
+    context.lineWidth = landLineWidth1 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2 * dpr;
+    context.lineWidth = landLineWidth2 * dpr;
     context.stroke();
 
     // // right eye
@@ -300,10 +322,10 @@ function drawLandmarks(detections){
     
     context.closePath();
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3 * dpr;
+    context.lineWidth = landLineWidth1 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2 * dpr;
+    context.lineWidth = landLineWidth2 * dpr;
     context.stroke();
 
     // // right eyebrow
@@ -316,10 +338,10 @@ function drawLandmarks(detections){
         }
     })
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3 * dpr;
+    context.lineWidth = landLineWidth1 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2 * dpr;
+    context.lineWidth = landLineWidth2 * dpr;
     context.stroke();
     context.closePath();
 
@@ -334,10 +356,10 @@ function drawLandmarks(detections){
         }
     })
     context.strokeStyle = "rgb(255, 0, 0)";
-    context.lineWidth = 3 * dpr;
+    context.lineWidth = landLineWidth1 * dpr;
     context.stroke();
     context.strokeStyle = "#ffffff";
-    context.lineWidth = 2 * dpr;
+    context.lineWidth = landLineWidth2 * dpr;
     context.stroke();
 
     // context.closePath();
@@ -351,7 +373,7 @@ function drawBox(detections){
     const {_x, _y, _width, _height} = alignedRect._box;
     // canvas.fillStyle = 'none';
     context.strokeStyle = "rgb(255, 128, 128)";
-    context.lineWidth = 2 * dpr;
+    context.lineWidth = boxLineWidth * dpr;
     context.rect(_x, _y, _width, _height );
     context.stroke();
 
@@ -366,6 +388,7 @@ function drawBox(detections){
 
 
 // Helper Functions
+// create the canvas for drawing the landmarks on
 function createCanvasFace(w, h){
     
     const canvas = document.createElement("canvas"); 
@@ -376,9 +399,25 @@ function createCanvasFace(w, h){
     canvas.addEventListener("mouseleave", tempDisableDraw);
 
     // v0.65
+    // v0.7 resolution half of p5 to make it lighter
     canvas.width = w * dpr ;
-    canvas.height  = h * dpr;
-    document.body.appendChild(canvas);
+    canvas.height  = h * dpr ;
+    // v0.7
+    // canvas.style.width  = w  + "px";
+    // canvas.style.height = h  + "px";
+    // v0.7 -> revised below resize the css style of the canvas
+    if (winWidth.matches) { 
+        // If the window below 768px query matches
+        // enter mobile
+        canvas.style.width  = (window.innerWidth * 0.9)  + "px";
+        canvas.style.height = (window.innerWidth * 0.9)  + "px";
+    } else {
+        // enter non mobile
+        canvas.style.width  = (window.innerHeight * 0.9)  + "px";
+        canvas.style.height = (window.innerHeight * 0.9)  + "px";
+    }
+
+    document.querySelector("#compiled").appendChild(canvas);
 
     // below line added to give an id to the canv
     canvas.id = "land_canv";
@@ -392,7 +431,8 @@ function createCanvasFace(w, h){
 
 let autoDetect;
 
-function faceRedraw() {
+// 0.7 async
+async function faceRedraw() {
     autoDetect = setInterval(runDetection, 1200);
     }
 

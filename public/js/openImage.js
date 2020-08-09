@@ -61,8 +61,6 @@ window.addEventListener('load', function() {
 
                 } 
                 else {
-                    // resizeCanvas(600, 600);
-                    //
                     // p5canvas.width = img.width * canvasScale;
                     // p5canvas.height = img.height * canvasScale;
                     //
@@ -91,6 +89,9 @@ window.addEventListener('load', function() {
             
             showSpinner();
 
+            // v0.7
+            context.clearRect(0, 0, width * dpr, height * dpr);
+
             setTimeout(function(){ 
                 showPaintPanel();
                 // v0.6 moved the  showDetectButtons();
@@ -99,10 +100,10 @@ window.addEventListener('load', function() {
                 // swapped for the initial detection
                 // v0.6
                 // v0.65 temp disable below
+
                 timeoutInitDetect();
 
-                hideSpinner();
-
+                // v0.7 no hidespinner()
             }, 1000);
 
             // v0.6 activate paint blob
@@ -127,12 +128,22 @@ window.addEventListener('load', function() {
 
         ctx0.clearRect(0, 0, width, height);
         ctx0.drawImage(newFace, left / dpr, top / dpr, w / dpr, h / dpr);
-
-        // ctx0.resize(width, height);
-        // image(face, left, top , w, h);
+        
   }
 
+//   0.7 disabled
+//   function resizeLoadedImageWinResize() {
+//     // // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
+//     var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
+//     var w = newFace.width * scale;
+//     var h = newFace.height * scale;
+//     var left = p5canvas.width / 2 - w / 2;
+//     var top = p5canvas.height / 2 - h / 2;
 
+//     ctx0.clearRect(0, 0, width, height);
+//     ctx0.drawImage(newFace, left , top , w , h );
+
+// }
 
 
 

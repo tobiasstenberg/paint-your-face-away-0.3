@@ -39,7 +39,7 @@ var sourceURLblob;
 // click to randomly change the image1 source
 function shuffleBlob() {
     // execute the random number
-    let randNumBlob = Math.floor(Math.random() * 9) + 1;
+    let randNumBlob = Math.floor(Math.random() * 244) + 1;
 
     if (randNumBlob === lastIndexBlob) {
         // if the random num is same as the last time shuffle again
