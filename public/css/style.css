@@ -453,6 +453,7 @@ label {
 
 .button_paint_square p {
   margin: 0;
+  text-align: center;
 }
 
 .button_paint_square:hover {

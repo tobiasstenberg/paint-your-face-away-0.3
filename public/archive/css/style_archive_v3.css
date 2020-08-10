@@ -226,6 +226,7 @@ https://stackoverflow.com/questions/21086385/how-to-make-in-css-an-overlay-over-
 
     .thumb_container {
         margin: 80px 50px;
+
         }
 
     .image_container {
@@ -257,3 +258,17 @@ https://stackoverflow.com/questions/21086385/how-to-make-in-css-an-overlay-over-
   display: none;
 }
 
+
+
+/* /////////ver 0.75////// */
+
+/* marquees */
+
+.scrolling_text {
+ position: absolute;
+ top: 50%; left: 50%;
+ -webkit-transform: translate(-50%, -50%);
+ -ms-transform: translate(-50%, -50%);
+ transform: translate(-50%, -50%);
+ text-align: center;
+}

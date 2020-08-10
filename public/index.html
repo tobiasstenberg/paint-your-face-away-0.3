@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 
     <!-- v0.65 -->
 
@@ -31,41 +35,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
 
 
-    <!-- v0.7 -->
-    <script>
-        // // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_matchmedia2
-        // // prepare for the emdia query
-        // let allCanv_width ;
-        // let allCanv_height ;
-        // var winWidth = window.matchMedia("(max-width: 767px)");
+    <title>paintyourfaceaway</title>
 
-        // // // initial function to get the the windowsize and resize the canvases
-        // function getWindowSizeForCanvasSize(winWidth) {
-        //     if (winWidth.matches) {
-        //         // if window is small get the width as the canvas size
-        //         allCanv_width = window.innerWidth * 0.9;
-        //         allCanv_height = window.innerWidth * 0.9;
-        //     } else {
-        //         // if not use the window hight
-        //         allCanv_width = window.innerHeight * 0.9;
-        //         allCanv_height = window.innerHeight * 0.9;
-        //     }
 
-        // }
-    </script>
+    <!-- <style>
+    .container-fluid{
+      position: fixed;
+    }
+    .left_column {
+      height: 500px;
+    }
+    .centre_column {
+      height: 300px;
+    }
+    .right_column {
+      height: 20vh;
+    }
+    .detection_buttons {
+      height: 10vh;
+    }
+    .panel_buttons_bottom_sides {
+      height: 40px;
+      bottom: 0px;
+    }
+    #main_panel {
+      /* padding: 20px; */
+      margin: 0px;
+    }
+    #bottom_dashboard {
+      bottom: 0px;
+    }
+    </style> -->
 
   </head>
   <!-- on load the program will as default switch to a medium brush size of 38 -->
   <body class="" onload=" shufflePaint1(), shufflePaint2(), shufflePaint3(), switchBrushType(0), switchBrushSize(), switchMedBrush(), loadTxt_1(), loadTxt_2(), hideAllNaviMsg(), disableDraw(), addSavingFunctionToReset()">
 
-    <!-- v0.65 disabled -->
-    <!-- <video id="videofeed" width="720" height="560" autoplay muted></video> -->
+    <!-- bootstrap container 1 main panel -->
+    <!-- <div class="container-fluid" id="main_panel">
+      <div class="row">
 
+        <div class="col-lg-3 left_column" style="background-color:lavender;">.col-sm-3</div>
 
-      <!-- <div id="compiled" onmouseout="tempDisableDraw()" onmouseover="tempEnableDraw()"> -->
-      <div id="compiled" class="non_select">
+        <div class="col-lg centre_column" style="background-color:lavenderblush;">.col-sm-3</div>
+
+        <div class="col-lg-3 right_column" style="background-color:lavender;">.col-sm-3</div>
 
       </div>
+    </div> -->
+    
+    <!-- bootstrap container 2 bottom dashboard -->
+    <!-- <div class="container-fluid" id="bottom_dashboard">
+      <div class="row">
+        <div class="col-lg-3 panel_buttons_bottom_sides" style="background-color:rgb(131, 20, 20);">jaiodjsofjiadsjfo</div>
+        <div class="col-lg detection_buttons" style="background-color:aqua;">jaiodjsofjiadsjfo</div>
+        <div class="col-lg-3 panel_buttons_bottom_sides" style="background-color:rgb(238, 255, 0);">jaiodjsofjiadsjfo</div>
+      </div>
+    </div> -->
+
+
+    <!-- an independent div with the p5 canvas and the face detection canavas attached to it -->
+    <!-- <div id="compiled" onmouseout="tempDisableDraw()" onmouseover="tempEnableDraw()"> -->
+    <div id="compiled" class="non_select">
+    </div>
 
 
     <!-- ////////////////// non-canvas interface elements below ///////////////// -->
@@ -93,7 +125,6 @@
           </br></br>
         </p>
         
-        <!-- v0.65 disabled -->
         <!-- <a href="#" id="downloader" onclick="savingCanvas()" download="yourportrait.png"> -->
           <div class="button_paint_long button tempSelect " id="save_button" >SAVE</div>
         <!-- </a> -->
@@ -107,15 +138,15 @@
       
     <!-- </div> -->
 
-    <!-- added shinji 11jul -->
+    <!-- this should hide the "loading" message of p5 -->
+    <!-- https://github.com/processing/p5.js/wiki/p5.js-overview#loading-screen  -->
+    <div id="p5_loading" style="display: none;"></div>
+
     <p id="homeURL" class="non_select"> <span class="selectURL">paintyourfaceaway.net</span> | 
       <a href="info/index.html"><span class="unselectURL">info</span></a> | <a href="archive/index.html"><span class="unselectURL">archive</span></a> </p>
 
-<!-- non jump ver:  <span onclick="showInfoDiv()" class="unselectURL">info</span> -->
 
-    <!-- added shinji 11jul -->
     <div id="left_container_div__panel" >
-      <!-- addition 4 july shinji -->
       <div class="div_panel non_select">
         <div class="wrapper_paint_buttons">
           <h3 class="txt_paint_tools">Brush Type</h3>
@@ -123,9 +154,10 @@
           <button class="button button_paint_square btn_brush_type" id="brushType2" onclick="switchBrushType(1)">2 -->
             <div class="button button_paint_square btn_brush_type active1" id="brushType1" onclick="switchBrushType(0)" 
             style="width: 36px; height: 32.72px;"><img src="img/button1.gif" id="btn_b_Type1"> <p></p></div>
+
             <div class="button button_paint_square btn_brush_type" id="brushType2" onclick="switchBrushType(1)"
             style="width: 36px; height: 32.72px;"><img src="img/button2.gif" id="btn_b_Type2" > <p></p></div>
-            <!-- brush 3added shinji 26 july -->
+
             <div class="button button_paint_square btn_brush_type" id="" onclick="switchBrushType(2)"
             style="width: 36px; height: 32.72px;"><img src="img/button3.gif" id="" > </div>  
 
@@ -153,7 +185,6 @@
 
         <!-- <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch()">Reset -->
         </br>
-        <!-- v0.65 removed disableSave() -->
         <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint2()">Reset</button>
         <!-- <button class="button_paint_long button tempSelect" id="reset" onclick="resetSketch2(), shufflePaint1(), shufflePaint2(), updateChangedBrush()">Reset -->
           
@@ -204,6 +235,10 @@
         <br><br>
         **The site uses <a href="https://learn.ml5js.org/docs/#/reference/face-api" target="_blank">face detection algorithms</a> but does not deploy the facial recognition functions for identification purposes or emotional analysis. The facial geometrics of the faces in the images uploaded will not be stored on our site.
       </p>
+
+      <hr>
+
+      <p>Project by Shinji Toya, commissioned by Fotomuseum Winterthur, made with the support of <a href="#"><span class="textLink">the contributors</span></a></p>
 
     </div>
 
@@ -278,7 +313,6 @@
     <script src="./js/userImage.js"></script>
     <script src="./js/style.js"></script>
 
-      <!-- v0.6 new function -->
     <script src="./js/paintBlobs.js"></script>
 
     <script src="./js/ml5faceApiJs.js"></script>
