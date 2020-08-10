@@ -64,7 +64,7 @@
 
       <!-- <div id="compiled" onmouseout="tempDisableDraw()" onmouseover="tempEnableDraw()"> -->
       <div id="compiled" class="non_select">
-        
+
       </div>
 
 
@@ -188,20 +188,21 @@
       <input class="button" id="fileInput" type="file" value="Open Image">
 
       <p style="margin-top: 0px;">
-        ↓ 
+        
         <br>
-        *The image will not be stored on the server of this site as it stays on your browser.
 
       </p>
 
       <center>
-        <div id="webcam_button" class="button button_paint_long" onclick="" >Use a Webcam </div>
+        <div id="webcam_button" class="button button_paint_long" onclick="resizeVideoContainerDiv();" >Use a Webcam* </div>
       </center>
 
       <hr>
       
       <p>
-        **The site uses face detection algorithms but does not deploy the facial recognition functions for identification purposes or emotional analysis. The facial geometrics of the faces in the images uploaded will not be stored on our site.
+        *The uploaded and edited image will not be stored on the server of this site as it stays on your browser.
+        <br><br>
+        **The site uses <a href="https://learn.ml5js.org/docs/#/reference/face-api" target="_blank">face detection algorithms</a> but does not deploy the facial recognition functions for identification purposes or emotional analysis. The facial geometrics of the faces in the images uploaded will not be stored on our site.
       </p>
 
     </div>
@@ -209,6 +210,16 @@
     <br>
 
 
+
+<!-- VIDEO SOURCE INTEGRAL TO WEBCAM WILL NOT WORK UNLESS THE CONNECTION IS HTTPS!!!! -->
+<div id="vid-container">
+  <video id="vid-src" crossorigin="anonymous" autoplay></video>
+  <!-- <video id="vid-src" crossorigin="anonymous" height="600px" autoplay></video> -->
+</div>
+
+<!-- BUTTON FOR TAKING IMAGE!!! -->
+<button id="snap" type="button" class="button button_paint_long tempSelect">Screen Shoot</button>
+<!-- <button id="snap" type="button" class="button button_paint_long">Screen Shoot</button> -->
 
 
 <!-- v0.6 -->
@@ -253,6 +264,10 @@
       <!-- v0.6 -->
 <button style="bottom:0px; position:absolute; z-index: 200;" onclick="enableBlob()">show</button>
 <!-- <button style="bottom:20px; position:absolute; z-index: 200;" onclick="mediaQ(winWidth)">resize</button> -->
+<!-- v0.75 -->
+<!-- <button style="bottom:40px; position:absolute; z-index: 200;" onclick="copyTheWebcamCanv()">copy webcam</button> -->
+<!-- <button style="bottom:40px; position:absolute; z-index: 200;" onclick="resizeVideoContainerDiv()">resize vid</button> -->
+
 
 <!-- <button style="bottom:20px; position:absolute;" onclick="detect()" id="fapi_button">face-api</button> -->
 
@@ -260,7 +275,7 @@
     <!-- loading of all program scripts -->
     <script src="./js/main.js"></script>
     <script src="./js/methods.js"></script>
-    <script src="./js/openImage.js"></script>
+    <script src="./js/userImage.js"></script>
     <script src="./js/style.js"></script>
 
       <!-- v0.6 new function -->

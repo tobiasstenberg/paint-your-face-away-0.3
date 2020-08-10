@@ -6,14 +6,10 @@
 var p5canvas;
 var newFace;
 
-
-// // this function needs to be an async callback!
-// setTimeout(function(){
-//     var fileInput = document.querySelector('#fileInput');
-//     p5canvas = document.querySelector('#myP5canvas1');
-//     console.log("timeout p5canv id'ed");
-//     showImgButton();
-// }, 2500)
+// v0.75 ali
+let vidstream;
+// const vidSrc = document.getElementById('vid-src');
+const vidSrc = document.getElementById('vid-src');
 
 
 function idingCanvas() {
@@ -35,8 +31,6 @@ window.addEventListener('load', function() {
             newFace.src = URL.createObjectURL(this.files[0]); // set src to blob url
 
             var ctx0 = p5canvas.getContext("2d");
-            // shinji show image upload button here so that the ctx0 won't be empty
-            // showImgButton();
 
 
             // convert the newFace src here
@@ -48,7 +42,6 @@ window.addEventListener('load', function() {
 
             newFace.onload = function() { 
         
-                // v0.4 shinji 30 jul 
                 unborder = p5canvas.style.border = "0px";
 
                 // addition shinji 27 july
@@ -63,7 +56,6 @@ window.addEventListener('load', function() {
                 else {
                     // p5canvas.width = img.width * canvasScale;
                     // p5canvas.height = img.height * canvasScale;
-                    //
                     canvasScale = Math.min(900 / newFace.width, 900 / newFace.height);
 
                     resizeLoadedImage();
@@ -72,12 +64,10 @@ window.addEventListener('load', function() {
         
             };
 
-            // reflect the change to the global ?
+            // reflect the change to the global 
             window.ctx0 = ctx0;
         
-            reloading();
 
-            // resetSketch();
             resetSketch2();
             // v0.6 update
             disableSave();
@@ -93,13 +83,10 @@ window.addEventListener('load', function() {
             context.clearRect(0, 0, width * dpr, height * dpr);
 
             setTimeout(function(){ 
-                showPaintPanel();
                 // v0.6 moved the  showDetectButtons();
 
                 // timeoutDetect();
                 // swapped for the initial detection
-                // v0.6
-                // v0.65 temp disable below
 
                 timeoutInitDetect();
 
@@ -115,10 +102,7 @@ window.addEventListener('load', function() {
   });
 
 
-  function resizeLoadedImage() {
-        // face = loadImage(faceURL);   
-        // face = newFace; 
-        
+  function resizeLoadedImage() {        
         // // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
         var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);
         var w = newFace.width * scale;
@@ -147,15 +131,170 @@ window.addEventListener('load', function() {
 
 
 
+    // v0.75 ali /////
+      // turn on webcam on for user to take image. 
+    // how does it work? Well you have to request permission from the 
+    // user first, and also request a track. In this case just video, no audio.
+    // from there we handle the operation through a series of callbacks, with a 
+    // catch error statement. 
+    // As well once permission is granted by the user, we remove the div and 
+    // DOM elements that live within the empty canvas.
+    document.querySelector('#webcam_button').addEventListener('click', function() {
+
+        if(navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ 
+                video: true
+            })
+            .then(function(stream) {
+    
+                vidstream = stream; 
+                vidSrc.srcObject = stream;
+                console.log(vidSrc)
+
+
+                hideImgButton();
+                unborder = p5canvas.style.border = "0px";
+                showWebcamInterface();
+
+            }).catch(function (err0r) {
+                console.log(err0r)
+                console.log("Something went wrong!");
+            });
+        }
+    });
+
+
+// v0.75 ali //////////SNAP /////////////
+        /**
+     * Take take image from webcam and draw it onto canvas. This can only be done when the
+     * webcam is off as the snap button is hidden.
+     */
+    document.querySelector('#snap').addEventListener('click', function() {
+        var ctx0 = p5canvas.getContext("2d");
+        ctx0.clearRect(0, 0, width , height );
+        // ctx0.drawImage(vidSrc, 0, 0, vidSrc.clientWidth , vidSrc.clientHeight );
+        var aspectRatioVid = vidSrc.clientWidth / vidSrc.clientHeight;
+        
+        // v0.75 -------below prev ver with the image not cropped but just reisized to fit the canv-----
+        ctx0.drawImage(vidSrc, 0, 
+            (p5canvas.height - (p5canvas.width / aspectRatioVid)) / 2 / dpr , 
+            p5canvas.width / dpr, 
+            (p5canvas.width / aspectRatioVid) / dpr 
+            );
+        // ----------------------
+
+        // // v0.75 ---------below draw image to the p5 canvas / centres and crops
+        // ctx0.drawImage(vidSrc, 
+        //     - ((p5canvas.width * aspectRatioVid) - p5canvas.width) / 2 / dpr, 
+        //     0, 
+        //     (p5canvas.width * aspectRatioVid) / dpr, 
+        //     p5canvas.height  / dpr 
+        //     );
+        //     // -----------------
+
+        // var p5canv_x = (windowWidth - p5canv_width) / 2;
+        // var p5canv_y = (windowHeight - p5canv_height) / 2;
+        // document.querySelector("#vid-container").style.left = p5canv_x * dpr;
+        // document.querySelector("#vid-container").style.top = p5canv_y * dpr;
+
+
+        window.ctx0 = ctx0;
+
+        // below v0.75 shinji
+        hideWebcamInterface();
+
+        // moved from the index html
+        // v0.75 shinji 
+        showSpinner();
+
+        /**
+         * The below section is the options of hidding or displaying opbjects. 
+         * Customise to suite platform UX and UI design.
+         */
+
+
+        /**
+         * Stop video stream. We can not just stop the track, first with have to query the
+         * video stream object "vidSrc" in this case and get all the stream track (this includes audio)
+         * into an array that we can iterate over. from there we can call the MediaStreamTrack.stop() 
+         * method.
+         */
+        vidstream.getTracks().forEach(function(track) {
+            track.stop()
+        });
+
+        // v0.75 shinji 
+
+        setTimeout(function(){ 
+            // hide the reupload button up uploading an image
+            document.querySelector("#inputButton2").style.display = "none";
+
+            timeoutInitDetect();
+
+            // v0.7 no hidespinner()
+        }, 1000);
+
+        // do i need the two functios below here?
+        enableDraw();
+        reInitPaint();
+        // timeout to show the "paint blobs" option
+        timeoutToEnableBlob();
+
+        //////////////////////////////
+        // Below storing the url and blob of the webcam image snapped for resetting the sketch
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+        p5canvas.toBlob(function(blob) {
+            // var newFace = document.createElement('img'),
+            var newFace = new Image();
+            newFace.src = URL.createObjectURL(blob);
+            
+            // convert the newFace src here
+            faceURL = newFace.src;
+            // and make it global
+            window.faceURL = faceURL;
+            // create a globa var for newFace
+            window.newFace = newFace;
+
+            newFace.onload = function() {
+                console.log("newface onload");
+            };
+            
+            console.log("newFace is"+ newFace);
+            console.log("url is" + faceURL);
+            console.log("blob is" + blob);
+
+        });
+        ////////////////////////////
+    });
+
+
+    // function copyTheWebcamCanv() {
+    //     var WebcamData = ctx0.getImageData(10, 10, 50, 50);
+    //     ctx0.putImageData(WebcamData, 400, 70);
+    //     }
 
 
 
+    // v0.75 shinji 
+    function hideWebcamInterface() {
+        // Turn vid source and snap button to hidden DOM elements
+        document.querySelector("#vid-container").style.display = "none";
+        document.querySelector("#vid-src").style.display = "none";
+        document.querySelector("#snap").style.display = "none";
+    }
+
+    function showWebcamInterface() {
+        // Turn vid source and snap button to hidden DOM elements
+        document.querySelector("#vid-container").style.display = "block";
+        document.querySelector("#vid-src").style.display = "block";
+        document.querySelector("#snap").style.display = "block";
+    }
 
 
 
+///////////////////////////////
 
-
-// // -------- below backup prev ver
+// // -------- below backup prev ver for loading images
 // function resizeLoadedImage() {
 //     // https://stackoverflow.com/questions/39619967/js-center-image-inside-canvas-element/39620144
 //     var scale = Math.min(p5canvas.width / newFace.width, p5canvas.height / newFace.height);

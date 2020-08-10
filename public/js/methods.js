@@ -1,6 +1,6 @@
 ////////////////////////
 // oneline for changing the global composite operation
-function changeGlobalComposite(operation) { p5.instance.drawingContext.globalCompositeOperation = operation; }
+// function changeGlobalComposite(operation) { p5.instance.drawingContext.globalCompositeOperation = operation; }
 
 ///////////////////////
 // // function for shuffling and introduces randomness to the painting

@@ -131,6 +131,8 @@ function gotInitResults(err, result) {
     function timeoutInitDetect() {
         clearTimeout(timingOutInitDetect);
         runInitDetection();
+        // v0.75 below painting panel moved from userimage
+        showPaintPanel();
     
         timingOutInitDetect = setTimeout(function(){ 
             context.clearRect(0, 0, width * dpr, height * dpr);
@@ -442,20 +444,3 @@ function clearFaceRedraw() {
     clearInterval(autoDetect);
     }
 
-
-
-
-// //////////// alternative face api
-// https://www.youtube.com/watch?v=CVClHLwv-4I&t=1s
-
-// function faceRedraw() {
-//     autoDetect = setInterval(async () => {
-//         runDetection
-//         }, 200);
-//     }
-
-// function clearFaceRedraw() {
-//     context.clearRect(0, 0, width, height);
-
-//     clearInterval(autoDetect);
-//     }

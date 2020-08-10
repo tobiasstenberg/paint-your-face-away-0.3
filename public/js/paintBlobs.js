@@ -77,6 +77,6 @@ function timeoutToEnableBlob() {
     timeoutEnableBlob = setTimeout(function(){ 
         enableBlob();
         console.log("timeoutEnableBlob");
-    }, 120000);
+    }, 60000);
 }
 

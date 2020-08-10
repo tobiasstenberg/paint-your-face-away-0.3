@@ -1,7 +1,8 @@
 // THE MAIN FILE WHICH HANDLES DRAWING, SETTING UP A P5JS CANVAS ETC.
 
 // update shinji this variable disabled as the button moved to the main html
-let face;             // the face image
+// let webcamFace;             // the face image "face" variable turned into a webcam image
+// v0.75
 // added shinji 27 july
 let faceURL;
 let mask1;            // the mask canvas
@@ -70,7 +71,7 @@ function setup() {
     initPaint();
 
     // INITIAL RESET OF SKETCH
-    resetSketch();
+    // deleted v0.75
 
     // hide the spinner when the p5 canvas loaded / added shinji 28 july
     hideSpinner();
@@ -93,7 +94,6 @@ function setup() {
       
     // shinji v0.6
     showImgButton();
-
 
 
 }
@@ -276,24 +276,25 @@ function reInitPaint() {
     initPaint();
 }
 
-function resetSketch() {
-    reInitPaint();
-    // draw the face on the "original" sketch canvas, which places it below the 2 mask canvases
-    // shinji disable below v0.6
-    // image(face, 0, 0, width, height);
-}
+// reset sketch() moved to open image v0.75
 
 function resetSketch2() {
     reInitPaint();
     resizeLoadedImage();
+    // console.log(faceURL);
 }
 
-// // updated by shinji 27 jul reloading a face with url
-function reloading() {
-    // added shinji 27jul update the face img if the url is changed
-    console.log(faceURL);
-    face = loadImage(faceURL);
-}
+// v0.75 disabled the reset 1 as it messes with the reset2
+// function resetSketch() {
+//     reInitPaint();
+//     newFace = loadImage(faceURL);
+//     image(newFace, 0, 0, width, height);
+// }
+
+// // // updated by shinji 27 jul reloading a face with url
+// function reloading() {
+//     // added shinji 27jul update the face img if the url is changed
+// }
 
 
 
@@ -301,13 +302,7 @@ function reloading() {
 
 
 //////////////////////////////////////////////
-// below resizing
-
-// function centerP5Canvas() {
-//   var p5canv_x = (windowWidth - p5canv_width) / 2;
-//   var p5canv_y = (windowHeight - p5canv_height) / 2;
-//   sketch.position(p5canv_x, p5canv_y);
-// }
+// below resizing canvases
 
 
 function setAllCanvasSize(){
@@ -360,32 +355,98 @@ function resizeStyleLandmarkCanvasMob() {
 }
 
 
+// v0.75
+
+// function resizeVideoContainerDiv(){
+//     // https://stackoverflow.com/questions/10118172/setting-div-width-and-height-in-javascript
+//     var videoContainer = document.getElementById('vid-container');
+//     var videoSource = document.getElementById('vid-src');
+//     var aspectRatioVid = videoSource.clientWidth / videoSource.clientHeight;
+
+//     // engarge the frame width beyond the canvas size to crop
+//     videoSource.setAttribute("style","display:block;width:" + (window.innerHeight * 0.9) * aspectRatioVid + "px");
+//     videoSource.style.width= (window.innerHeight * 0.9) * aspectRatioVid + "px";
+//     // videoSource.setAttribute("style","display:block;left:" + -200 + "px");
+//     // videoSource.style.left= -200 + "px";
+//     videoContainer.setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
+//     videoContainer.style.width= window.innerHeight * 0.9 + "px";
+//     videoContainer.setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
+//     videoContainer.style.width= window.innerHeight * 0.9 + "px";
+//     // console.log(aspectRatioVid);
+// }
+
+
+// prev ver fitting in the canv
+function resizeVideoContainerDiv(){
+    // https://stackoverflow.com/questions/10118172/setting-div-width-and-height-in-javascript
+    var videoContainer = document.getElementById('vid-container');
+    var videoSource = document.getElementById('vid-src');
+    // var aspectRatioVid = videoSource.clientWidth / videoSource.clientHeight;
+
+    // engarge the frame width beyond the canvas size to crop
+    videoSource.setAttribute("style","display:block;width:" + (window.innerHeight * 0.9) + "px");
+    videoSource.style.width= (window.innerHeight * 0.9) + "px";
+    
+    videoContainer.setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
+    videoContainer.style.width= window.innerHeight * 0.9 + "px";
+    videoContainer.setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
+    videoContainer.style.width= window.innerHeight * 0.9 + "px";
+    // console.log(aspectRatioVid);
+}
+
+
+
+// function resizeVideoContainerDiv(){
+//     // https://stackoverflow.com/questions/10118172/setting-div-width-and-height-in-javascript
+//     document.getElementById('vid-container').setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
+//     document.getElementById('vid-container').style.width= window.innerHeight * 0.9 + "px";
+//     // document.getElementById('vid-container').setAttribute("style","display:block;height:" + window.innerHeight * 0.9  + "px");
+//     // document.getElementById('vid-container').style.height= window.innerHeight * 0.9 + "px";
+// }
+
+// function resizeVideoContainerDiv(){
+//     // https://stackoverflow.com/questions/10118172/setting-div-width-and-height-in-javascript
+//     document.getElementById('vid-src').setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
+//     document.getElementById('vid-src').style.width= window.innerHeight * 0.9 + "px";
+//     // document.getElementById('vid-src').setAttribute("style","display:block;height:" + window.innerHeight * 0.9  + "px");
+//     // document.getElementById('vid-src').style.height= window.innerHeight * 0.9 + "px";
+// }
+
+
+
+
+
+// function centerP5Canvas() {
+//   var p5canv_x = (windowWidth - p5canv_width) / 2;
+//   var p5canv_y = (windowHeight - p5canv_height) / 2;
+//   sketch.position(p5canv_x, p5canv_y);
+// }
 
 
 // // p5 windoresized event
-// function windowResized(){
-//     // centerP5Canvas();
-//     // changing the canvas size var and copy to the sizes of the p5 canv and the landmark canvas
-//     // setAllCanvasSize();
-//     // resizeP5canvas();
-//     // resizeLandmarkCanvas();
+function windowResized(){
+    // centerP5Canvas();
+    // changing the canvas size var and copy to the sizes of the p5 canv and the landmark canvas
+    // setAllCanvasSize();
+    // resizeP5canvas();
+    // resizeLandmarkCanvas();
 
-//     /////////
+    /////////
 
-//     if (winWidth.matches) { // If media query matches
-//         //   setAllCanvasSize();
-//         //   resizeP5canvas();
-//         //   resizeLandmarkCanvas();
-//         resizeStyleLandmarkCanvasMob();
-//         resizeStyleP5canvasMob();
-//     } else {
-//         resizeStyleP5canvas();
-//         resizeStyleLandmarkCanvas();
+    if (winWidth.matches) { // If media query matches
+        //   setAllCanvasSize();
+        //   resizeP5canvas();
+        //   resizeLandmarkCanvas();
+        resizeStyleLandmarkCanvasMob();
+        resizeStyleP5canvasMob();
+    } else {
+        resizeStyleP5canvas();
+        resizeStyleLandmarkCanvas();
 
-//     }
+    }
     
 
-// }
+}
 
 
 
