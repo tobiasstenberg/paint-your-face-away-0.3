@@ -53,7 +53,7 @@ function shuffleBlob() {
         reloadBlob();
     }
 
-    console.log("last index:" + lastIndexBlob);
+    // console.log("last index blob:" + lastIndexBlob);
 
     // rewrite the last index as the new random number
     lastIndexBlob = randNumBlob;
@@ -62,7 +62,7 @@ function shuffleBlob() {
 
 }
 
-function reloadBlob () {
+function reloadBlob() {
     // reloading the blob with the new src
     blob = loadImage(sourceURLblob);
 }
@@ -76,7 +76,7 @@ let timeoutEnableBlob;
 function timeoutToEnableBlob() {
     timeoutEnableBlob = setTimeout(function(){ 
         enableBlob();
-        console.log("timeoutEnableBlob");
+        // console.log("timeoutEnableBlob");
     }, 60000);
 }
 

@@ -1,8 +1,9 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: #e2e2e2;
+  background: rgb(226, 226, 226) ;
   /* overflow: hidden; */
+  /* line-height: 1.2; */
 }
 
 /* src https://stackoverflow.com/questions/16805684/javascript-disable-text-select */
@@ -67,6 +68,7 @@ span.textLink {
   margin: 90px 20px 0px 0px;  
   right: 0px;
   top: 0px;
+  bottom: auto;
   width: 227px;
   /* height: 100%; */
   padding: 10px;
@@ -195,45 +197,6 @@ https://stackoverflow.com/questions/21086385/how-to-make-in-css-an-overlay-over-
   cursor:pointer;
 }
 
-/* Responsive layout - makes a two row-layout instead of four columns */
-@media screen and (max-width: 1024px) {
-  /* .row {
-    -ms-flex: 50%;
-    flex: 50%;
-    max-width: 50%;
-  } */
-}
-
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  /* .row {
-    -ms-flex: 100%;
-    flex: 100%;
-    max-width: 100%;
-  } */
-  /* .image_container {
-    width: 99%;
-    height: auto;
-  } */
-
-  /* .image_container img {
-    left: 0%;
-    top: 0%;
-    -webkit-transform: translate(-0%,-0%);
-        -ms-transform: translate(-0%,-0%);
-            transform: translate(-0%,-0%);
-    } */
-
-    .thumb_container {
-        margin: 80px 50px;
-
-        }
-
-    .image_container {
-        width: 180px;
-        height: 180px;
-        }
-}
 
 
 /* /////////iframe////////// */
@@ -262,8 +225,6 @@ https://stackoverflow.com/questions/21086385/how-to-make-in-css-an-overlay-over-
 
 /* /////////ver 0.75////// */
 
-/* marquees */
-
 .scrolling_text {
  position: absolute;
  top: 50%; left: 50%;
@@ -271,4 +232,46 @@ https://stackoverflow.com/questions/21086385/how-to-make-in-css-an-overlay-over-
  -ms-transform: translate(-50%, -50%);
  transform: translate(-50%, -50%);
  text-align: center;
+ width: 100%;
+ padding: 50px;
+}
+
+
+
+
+/* /////////////////////responsive parameters/////////////////////// */
+
+/* Responsive layout - makes a two row-layout instead of four columns */
+@media screen and (max-width: 1024px) {
+
+}
+
+/* ///////////////////////// */
+/* v0.77 */
+@media screen and (max-width: 768px) {
+  .scrolling_text {
+    padding: 20px;
+
+   }
+
+  .archive_right_container_div {
+    bottom: 0px;
+    top: auto;
+  }
+
+} 
+/* ///////////////////////// */
+
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    /* .thumb_container {
+        margin: 80px 50px;
+
+        }
+
+    .image_container {
+        width: 180px;
+        height: 180px;
+        } */
 }

@@ -1,17 +1,17 @@
-/* shinji v0.6 added */
+/* ///////This is for the screen size 1300+ /////////// */
 
+/* --- this is for the right side div navigation window */
 #messageWin {
-      width: 250px; 
-    /* height: 100%; */
-      /* below changed shinji v0.4 30july */
-      /* height: auto;  */
-      max-height: 800px;
-      right: 8%;
-  
+      /* width: 270px;  */
+      width: 15%;
+      right: 50px;
   }
+.message {
+  font-size: 140%;
+}
 
-#left_container_div__panel {
-  /* margin: 0px 0px 0px 20px;   */
+
+/* #left_container_div__panel {
   left: 5%;
   width: 250px;
   height: 100%;
@@ -25,6 +25,5 @@
   top: 50%;
   left: 3%; 
   transform: translate(-3%, -50%);
-  /* shinji v0.6 */
   display: none;
-}
+} */

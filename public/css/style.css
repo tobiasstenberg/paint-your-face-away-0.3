@@ -1,11 +1,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  /* background: rgb(210, 210, 210); */
-  /* updated 8 jul shinji */
   background: #e2e2e2;
-  /* color:#CCCCCC;  */
-/* v0.6 omitted the comentouts */
+
 }
 
 /* below: disable the text selection - shinji 7july */
@@ -19,24 +16,14 @@ html, body {
   user-select: none;
 }
 
-/* body {
-  prevent the over scrolling on mobiles FF 
-  https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior
-  overscroll-behavior: contain;
-} */
-
 
 /* added shinji 7 july */
 p, h1, h2, h3, h4, h5, h6, body {
-  /* font-family: 'Source Code Pro', monospace; */
   font-family: 'Oxygen', sans-serif;
   /* font-weight:700; */
-
-
   color: rgb(46, 46, 46);
 }
 
-/* v0.6 */
 a {
     color: rgb(19, 19, 187);
 }
@@ -54,8 +41,6 @@ a {
 }
 
 span.selectURL {
-  /* background-color: #4d4d4d;
-  color: rgb(226, 226, 226); */
   text-decoration-line: underline;
   text-decoration-color: blue;
   text-decoration-style: solid;
@@ -72,18 +57,9 @@ button {
   color: rgb(46, 46, 46);
 }
 
-#left_container_div__panel {
-  margin: 0px 0px 0px 20px;  
-  width: 227px;
-  height: 100%;
-  /* v0.65 */
-  position: fixed;
-  z-index: 20;
-}
+/* ////////////////////////////////////////// */
 
 /* right div */
-
-/* shinji v0.4 right div disabled */
 /* #right_container_div__panel {
   margin: 0px 20px 0px 0px;  
   right: 0px;
@@ -93,54 +69,44 @@ button {
 
 } */
 
-/* shinji v0.6 changed */
 #messageWin {
-  /* v0.6 */
   position: fixed;
-    /* right: 20px; */
-    right: 3%;
-  /* bottom: 20px; */
+
+  right: 20px;
   margin-bottom: 20px;
-  /* top: 20px; */
-    width: 180px; 
-    /* below changed shinji v0.6  */
-    height: auto; 
-    max-height: 650px;
-    /* height: 560px; */
+  width: 180px; 
+  height: auto; 
+  max-height: 90vh;
+
   padding: 20px;
-  /* border: 2px solid rgb(187, 187, 187); */
+
   border: 2px solid #434343;
   border-radius: 8px;
-  /* background-color: white; */
   background-color: rgba(226, 226, 226, 0.8);
 
   top: 50%;
   /* left: 50%;  */
-  transform: translate(3%, -50%);
+  transform: translate(0%, -50%);
 
-  /* shinji v0.5 */
   display: none;
-  /* shnji v0.6 */
-  overflow: hidden;
+  overflow: auto;
   z-index: 20;
 }
 
-/* added after 4 july shinji */
 .message {
-  /* font-family: 'PT Sans', sans-serif; */
   font-family: 'Oxygen', sans-serif;
-  /* font-family: 'Work Sans', sans-serif; */
-
-  font-size: 120%;
+  font-size: 115%;
   color: #242b38;
 }
 
-/* v0.6 shinji */
-.navi_msg, .pop_msg, #div_blob_buttons {
+.navi_msg, .pop_msg {
   display: none;
 }
 
-/* shinji v0.4 changed  */
+#div_blob_buttons {
+  display: block;
+}
+
 #save_button {
   /* border: 2px solid #909090; */
   /* background-color: #0f0ce7; */
@@ -155,7 +121,6 @@ button {
   margin: 0px;
   margin-left: -20px;
   font-size: 130%;
-  /* v0.6 */
   
   line-height: 43px;
   border: 0px solid rgba(144, 144, 144, 0.75);
@@ -167,55 +132,6 @@ span.textLink {
   cursor: pointer;
 }
 
-
-/* blinking from here: https://stackoverflow.com/revisions/16344389/7 */
-/* v0.6 */
-.blink_message {
-  -webkit-animation-name: blinker;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  
-  -moz-animation-name: blinker;
-  -moz-animation-duration: 1s;
-  -moz-animation-timing-function: linear;
-  -moz-animation-iteration-count: infinite;
-  
-  animation-name: blinker;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@-moz-keyframes blinker {  
-  0% { opacity: 1.0; }
-  50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
-}
-
-@-webkit-keyframes blinker {  
-  0% { opacity: 1.0; }
-  50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
-}
-
-@keyframes blinker {  
-  0% { opacity: 1.0; }
-  50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
-}
-
-/* blurring */
-/* reference  https://www.w3schools.com/howto/howto_css_blurred_background.asp*/
-.blur {
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-}
-
-.nonBlur {
-  filter: blur(0px) !important;
-  -webkit-filter: blur(0px) !important;
-}
 
 /* v0.6 */
 #pop_window {
@@ -280,6 +196,18 @@ p.stamp-text {
 	  font-size: 100%;
 }
 
+
+/* /////////////////contol panel left /////////////// */
+
+#left_container_div__panel {
+  margin: 0px 0px 0px 20px;  
+  width: 227px;
+  height: 100%;
+  /* v0.65 */
+  position: fixed;
+  z-index: 20;
+}
+
 /* div for the painting panel */
 .div_panel {
   /* changed shinji 7 july */
@@ -304,7 +232,10 @@ h3.txt_paint_tools {
   margin-bottom: 10px;
 }
 
-/* shinji disabled 7 july */
+
+
+/* ////////////// canvases ////////////// */
+
 
 #compiled {
   /* width: 600px; height: 600px; */
@@ -316,9 +247,17 @@ h3.txt_paint_tools {
 
 } 
 
+#myP5canvas1 {
+  /* position: absolute ; */
+/* there is not point to put the w and h  */
+  z-index: 0;
+
+  /* border added v0.4 shinji 30jul  */
+  border: 2px solid #4343431c;
+}
+
 /* landmark canvas */
 #land_canv {
-    /* v0.7 */
   position: absolute;
   /* top: 50%;
   left: 50%; 
@@ -331,26 +270,10 @@ h3.txt_paint_tools {
 }
 
 
-#myP5canvas1 {
-  /* position: absolute ; */
-/* there is not point to put the w and h  */
-  z-index: 0;
-
-  /* border added v0.4 shinji 30jul  */
-  border: 2px solid #4343431c;
-}
-
-#paintType {
-  position: absolute;
-  top: 45px;
-  left: 0px;
-}
-
-/* shinji updated v0.6 */
+/* ///////////////////////////////// */
+/* ////// the wrapper of the image uploader button and the webcam ////// */
 .inputWrapper {
   position: absolute;
-  /* bottom: 0px; */
-  /* top: 0px; */
   text-align: center;
   width: auto ;
   max-width: 600px;
@@ -364,10 +287,8 @@ h3.txt_paint_tools {
 }
 
 input[type="file"] {
-  /* hidden for now shinji 7 july */
   display: none;
   position: absolute;
-  /* z-index: -1; */
   font-size: 14px;
   color: #b8b8b8;
 
@@ -377,7 +298,6 @@ label {
   border: 2px solid red;
 }
 
-/* changed v0.6 */
 #inputButton {
   display: inline-block;
   width: 172px;
@@ -390,12 +310,12 @@ label {
   color: #e6e6e6;
 }
 
-/* v0.6 */
 #inputWrapper p {
   font-size: 120%;
 }
 
-/* v0.6 */
+/* //////////square rect buttons  //////////// */
+
 #webcam_button {
   display: inline-block;
   /* display: none; */
@@ -437,7 +357,10 @@ label {
   color: rgb(46, 46, 46);
 }
 
-/* added shinji */
+/* colour changed shinji 12 */
+.button:hover {
+  background-color: #afafaf;
+}
 
 .button_paint_square {
   width: 44px; height: 40px;
@@ -448,7 +371,6 @@ label {
   display: inline-block;
   font-size: 120%;
 
-  /* padding-bottom: 3px; */
 }
 
 .button_paint_square p {
@@ -500,6 +422,8 @@ label {
   display: block;
   font-size: 110%;
 }
+
+/* //////////square rect buttons end //////////// */
 
 /* new class added shinji */
 .active1, .active2, .selected {
@@ -558,19 +482,109 @@ label {
   z-index: 20;
 }
 
-/* .button.toggled, .button.toggled:hover {
-  colour changed shinji
-  background-color: #b3b3b3;
 
-  border: 0.9px solid #fbf906;
+/* //////////////////////////////////////////////// */
+/* ///////// below webcam and stuff */
+/* v0.75 ali */
+
+/* SNAP BUTTON  */
+#snap {
+  display: none;
+  z-index: 20;
+  /* position: absolute; */
+  position: fixed ;
+  bottom: 10px; 
+  left: 50%; 
+  transform: translate(-50%, -0%);
+
+  border-radius: 8px;
+}
+
+/* #vid-container {
+  left: 404px;
+  top: 80px;
+  overflow: hidden;
+  height: 600px;
+  width: 600px;
+  position: absolute;
 } */
 
-/* colour changed shinji 12 */
-.button:hover {
-  background-color: #afafaf;
+#vid-container {
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  /* height: 600px;
+  width: 600px; */
+  position: absolute;
+  display: none;
+}
+
+#vid-src {
+  /* left: -28% !important; */
+  /* position: relative; */
+
+  /* v0.77 positioning at the centre */
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  position: absolute;
 }
 
 
+
+/* /////////////////////////////////// */
+/* //////below visual effects //////// */
+/* /////////////////////////////////// */
+
+
+/* blinking CSS from here: https://stackoverflow.com/revisions/16344389/7 */
+.blink_message {
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  
+  -moz-animation-name: blinker;
+  -moz-animation-duration: 1s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+/* blurring */
+/* reference  https://www.w3schools.com/howto/howto_css_blurred_background.asp*/
+.blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.nonBlur {
+  filter: blur(0px) !important;
+  -webkit-filter: blur(0px) !important;
+}
 
 /* ////// css for the spinner */
 /* ////////////////////////////////////////////////////// */
@@ -663,25 +677,25 @@ label {
 
 
 /*  below custom scroll bar from "info" shinji v0.4 */
-    /* width */
-    ::-webkit-scrollbar {
-      width: 3px;
-      }
+  /* width */
+  ::-webkit-scrollbar {
+  width: 2px;
+  }
 
-      /* Track */
-      ::-webkit-scrollbar-track {
-      background: transparent; 
-      }
-      
-      /* Handle */
-      ::-webkit-scrollbar-thumb {
-      background: rgb(153, 153, 153);
-      }
+  /* Track */
+  ::-webkit-scrollbar-track {
+  background: transparent; 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+  background: rgb(153, 153, 153);
+  }
 
-      /* Handle on hover */
-      ::-webkit-scrollbar-thumb:hover {
-      background: #555; 
-      }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+  }
 
 /* ///////////////////////////////////////////////////////////////// */
 /* //////////////// below css for archive page only /////////////// */
@@ -694,43 +708,3 @@ label {
 }
 
 
-
-
-/* v0.75 ali */
-
-/* SNAP BUTTON  */
-#snap {
-  display: none;
-  z-index: 20;
-  /* position: absolute; */
-  position: fixed ;
-  bottom: 10px; 
-  left: 50%; 
-  transform: translate(-50%, -0%);
-
-  border-radius: 8px;
-}
-
-/* #vid-container {
-  left: 404px;
-  top: 80px;
-  overflow: hidden;
-  height: 600px;
-  width: 600px;
-  position: absolute;
-} */
-
-#vid-container {
-  top: 50%;
-  left: 50%; 
-  transform: translate(-50%, -50%);
-  overflow: hidden;
-  /* height: 600px;
-  width: 600px; */
-  position: absolute;
-  display: none;
-}
-#vid-src {
-  /* left: -28% !important; */
-  position: relative;
-}

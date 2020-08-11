@@ -5,10 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 
     <!-- v0.65 -->
 
@@ -28,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 
     <!-- <link rel="stylesheet" media="screen and (max-width: 767px)" href="./css/style-mobile.css">  -->
-    <link rel="stylesheet" media="screen and (min-width: 1440px) and (max-width: 1921px)" href="./css/style-1920.css"> 
+    <link rel="stylesheet" media="screen and (min-width: 1300px) " href="./css/style-1920.css"> 
 
     <!-- fonts added shinji 7 july -->
     <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Source+Code+Pro&display=swap" rel="stylesheet">
@@ -38,66 +34,23 @@
     <title>paintyourfaceaway</title>
 
 
-    <!-- <style>
-    .container-fluid{
-      position: fixed;
-    }
-    .left_column {
-      height: 500px;
-    }
-    .centre_column {
-      height: 300px;
-    }
-    .right_column {
-      height: 20vh;
-    }
-    .detection_buttons {
-      height: 10vh;
-    }
-    .panel_buttons_bottom_sides {
-      height: 40px;
-      bottom: 0px;
-    }
-    #main_panel {
-      /* padding: 20px; */
-      margin: 0px;
-    }
-    #bottom_dashboard {
-      bottom: 0px;
-    }
-    </style> -->
 
   </head>
   <!-- on load the program will as default switch to a medium brush size of 38 -->
-  <body class="" onload=" shufflePaint1(), shufflePaint2(), shufflePaint3(), switchBrushType(0), switchBrushSize(), switchMedBrush(), loadTxt_1(), loadTxt_2(), hideAllNaviMsg(), disableDraw(), addSavingFunctionToReset()">
+  <body class="" onload=" 
+  shufflePaint1(), shufflePaint2(), shufflePaint3(), shuffleBlob(),
+  switchBrushType(0), switchBrushSize(), switchMedBrush(), 
+  loadTxt_1(), loadTxt_2(), hideAllNaviMsg(), 
+  disableDraw(), 
+  addSavingFunctionToReset() 
+  ">
 
-    <!-- bootstrap container 1 main panel -->
-    <!-- <div class="container-fluid" id="main_panel">
-      <div class="row">
 
-        <div class="col-lg-3 left_column" style="background-color:lavender;">.col-sm-3</div>
 
-        <div class="col-lg centre_column" style="background-color:lavenderblush;">.col-sm-3</div>
-
-        <div class="col-lg-3 right_column" style="background-color:lavender;">.col-sm-3</div>
+      <!-- <div id="compiled" onmouseout="tempDisableDraw()" onmouseover="tempEnableDraw()"> -->
+      <div id="compiled" class="non_select">
 
       </div>
-    </div> -->
-    
-    <!-- bootstrap container 2 bottom dashboard -->
-    <!-- <div class="container-fluid" id="bottom_dashboard">
-      <div class="row">
-        <div class="col-lg-3 panel_buttons_bottom_sides" style="background-color:rgb(131, 20, 20);">jaiodjsofjiadsjfo</div>
-        <div class="col-lg detection_buttons" style="background-color:aqua;">jaiodjsofjiadsjfo</div>
-        <div class="col-lg-3 panel_buttons_bottom_sides" style="background-color:rgb(238, 255, 0);">jaiodjsofjiadsjfo</div>
-      </div>
-    </div> -->
-
-
-    <!-- an independent div with the p5 canvas and the face detection canavas attached to it -->
-    <!-- <div id="compiled" onmouseout="tempDisableDraw()" onmouseover="tempEnableDraw()"> -->
-    <div id="compiled" class="non_select">
-    </div>
 
 
     <!-- ////////////////// non-canvas interface elements below ///////////////// -->
@@ -225,7 +178,7 @@
       </p>
 
       <center>
-        <div id="webcam_button" class="button button_paint_long" onclick="resizeVideoContainerDiv();" >Use a Webcam* </div>
+        <div id="webcam_button" class="button button_paint_long" onclick="" >Use a Webcam* </div>
       </center>
 
       <hr>
@@ -297,7 +250,7 @@
       </div>
 
       <!-- v0.6 -->
-<button style="bottom:0px; position:absolute; z-index: 200;" onclick="enableBlob()">show</button>
+<!-- <button style="bottom:0px; position:absolute; z-index: 200;" onclick="enableBlob()">show</button> -->
 <!-- <button style="bottom:20px; position:absolute; z-index: 200;" onclick="mediaQ(winWidth)">resize</button> -->
 <!-- v0.75 -->
 <!-- <button style="bottom:40px; position:absolute; z-index: 200;" onclick="copyTheWebcamCanv()">copy webcam</button> -->

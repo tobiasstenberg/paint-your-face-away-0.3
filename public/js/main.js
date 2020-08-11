@@ -1,7 +1,6 @@
 // THE MAIN FILE WHICH HANDLES DRAWING, SETTING UP A P5JS CANVAS ETC.
 
 // update shinji this variable disabled as the button moved to the main html
-// let webcamFace;             // the face image "face" variable turned into a webcam image
 // v0.75
 // added shinji 27 july
 let faceURL;
@@ -33,19 +32,15 @@ var winWidth = window.matchMedia("(max-width: 767px)")
 
 
 function preload () {
-    // load in all the images
-
     // face = loadImage("img/face.jpg");
-    // face = loadImage("");
     // paint1 = loadImage("img/paint1.png");
     // paint2 = loadImage("img/Paint-Img2-102.png");
-    // // brush 3 added shinji 26 july
-    // v0.65
     // paint3 = loadImage("img/paint3/Paint-Img3-44.png");
     
     maskBrush = loadImage("img/brush_sq_r.png");
-    // v0.6
-    blob = loadImage('img/blobs/blob3.png');
+
+    // blob = loadImage('img/blobs/blob3.png');
+
 }
 
 function setup() {
@@ -108,13 +103,13 @@ let paint2Changed = 0;
 let paint3Changed = 0;
 
 // v0.65 disabled below
+// a function to draw the masked paint layers in the canvas
 // function updatingPaint() {
 //     drawMaskedPaint();        
 //     maskedPaint1 = paint1.get();
 //     maskedPaint1.mask(mask1.get());
 //     maskedPaint2 = paint2.get();
 //     maskedPaint2.mask(mask2.get());
-//     // mask3 added 26 july shinji
 //     maskedPaint3 = paint3.get();
 //     maskedPaint3.mask(mask3.get());
 // }
@@ -189,10 +184,8 @@ function draw() {
                     case 1:
                         drawBrush1();
                         break;
-                    // mask3 + brush added 26 july shinji
                     case 2:
                         drawBrush2();
-                        // v0.6
                         break;
                     default:
                         drawBrush0();
@@ -241,7 +234,6 @@ function drawMaskedPaint() {
     // draw the masked paint image over the top of the face...
     image(maskedPaint1, 0, 0, width, height); 
     image(maskedPaint2, 0, 0, width, height);
-    // added the brush3 26 july shinji
     image(maskedPaint3, 0, 0, width, height);
 }
 
@@ -289,11 +281,6 @@ function resetSketch2() {
 //     reInitPaint();
 //     newFace = loadImage(faceURL);
 //     image(newFace, 0, 0, width, height);
-// }
-
-// // // updated by shinji 27 jul reloading a face with url
-// function reloading() {
-//     // added shinji 27jul update the face img if the url is changed
 // }
 
 
@@ -356,63 +343,44 @@ function resizeStyleLandmarkCanvasMob() {
 
 
 // v0.75
+// --- Webcam feed & div resized Version 2 
+function resizeVideoContainerDiv(){
 
+    // // --- Webcam feed & div resized and cropped Version 2 
+    // https://stackoverflow.com/questions/10118172/setting-div-width-and-height-in-javascript
+    var videoContainer = document.getElementById('vid-container');
+
+    // engarge the frame width beyond the canvas size to crop
+    // set the hight of the video feed
+    vidSrc.style.height = (window.innerHeight * 0.9) + "px";
+    vidSrc.height = (window.innerHeight * 0.9) *dpr ;
+
+    videoContainer.style.width = window.innerHeight * 0.9 + "px";
+    videoContainer.style.height = window.innerHeight * 0.9 + "px";
+    // videoContainer.setAttribute("style","display:block;width:" + window.innerHeight * 0.9 + "px");
+    // videoContainer.setAttribute("style","display:block;height:" + window.innerHeight * 0.9 + "px");
+
+}
+
+// /////////////////////////////////////////// functional //////////////////////
+// // --- Webcam feed & div resized Version 1 : previous ver fitting in the canv without cropping
 // function resizeVideoContainerDiv(){
 //     // https://stackoverflow.com/questions/10118172/setting-div-width-and-height-in-javascript
 //     var videoContainer = document.getElementById('vid-container');
 //     var videoSource = document.getElementById('vid-src');
-//     var aspectRatioVid = videoSource.clientWidth / videoSource.clientHeight;
+//     // var aspectRatioVid = videoSource.clientWidth / videoSource.clientHeight;
 
 //     // engarge the frame width beyond the canvas size to crop
-//     videoSource.setAttribute("style","display:block;width:" + (window.innerHeight * 0.9) * aspectRatioVid + "px");
-//     videoSource.style.width= (window.innerHeight * 0.9) * aspectRatioVid + "px";
-//     // videoSource.setAttribute("style","display:block;left:" + -200 + "px");
-//     // videoSource.style.left= -200 + "px";
+//     videoSource.setAttribute("style","display:block;width:" + (window.innerHeight * 0.9) + "px");
+//     videoSource.style.width= (window.innerHeight * 0.9) + "px";
+    
 //     videoContainer.setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
 //     videoContainer.style.width= window.innerHeight * 0.9 + "px";
 //     videoContainer.setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
 //     videoContainer.style.width= window.innerHeight * 0.9 + "px";
 //     // console.log(aspectRatioVid);
 // }
-
-
-// prev ver fitting in the canv
-function resizeVideoContainerDiv(){
-    // https://stackoverflow.com/questions/10118172/setting-div-width-and-height-in-javascript
-    var videoContainer = document.getElementById('vid-container');
-    var videoSource = document.getElementById('vid-src');
-    // var aspectRatioVid = videoSource.clientWidth / videoSource.clientHeight;
-
-    // engarge the frame width beyond the canvas size to crop
-    videoSource.setAttribute("style","display:block;width:" + (window.innerHeight * 0.9) + "px");
-    videoSource.style.width= (window.innerHeight * 0.9) + "px";
-    
-    videoContainer.setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
-    videoContainer.style.width= window.innerHeight * 0.9 + "px";
-    videoContainer.setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
-    videoContainer.style.width= window.innerHeight * 0.9 + "px";
-    // console.log(aspectRatioVid);
-}
-
-
-
-// function resizeVideoContainerDiv(){
-//     // https://stackoverflow.com/questions/10118172/setting-div-width-and-height-in-javascript
-//     document.getElementById('vid-container').setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
-//     document.getElementById('vid-container').style.width= window.innerHeight * 0.9 + "px";
-//     // document.getElementById('vid-container').setAttribute("style","display:block;height:" + window.innerHeight * 0.9  + "px");
-//     // document.getElementById('vid-container').style.height= window.innerHeight * 0.9 + "px";
-// }
-
-// function resizeVideoContainerDiv(){
-//     // https://stackoverflow.com/questions/10118172/setting-div-width-and-height-in-javascript
-//     document.getElementById('vid-src').setAttribute("style","display:block;width:" + window.innerHeight * 0.9  + "px");
-//     document.getElementById('vid-src').style.width= window.innerHeight * 0.9 + "px";
-//     // document.getElementById('vid-src').setAttribute("style","display:block;height:" + window.innerHeight * 0.9  + "px");
-//     // document.getElementById('vid-src').style.height= window.innerHeight * 0.9 + "px";
-// }
-
-
+// /////////////////////////////////////////// functional //////////////////////
 
 
 
@@ -444,7 +412,6 @@ function windowResized(){
         resizeStyleLandmarkCanvas();
 
     }
-    
 
 }
 
@@ -468,8 +435,8 @@ function mediaQ(winWidth) {
     }
   }
   
-//   v0.7 moved to head
   // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_matchmedia2
+//   * the following variable moved to the top of this page with the other variables
 //   var winWidth = window.matchMedia("(max-width: 767px)")
 //   mediaQ(winWidth) // Call listener function at run time
 //   winWidth.addListener(mediaQ) // Attach listener function on state changes

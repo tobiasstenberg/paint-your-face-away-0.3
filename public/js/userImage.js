@@ -151,6 +151,8 @@ window.addEventListener('load', function() {
                 vidSrc.srcObject = stream;
                 console.log(vidSrc)
 
+                // here resize the video src and the container div
+                resizeVideoContainerDiv();
 
                 hideImgButton();
                 unborder = p5canvas.style.border = "0px";
@@ -174,28 +176,28 @@ window.addEventListener('load', function() {
         ctx0.clearRect(0, 0, width , height );
         // ctx0.drawImage(vidSrc, 0, 0, vidSrc.clientWidth , vidSrc.clientHeight );
         var aspectRatioVid = vidSrc.clientWidth / vidSrc.clientHeight;
-        
-        // v0.75 -------below prev ver with the image not cropped but just reisized to fit the canv-----
-        ctx0.drawImage(vidSrc, 0, 
-            (p5canvas.height - (p5canvas.width / aspectRatioVid)) / 2 / dpr , 
-            p5canvas.width / dpr, 
-            (p5canvas.width / aspectRatioVid) / dpr 
-            );
+
+        // v0.75 -------below webcam clip v1: prev ver with the image not cropped but just reisized to fit the canv-----
+        // ctx0.drawImage(vidSrc, 0, 
+        //     (p5canvas.height - (p5canvas.width / aspectRatioVid)) / 2 / dpr , 
+        //     p5canvas.width / dpr, 
+        //     (p5canvas.width / aspectRatioVid) / dpr 
+        //     );
         // ----------------------
 
-        // // v0.75 ---------below draw image to the p5 canvas / centres and crops
-        // ctx0.drawImage(vidSrc, 
-        //     - ((p5canvas.width * aspectRatioVid) - p5canvas.width) / 2 / dpr, 
-        //     0, 
-        //     (p5canvas.width * aspectRatioVid) / dpr, 
-        //     p5canvas.height  / dpr 
-        //     );
-        //     // -----------------
+        // // v0.75 ---------below webcam clip v2: draw image to the p5 canvas / centres and crops
+        ctx0.drawImage(vidSrc, 
+            - ((p5canvas.width * aspectRatioVid) - p5canvas.width) / 2 / dpr, 
+            0, 
+            (p5canvas.width * aspectRatioVid) / dpr, 
+            p5canvas.height  / dpr 
+            );
+            // -----------------
 
-        // var p5canv_x = (windowWidth - p5canv_width) / 2;
-        // var p5canv_y = (windowHeight - p5canv_height) / 2;
-        // document.querySelector("#vid-container").style.left = p5canv_x * dpr;
-        // document.querySelector("#vid-container").style.top = p5canv_y * dpr;
+        var p5canv_x = (windowWidth - p5canv_width) / 2;
+        var p5canv_y = (windowHeight - p5canv_height) / 2;
+        document.querySelector("#vid-container").style.left = p5canv_x * dpr;
+        document.querySelector("#vid-container").style.top = p5canv_y * dpr;
 
 
         window.ctx0 = ctx0;
