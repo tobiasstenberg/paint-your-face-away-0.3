@@ -71,6 +71,10 @@ function enableBlob(){
     document.querySelector("#div_blob_buttons").style.display = "block"
 }
 
+function disableBlob(){
+    document.querySelector("#div_blob_buttons").style.display = "none"
+}
+
 let timeoutEnableBlob;
 
 function timeoutToEnableBlob() {

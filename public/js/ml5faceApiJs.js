@@ -70,6 +70,8 @@ function enterNoDetectionMode() {
     showPopDivNoFaceMsg();
 
     removeSavingFunctionToReset();
+
+    disableBlob();
 }
 
 function enterDetectionMode() {
